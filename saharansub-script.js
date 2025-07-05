@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const initDynamicTagline = () => {
     const taglineElement = select('#dynamic-tagline');
     if (taglineElement) {
-      const taglines = ["STEAM Advocate", "Market Entry Specialist", "Tech Sales Man", "E-Mobility Pusher"];
+      const taglines = ["STEAM Advocate", "Market Entry Specialist", "Tech Sales Expert", "E-Mobility Pusher"];
       let currentIndex = 0;
       setInterval(() => {
         currentIndex = (currentIndex + 1) % taglines.length;
