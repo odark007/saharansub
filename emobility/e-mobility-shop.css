@@ -1,0 +1,142 @@
+/*--------------------------------------------------------------
+# E-Mobility Shop Page Styles
+# File: e-mobility-shop.css
+--------------------------------------------------------------*/
+
+/* --- 1. Shop Introduction Card --- */
+.shop-intro-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+.shop-intro-card {
+  background: var(--color-white);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.shop-intro-logo {
+  max-height: 60px;
+  margin: 0 auto 25px auto;
+}
+.shop-intro-card h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.shop-intro-card p {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* --- 2. Main Shop Page - Bike Sections --- */
+.bike-section {
+  padding: 80px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+.bike-section:last-of-type { border-bottom: none; }
+.bike-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.bike-section-grid.layout-image-right .bike-image-column { order: 2; }
+.bike-image-column img {
+  border-radius: 10px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.bike-image-column img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.bike-content-column h2 { font-size: 42px; font-weight: 700; margin-bottom: 20px; }
+.bike-content-column p { font-size: 18px; line-height: 1.6; margin-bottom: 30px; }
+.cta-view-spec {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--color-ebike-bg); color: var(--color-white);
+  padding: 14px 30px; border-radius: 5px;
+  font-weight: 700; font-family: var(--font-nav); font-size: 16px;
+  transition: all 0.3s ease;
+}
+.cta-view-spec i { transition: transform 0.3s ease; }
+.cta-view-spec:hover {
+  background: var(--color-heading);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.cta-view-spec:hover i { transform: rotate(-45deg); }
+
+/* --- 3. Individual Bike Detail Page Styles --- */
+.bike-detail-header-container { justify-content: space-between; }
+.cta-back-to-shop {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--font-nav); font-weight: 500; font-size: 15px;
+    color: var(--color-body); transition: color 0.3s;
+}
+.cta-back-to-shop:hover { color: var(--color-light-green); }
+.cta-back-to-shop i { font-size: 24px; }
+
+/* Hero */
+.bike-detail-hero { padding: 60px 0; background: #f8f9fa; }
+.bike-detail-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.bike-detail-hero-image img { border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.bike-detail-hero-content h1 { font-size: 48px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+.bike-detail-hero-content p { font-size: 18px; line-height: 1.7; }
+
+/* General Section Title */
+.section-title { text-align: center; margin-bottom: 40px; }
+.section-title h2 { font-size: 32px; font-weight: 700; display: inline-flex; align-items: center; gap: 15px; }
+.section-title h2 i { color: var(--color-light-green); }
+
+/* Specifications */
+.specifications-section { padding: 80px 0; }
+.specifications-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+.spec-item {
+  background: var(--color-white); padding: 25px; border-radius: 8px;
+  text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-top: 4px solid var(--color-light-green);
+}
+.spec-item i { font-size: 36px; color: var(--color-light-green); margin-bottom: 15px; }
+.spec-item h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #a0a0a0; margin-bottom: 5px; }
+.spec-item span { font-size: 20px; font-weight: 700; color: var(--color-heading); }
+
+/* Video */
+.bike-video-section { padding: 60px 0; background: #f8f9fa; }
+.video-embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 10px; }
+.video-embed-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* Feature Gallery */
+.additional-info-section { padding: 80px 0; }
+.feature-gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+.feature-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s; }
+.feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+.feature-card img { width: 100%; height: 250px; object-fit: cover; }
+.feature-content { padding: 25px; }
+.feature-content h4 { font-size: 20px; margin-bottom: 10px; }
+.feature-content p { font-size: 15px; line-height: 1.6; }
+
+/* Final CTAs */
+.final-cta-section { padding: 60px 0; text-align: center; display: flex; justify-content: center; gap: 20px; }
+.cta-contact-inquiry {
+  display: inline-block; background: var(--color-ebike-accent); color: var(--color-heading);
+  padding: 14px 30px; border-radius: 50px;
+  font-weight: 700; font-family: var(--font-nav); font-size: 16px;
+  transition: all 0.3s ease;
+}
+.cta-contact-inquiry:hover { background-color: var(--color-heading); color: var(--color-white); transform: scale(1.05); }
+
+/* --- 4. Responsive Styles --- */
+@media (max-width: 992px) {
+  .bike-section-grid, .bike-detail-hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+  .bike-section-grid.layout-image-right .bike-image-column { order: 0; }
+  .bike-detail-hero-image { order: -1; } /* Image on top */
+}
+
+@media (max-width: 768px) {
+  .feature-gallery-grid { grid-template-columns: 1fr; }
+  .final-cta-section { flex-direction: column; }
+  .bike-detail-hero-content h1 { font-size: 36px; }
+}
