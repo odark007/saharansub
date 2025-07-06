@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KC2RS4XQ');</script>
-<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3TCJJ3STZV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3TCJJ3STZV');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Mobility Solutions - Saharansub</title>
@@ -19,11 +21,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link href="e-mobility.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC2RS4XQ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
     <div id="emobility-preloader">
         <div class="animation-container">
             <i class="bi bi-bicycle bike-icon"></i>
@@ -73,7 +70,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <ul>
                         <li><a href="#emobility-hero">Home</a></li>
                         <li><a href="e-mobility-shop.html">Shop</a></li>
-                        <li><a href="#contact-section">Contact</a></li>
+                        <li><a href="#book-test-ride">Contact</a></li>
                     </ul>
                 </nav>
 
@@ -127,7 +124,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- E-BIKE PAGE MENU (DESKTOP ONLY) -->
     <nav id="ebike-menu-desktop" class="ebike-nav-desktop">
-        <div class="container"><ul><li><a href="#emobility-hero">Home</a></li><li><a href="e-mobility-shop.html">Shop</a></li><li><a href="#contact-section">Contact</a></li></ul></div>
+        <div class="container">
+            <ul>
+                <li><a href="#emobility-hero" class="active">Home</a></li>
+                <li><a href="e-mobility-shop.html">Shop</a></li>
+                <li><a href="#book-test-ride">Contact</a></li>
+        </ul>
+    </div>
     </nav>
 
     <main>
@@ -237,11 +240,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="card-content">
                         <h3>The Running King</h3>
-                        <p>The perfect companion for your daily city commute.</p>
+                        <p>An eye-catching yellow motorcycle designed to make a statement on the road.</p>
                         <ul class="bike-specs">
-                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 35 miles</li>
-                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 20 mph</li>
-                            <li><i class="bi bi-battery-charging"></i> <strong>Battery:</strong> Lithium-Ion</li>
+                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong>60-90 KM</li>
+                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 60-90 KM/H</li>
+                            <li><i class="bi bi-battery-charging"></i> <strong>Battery:</strong> Lead / Lithium</li>
                         </ul>
                         <div class="availability-status status-available">Available Now</div>
                         <a href="e-mobility-shop.html#bike-running-king" class="cta-learn-more">Learn More</a>
@@ -255,11 +258,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="card-content">
                         <h3>Blackstar</h3>
-                        <p>A rugged, all-terrain bike for the adventurous spirit.</p>
+                        <p>Bold, black and white electric bike, engineered for strength and stability on both urban streets and rugged trails, promising a smooth, reliable ride for adventurers.</p>
                         <ul class="bike-specs">
-                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 50 miles</li>
-                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 25 mph</li>
-                            <li><i class="bi bi-battery-charging"></i> <strong>Battery:</strong> Lithium-Ion</li>
+                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 60-90 KM</li>
+                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 60-90 KM/H</li>
+                            <li><i class="bi bi-battery-charging"></i> <strong>Battery:</strong> Lead / Lithium</li>
                         </ul>
                         <div class="availability-status status-available">Available Now</div>
                         <a href="e-mobility-shop.html#bike-blackstar" class="cta-learn-more">Learn More</a>
@@ -273,13 +276,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="card-content">
                         <h3>Carriage Tricycle</h3>
-                        <p>A lightweight, foldable model for ultimate portability.</p>
+                        <p>Combining sleek design and robust performance for comfortable passenger transportation in both commercial and family settings.</p>
                         <ul class="bike-specs">
-                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 25 miles</li>
-                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 18 mph</li>
-                            <li><i class="bi bi-battery-charging"></i> <strong>Battery:</strong> Lithium-Ion</li>
+                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 80 KM</li>
+                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 50 KM/H</li>
+                            <li><i class="bi bi-battery-charging"></i> <strong>Battery:</strong> Lithium</li>
                         </ul>
-                        <div class="availability-status status-preorder">Pre-Order</div>
+                        <div class="availability-status status-available">Available Now</div>
+                       <!-- <div class="availability-status status-preorder">Pre-Order</div> -->
                         <a href="e-mobility-shop.html#bike-carriage-tricycle" class="cta-learn-more">Learn More</a>
                     </div>
                 </div>
@@ -291,11 +295,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="card-content">
                         <h3>The Racer</h3>
-                        <p>The heavy-duty solution for deliveries and errands.</p>
+                        <p>stunning electric motorcycle with an iconic USA flag design, showcasing the latest industry developments.</p>
                         <ul class="bike-specs">
-                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 40 miles</li>
-                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 15 mph</li>
-                            <li><i class="bi bi-battery-full"></i> <strong>Battery:</strong> Lead-Acid</li>
+                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 60-90 KM</li>
+                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 60-70 KM/H</li>
+                            <li><i class="bi bi-battery-full"></i> <strong>Battery:</strong> Lead / Lithium</li>
                         </ul>
                         <div class="availability-status status-available">Available Now</div>
                         <a href="e-mobility-shop.html#bike-the-racer" class="cta-learn-more">Learn More</a>
@@ -308,11 +312,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="card-content">
                         <h3>The Rassion</h3>
-                        <p>The heavy-duty solution for deliveries and errands.</p>
+                        <p>Navigate city streets with ease on our agile urban e-bike, designed for a swift and effortless commute.</p>
                         <ul class="bike-specs">
-                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 40 miles</li>
-                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 15 mph</li>
-                            <li><i class="bi bi-battery-full"></i> <strong>Battery:</strong> Lead-Acid</li>
+                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 60-90 KM</li>
+                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 60-70 KM/H</li>
+                            <li><i class="bi bi-battery-full"></i> <strong>Battery:</strong> Lead / Lithium</li>
                         </ul>
                         <div class="availability-status status-available">Available Now</div>
                         <a href="e-mobility-shop.html#bike-the-rassion" class="cta-learn-more">Learn More</a>
@@ -325,11 +329,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="card-content">
                         <h3>Winner</h3>
-                        <p>The heavy-duty solution for deliveries and errands.</p>
+                        <p>Modern design with a timeless silver-black color scheme.</p>
                         <ul class="bike-specs">
-                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 40 miles</li>
-                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 15 mph</li>
-                            <li><i class="bi bi-battery-full"></i> <strong>Battery:</strong> Lead-Acid</li>
+                            <li><i class="bi bi-broadcast"></i> <strong>Range:</strong> 60-90 KM/H</li>
+                            <li><i class="bi bi-speedometer2"></i> <strong>Speed:</strong> 60-90 KM</li>
+                            <li><i class="bi bi-battery-full"></i> <strong>Battery:</strong> Lead / Lithium</li>
                         </ul>
                         <div class="availability-status status-available">Available Now</div>
                         <a href="e-mobility-shop.html#bike-winner" class="cta-learn-more">Learn More</a>
@@ -526,6 +530,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ====================================================== -->
 <!-- END: New Section -->
 <!-- ====================================================== -->
+<!-- ====================================================== -->
+<!-- NEW: Maintenance Section                             -->
+<!-- ====================================================== -->
+<section id="maintenance-section" class="learn-to-ride-section">
+    <div class="container">
+        <div class="learn-to-ride-grid">
+
+            <!-- Content Column (Placed first) -->
+            <div class="learn-to-ride-content">
+                <h2>We Keep You on the Road.</h2>
+                <p>
+                    What is the use of owning an e-bike without a service centre? The Elecer brand offers weekly maintenance services across our outlets
+                </p>
+                <!-- No button in this version -->
+            </div>
+            
+            <!-- Image Column (Placed second) -->
+            <div class="learn-to-ride-image">
+                <img src="../images/e-bike-repairman.png" alt="A technician performing maintenance on an ELECER e-bike.">
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ====================================================== -->
+<!-- END: New Section                                     -->
+<!-- ====================================================== -->
+
  <!-- ====================================================== -->
 <!-- NEW: Book Test Ride Section                          -->
 <!-- ====================================================== -->
@@ -534,7 +566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="test-ride-card">
             <h2>Book a Test Ride</h2>
             <p>Have a feel of what an Elecer bike looks like</p>
-            <button id="open-test-ride-modal" class="cta-button-test-ride">Book Now</button>
+            <button id="open-test-ride-modal" class="cta-button-test-ride">Contact Me</button>
         </div>
     </div>
 </section>
@@ -582,7 +614,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </a>
                     <div class="footer-warning">
                         <i class="bi bi-exclamation-triangle-fill"></i>
-                        <p>Riding a motorcycle on the main road requires that you observe all safety precautions.</p>
+                        <p>Riding a motorcycle on the main road requires that you observe all safety precautions. Always wear your helmet.</p>
                     </div>
                 </div>
 
@@ -615,7 +647,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
             <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
         </div>
-        <p class="copyright">© Copyright <strong><span>Saharansub</span></strong>. All Rights Reserved</p>
+        <p class="copyright">©2025 Copyright <strong><span>Saharansub</span></strong>. All Rights Reserved</p>
         
         
     </div>

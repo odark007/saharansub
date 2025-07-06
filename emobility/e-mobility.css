@@ -1169,3 +1169,64 @@ body.modal-open {
     transform: translateX(-50%);
   }
 }
+
+/*--------------------------------------------------------------
+# Maintenance Section (Replicated from Learn to Ride)
+--------------------------------------------------------------*/
+
+/* Main section styling with a white background */
+#maintenance-section {
+  padding: 80px 0;
+  background-color: var(--color-white);
+}
+
+/* Override the text color for the h2 to be dark */
+#maintenance-section .learn-to-ride-content h2 {
+  color: var(--color-heading);
+}
+
+/* Override the paragraph text color to be dark */
+#maintenance-section .learn-to-ride-content p {
+  color: var(--color-body);
+}
+
+/* Ensure the hover effect on the image still works */
+#maintenance-section .learn-to-ride-grid:hover .learn-to-ride-image img {
+  transform: scale(1.05);
+}
+
+/*--------------------------------------------------------------
+# E-Bike Desktop Navigation - Active State Underline
+--------------------------------------------------------------*/
+
+/* 1. Prepare the link for positioning the underline */
+.ebike-nav-desktop a {
+  position: relative; /* This is crucial for positioning the ::after element */
+  padding-bottom: 5px; /* Adds a small space for the underline to live in */
+}
+
+/* 2. Create the hidden underline pseudo-element for all links */
+.ebike-nav-desktop a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--color-ebike-accent);
+  
+  /* Start hidden and prepare for animation */
+  width: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+/* 3. Reveal the underline when a link is hovered OR if it has the .active class */
+.ebike-nav-desktop a:hover::after,
+.ebike-nav-desktop a.active::after {
+  width: 100%; /* Animate width from 0 to 100% on hover/active */
+}
+
+/* 4. Update the existing hover style to also apply to the .active link text */
+.ebike-nav-desktop a:hover,
+.ebike-nav-desktop a.active {
+  color: var(--color-ebike-accent);
+}
