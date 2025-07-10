@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3TCJJ3STZV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3TCJJ3STZV');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pony - ELECER E-Bikes</title>
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Raleway:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Stylesheets (No new CSS file needed, uses existing styles) -->
+    <link href="e-mobility.css" rel="stylesheet">
+    <link href="e-mobility-shop.css" rel="stylesheet">
+</head>
+<body class="bike-detail-page">
+    <!-- FOCUSED HEADER for bike detail page -->
+    <header id="main-site-header" class="header">
+        <div class="container bike-detail-header-container">
+            <a href="e-mobility-shop.html" class="cta-back-to-shop"><i class="bi bi-arrow-left-short"></i> Back to Shop</a>
+            <a href="#" class="logo">Saharansub</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Bike Hero Section -->
+        <section class="bike-detail-hero">
+            <div class="container">
+                <div class="bike-detail-hero-grid">
+                    <div class="bike-detail-hero-image">
+                        <img src="../images/Pony.png" alt="ELECER Pony">
+                    </div>
+                    <div class="bike-detail-hero-content">
+                        <h1>Pony</h1>
+                        <p>Your perfect companion for convenient suburban travel, featuring a practical front basket and a comfortable design. Enjoy easy maneuverability and a smooth ride, making every journey a pleasure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Specifications Section -->
+        <section class="specifications-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2><i class="bi bi-lightning-charge-fill"></i> Specifications</h2>
+                </div>
+                <div class="specifications-grid">
+                    <div class="spec-item"><i class="bi bi-nut"></i><h4>Motor Power</h4><span>350 WATTS</span></div>
+                    <div class="spec-item"><i class="bi bi-speedometer2"></i><h4>Speed</h4><span>35 KM/H</span></div>
+                    <div class="spec-item"><i class="bi bi-battery-full"></i><h4>Battery Type</h4><span>Lead</span></div>
+                    <div class="spec-item"><i class="bi bi-broadcast"></i><h4>Range</h4><span>35 KM</span></div>
+                    <div class="spec-item"><i class="bi bi-plug"></i><h4>Charger</h4><span>220V</span></div>
+                    <div class="spec-item"><i class="bi bi-box-seam"></i><h4>Package Size (mm)</h4><span>1780*570*830</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Video Section -->
+        <section class="bike-video-section">
+            <div class="container">
+                 <div class="section-title"><h2><i class="bi bi-camera-reels-fill"></i> See It In Action</h2></div>
+                <div class="video-embed-container">
+                    <iframe src="https://www.youtube.com/embed/ZKTW6jF84Ak?si=vWSCgYI1YeUEzQ2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. Additional Information & Feature Gallery -->
+      <!--  <section class="additional-info-section">
+            <div class="container">
+                <div class="section-title"><h2><i class="bi bi-info-circle-fill"></i> Features & Details</h2></div>
+                <div class="feature-gallery-grid">
+                    <div class="feature-card"><img src="../images/rassion-features-seat.webp" alt="Close-up of the seat"><div class="feature-content"><h4>Seat</h4><p>The seat does not only look sophisticated but also withstand the wear and tear of daily use.</p></div></div>
+                    <div class="feature-card"><img src="../images/rassion-features-tire.webp" alt="Close-up of the tire"><div class="feature-content"><h4>Tire</h4><p>Designed with advanced tread patterns that offer exceptional traction, ensuring you stay in control no matter the surface. Whether it’s wet, dry, or uneven terrain, you can ride with confidence.</p></div></div>
+                    <div class="feature-card"><img src="../images/rassion-features-absorber.webp" alt="Close-up of the seat"><div class="feature-content"><h4>Shock Absorber</h4><p>The absorbers are engineered to effectively absorb bumps and vibrations, ensuring a smooth ride even on the roughest surfaces.</p></div></div>
+                    <div class="feature-card"><img src="../images/rassion-features-control.webp" alt="Close-up of the control"><div class="feature-content"><h4>Control</h4><p>The hand controls are strategically placed for easy access, allowing you to shift gears, adjust settings, and engage brakes with minimal effort.</p></div></div>
+                </div>
+            </div>
+        </section> -->
+        
+        <!-- 5. Final CTA Section -->
+        <section class="final-cta-section">
+            <div class="container">
+                <a href="e-mobility-shop.html" class="cta-back-to-shop"><i class="bi bi-arrow-left-short"></i> Back to Shop</a>
+                <!-- UPDATED: This is now a button that will trigger our new JS -->
+                <button class="cta-contact-inquiry js-open-modal" data-bike-name="Pony">Inquire About This Bike</button>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="footer">
+        <!-- Footer content can be copied from the main shop page -->
+    </footer>
+
+    <!-- NEW: Inquiry Modal HTML Structure -->
+    <div id="inquiry-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" aria-label="Close modal">×</button>
+            <h3 id="modal-title">Inquire About This Bike</h3>
+            <div class="modal-contact-links">
+                <a href="#" aria-label="WhatsApp" target="_blank"><i class="bi bi-whatsapp"></i></a>
+                <a href="#" aria-label="Email" target="_blank"><i class="bi bi-envelope"></i></a>
+                <a href="tel:+1234567890" aria-label="Phone" target="_blank"><i class="bi bi-telephone-outbound"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Existing Scripts (Unchanged) -->
+    <script src="e-mobility.js"></script>
+    <script src="e-mobility-shop.js"></script>
+
+    <!-- NEW: Link to our dedicated bike detail page script -->
+    <script src="bike-detail.js"></script>
+</body>
+</html>
