@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const pageFileMap = {
             'home': 'e-mobility.html',
-            'shop': 'e-mobility-shop.html',
-            'insights': 'blog-post-1.html'
+            'shop': 'e-mobility-shop.html'
+            
         };
 
         const targetFile = pageFileMap[pageId];
