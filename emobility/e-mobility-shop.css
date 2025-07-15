@@ -140,3 +140,45 @@
   .final-cta-section { flex-direction: column; }
   .bike-detail-hero-content h1 { font-size: 36px; }
 }
+
+
+/* --- 5. Bike Detail Page - Pricing Section --- */
+.bike-pricing-section {
+  padding: 40px 0;
+  background: var(--color-white);
+  border-bottom: 1px solid #e9ecef;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.price-box {
+  padding: 30px;
+  text-align: center;
+  border-radius: 8px;
+}
+.price-box h4 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.price-box .price-value {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+}
+.price-box.lead-battery {
+  background-color: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.price-box.lithium-battery {
+  background-color: rgba(144, 238, 144, 0.2); /* Light green tint */
+  border: 1px solid rgba(144, 238, 144, 0.4);
+}
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}

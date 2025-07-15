@@ -23,7 +23,7 @@
     <link href="e-mobility.css" rel="stylesheet">
     <link href="e-mobility-shop.css" rel="stylesheet">
 </head>
-<body class="bike-detail-page">
+<body class="bike-detail-page" data-bike-id="blackstar">
     <!-- FOCUSED HEADER for bike detail page -->
     <header id="main-site-header" class="header">
         <div class="container bike-detail-header-container">
@@ -43,6 +43,23 @@
                     <div class="bike-detail-hero-content">
                         <h1>Blackstar</h1>
                         <p>Meet the Black Star, ELECER’s boldest ride yet. With its powerful black and white design, this electric bike stands as a symbol of strength and stability. Engineered for both urban streets and rugged trails, the Black Star’s sturdy frame, premium tires, and seamless performance offer a smooth, reliable ride every time. Feel unstoppable with a bike designed to meet the demands of your adventurous spirit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ====================================================== -->
+        <!-- Pricing Section                                   -->
+        <!-- ====================================================== -->
+        <section class="bike-pricing-section">
+            <div class="container">
+                <div class="pricing-grid">
+                    <div class="price-box lead-battery">
+                        <h4>Lead Battery</h4>
+                        <div class="price-value" data-price-type="lead">Loading...</div>
+                    </div>
+                    <div class="price-box lithium-battery">
+                        <h4>Lithium Battery</h4>
+                        <div class="price-value" data-price-type="lithium">Loading...</div>
                     </div>
                 </div>
             </div>
@@ -116,11 +133,11 @@
         </div>
     </div>
     
-    <!-- Existing Scripts (Unchanged) -->
+    
     <script src="e-mobility.js"></script>
     <script src="e-mobility-shop.js"></script>
-
-    <!-- NEW: Link to our dedicated bike detail page script -->
     <script src="bike-detail.js"></script>
+    <script src="pricing-data.js"></script>
+    <script src="price-injector.js"></script>
 </body>
 </html>
