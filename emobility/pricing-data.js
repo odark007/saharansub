@@ -33,10 +33,10 @@ const bikePrices = {
   },
   "eagle-king": {
     lead: "GHc 13,500",
-    lithium: "23,400"
+    lithium: "GHc 23,400"
   },
   "pony": {
     lead: "GHc 4,850",
-    lithium: "11,600"
+    lithium: "GHc 11,600"
   }
 };
