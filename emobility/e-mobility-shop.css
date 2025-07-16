@@ -182,3 +182,76 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* --- 6. Bike Detail Page - Extra Details Section --- */
+.extra-details-section {
+  padding: 80px 0;
+  background-color: #f8f9fa; /* A light, clean background */
+}
+
+.details-list {
+  list-style: none; /* Removes the default 1. 2. 3. numbers */
+  counter-reset: details-counter; /* Initializes our custom counter */
+  padding: 0;
+  margin: 0;
+}
+
+.details-list > li {
+  counter-increment: details-counter; /* Increments our counter for each item */
+  padding: 30px;
+  margin-bottom: 25px;
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  padding-left: 80px; /* Make space for the large custom number */
+}
+
+/* The large, styled number */
+.details-list > li::before {
+  content: counter(details-counter);
+  position: absolute;
+  left: 20px;
+  top: 30px;
+  font-size: 48px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--color-light-green);
+  line-height: 1;
+}
+
+.details-list h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--color-heading);
+}
+
+.details-list p,
+.details-list ul {
+  margin-left: 0;
+  padding-left: 0;
+  line-height: 1.7;
+}
+
+.details-list ul {
+  list-style-type: disc; /* Use standard bullets for sub-points */
+  padding-left: 20px; /* Indent the sub-points */
+}
+
+.details-list ul li {
+  margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .details-list > li {
+    padding-left: 30px;
+    padding-top: 60px; /* Make space for the number at the top */
+  }
+  .details-list > li::before {
+    left: 30px;
+    top: 20px;
+    font-size: 36px;
+  }
+}
