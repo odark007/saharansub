@@ -38,5 +38,13 @@ const bikePrices = {
   "pony": {
     lead: "GHc 4,850",
     lithium: "GHc 11,600"
+  },
+  "load-king": {
+    lead: "GHc 14,600",
+    lithium: "GHc 23,800"
+  },
+  "carrier-m": {
+    lead: "N/A",
+    lithium: "GHc 28,600"
   }
 };
