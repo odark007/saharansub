@@ -197,3 +197,31 @@ body {
 .website:hover { 
     box-shadow: 0 8px 25px rgba(90, 103, 216, 0.3); 
 }
+
+/* Styling for the Quote Section */
+.quote-section {
+    margin-top: 24px; /* Adds space below the name */
+    margin-bottom: 24px; /* Adds space above the bio */
+}
+
+.quote-section blockquote {
+    background-color: #f8f9fa; /* The light grey background from the image */
+    border: 1px solid #e9ecef; /* A subtle border */
+    border-radius: 8px;        /* Rounded corners */
+    padding: 20px;             /* Internal spacing */
+    margin: 0;                 /* Resets default browser margins */
+    text-align: left;
+}
+
+.quote-section blockquote p {
+    margin: 0 0 12px; /* Adds space between the quote and the author */
+    font-size: 16px;
+    color: #495057;  /* Soft, dark grey for the text */
+    line-height: 1.5;
+}
+
+.quote-section blockquote footer {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6c757d; /* Lighter grey for the author name */
+}
