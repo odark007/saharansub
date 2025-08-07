@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.business-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.business-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #28a745, #20c997);
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    margin: 0 auto 24px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden; /* Crops the image to the container's shape */
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the container without distortion */
+}
+
+.profile-image:hover {
+    transform: translateY(-2px);
+}
+
+.name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 8px;
+}
+
+.bio {
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+.social-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #495057;
+    padding: 16px 8px;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #f8f9fa;
+    border: 1px solid transparent;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+}
+
+.social-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover .social-icon {
+    transform: scale(1.1);
+}
+
+.social-name {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Platform-specific hover colors */
+.whatsapp:hover { background: #25D366; border-color: #25D366; }
+.whatsapp:hover { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3); }
+
+.linkedin:hover { background: #0077B5; border-color: #0077B5; }
+.linkedin:hover { box-shadow: 0 8px 25px rgba(0, 119, 181, 0.3); }
+
+.twitter:hover { background: #1DA1F2; border-color: #1DA1F2; }
+.twitter:hover { box-shadow: 0 8px 25px rgba(29, 161, 242, 0.3); }
+
+.facebook:hover { background: #4267B2; border-color: #4267B2; }
+.facebook:hover { box-shadow: 0 8px 25px rgba(66, 103, 178, 0.3); }
+
+.tiktok:hover { background: #000000; border-color: #000000; }
+.tiktok:hover { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
+
+.email:hover { background: #EA4335; border-color: #EA4335; }
+.email:hover { box-shadow: 0 8px 25px rgba(234, 67, 53, 0.3); }
+
+.phone:hover { background: #28a745; border-color: #28a745; }
+.phone:hover { box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3); }
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .business-card {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    
+    .social-links {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 16px;
+    }
+    
+    .name {
+        font-size: 24px;
+    }
+    
+    .bio {
+        font-size: 15px;
+    }
+}
+
+/* Subtle animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.business-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.social-link {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.social-link:nth-child(1) { animation-delay: 0.1s; }
+.social-link:nth-child(2) { animation-delay: 0.2s; }
+.social-link:nth-child(3) { animation-delay: 0.3s; }
+.social-link:nth-child(4) { animation-delay: 0.4s; }
+.social-link:nth-child(5) { animation-delay: 0.5s; }
+.social-link:nth-child(6) { animation-delay: 0.6s; }
+.social-link:nth-child(7) { animation-delay: 0.7s; }
+
+
+.website:hover { 
+    background: #5A67D8;
+    border-color: #5A67D8; 
+}
+.website:hover { 
+    box-shadow: 0 8px 25px rgba(90, 103, 216, 0.3); 
+}
