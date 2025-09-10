@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Saharansub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-teal: #06b6d4;
+            --secondary-orange: #f97316;
+            --secondary-yellow: #eab308;
+            --accent-green: #10b981;
+            --neutral-gray: #6b7280;
+            --neutral-light: #f3f4f6;
+            --neutral-white: #ffffff;
+            --neutral-dark: #374151;
+            
+            --font-header: "Montserrat", sans-serif;
+            --font-body: "Open Sans", sans-serif;
+            --font-accent: "Poppins", sans-serif;
+            
+            --shadow-card: 0 10px 25px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-orange), var(--secondary-yellow));
+            --gradient-accent: linear-gradient(135deg, var(--accent-green), var(--primary-teal));
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--gradient-primary);
+            color: var(--neutral-white);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: particles 20s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes particles {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Logo */
+        .logo {
+            font-family: var(--font-header);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 800;
+            color: var(--neutral-white);
+            text-align: center;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        /* Countdown Timer */
+        .countdown-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-card);
+        }
+        
+        .countdown-text {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .countdown-timer {
+            font-family: var(--font-header);
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 800;
+            color: var(--secondary-yellow);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Main CTA */
+        .main-cta {
+            background: var(--gradient-secondary);
+            color: var(--neutral-white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: var(--font-accent);
+            font-weight: 700;
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            text-decoration: none;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .main-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            color: var(--neutral-white);
+        }
+        
+        /* PDF Download Section */
+        .pdf-section {
+            width: 100%;
+            animation: fadeInUp 1.2s ease 0.4s both;
+        }
+        
+        .pdf-download-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .pdf-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--neutral-dark);
+        }
+        
+        .pdf-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-white);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .pdf-text h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .pdf-text p {
+            font-size: 0.9rem;
+            color: var(--neutral-gray);
+            margin: 0;
+        }
+        
+        .download-btn {
+            background: var(--gradient-secondary);
+            color: var(--neutral-white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            color: var(--neutral-white);
+        }
+        
+        .learn-more-text {
+            font-size: 0.8rem;
+            color: var(--neutral-gray);
+            margin-top: 0.5rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Pulse animation for countdown */
+        .countdown-pulse {
+            animation: pulse 1s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem 1rem;
+                gap: 1rem;
+            }
+            
+            .main-content {
+                gap: 1.5rem;
+            }
+            
+            .pdf-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .countdown-section {
+                padding: 1rem 1.5rem;
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .container {
+                padding: 0.5rem 1rem;
+            }
+            
+            .main-content {
+                gap: 1rem;
+            }
+            
+            .countdown-section {
+                padding: 1rem;
+            }
+            
+            .pdf-download-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">Saharansub</div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Countdown Timer -->
+            <div class="countdown-section">
+                <div class="countdown-text">This page will redirect to the main website in</div>
+                <div class="countdown-timer" id="countdown">30</div>
+                <div class="countdown-text">seconds</div>
+            </div>
+            
+            <!-- Main CTA -->
+            <a href="/the-human-thinking-machine/index.html" class="main-cta">
+                <span>Click here to visit "The Human-Thinking Machine"</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+        
+        <!-- PDF Download Section -->
+        <div class="pdf-section">
+            <div class="pdf-download-card">
+                <div class="pdf-content">
+                    <div class="pdf-icon">
+                        <i class="bi bi-file-earmark-pdf"></i>
+                    </div>
+                    <div class="pdf-text">
+                        <h3>Launchpad Lab Curriculum</h3>
+                        <p>Complete program guide and learning objectives</p>
+                    </div>
+                </div>
+                <a href="documents/launchpad-lab-curriculum.pdf" class="download-btn" download>
+                    <i class="bi bi-download"></i>
+                    <span>Download</span>
+                </a>
+                <div class="learn-more-text">Learn more about my programs</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer functionality
+        let countdownValue = 30;
+        const countdownElement = document.getElementById('countdown');
+        const countdownSection = document.querySelector('.countdown-section');
+        
+        function updateCountdown() {
+            countdownElement.textContent = countdownValue;
+            
+            // Add pulse animation on each update
+            countdownElement.classList.add('countdown-pulse');
+            setTimeout(() => {
+                countdownElement.classList.remove('countdown-pulse');
+            }, 1000);
+            
+            // Change color as countdown gets closer to zero
+            if (countdownValue <= 10) {
+                countdownElement.style.color = 'var(--secondary-orange)';
+            }
+            if (countdownValue <= 5) {
+                countdownElement.style.color = '#ef4444'; // Red for urgency
+            }
+            
+            if (countdownValue <= 0) {
+                // Redirect to main website
+                window.location.href = '/the-human-thinking-machine/index.html';
+                return;
+            }
+            
+            countdownValue--;
+        }
+        
+        // Start countdown immediately
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // PDF download tracking
+        const downloadBtn = document.querySelector('.download-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function(e) {
+                console.log('Launchpad Lab curriculum PDF downloaded from landing page');
+                
+                // Visual feedback
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="bi bi-check-circle"></i><span>Downloaded!</span>';
+                
+                // Reset button after delay
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+        
+        // Clear countdown if user manually clicks the main CTA
+        const mainCTA = document.querySelector('.main-cta');
+        if (mainCTA) {
+            mainCTA.addEventListener('click', function() {
+                clearInterval(countdownInterval);
+            });
+        }
+        
+        // Pause countdown if user is downloading (optional enhancement)
+        let countdownPaused = false;
+        downloadBtn.addEventListener('click', function() {
+            countdownPaused = true;
+            setTimeout(() => {
+                countdownPaused = false;
+            }, 3000); // Resume after 3 seconds
+        });
+        
+        // Modified countdown function to handle pausing
+        function updateCountdown() {
+            if (countdownPaused) return;
+            
+            countdownElement.textContent = countdownValue;
+            
+            // Add pulse animation on each update
+            countdownElement.classList.add('countdown-pulse');
+            setTimeout(() => {
+                countdownElement.classList.remove('countdown-pulse');
+            }, 1000);
+            
+            // Change color as countdown gets closer to zero
+            if (countdownValue <= 10) {
+                countdownElement.style.color = 'var(--secondary-orange)';
+            }
+            if (countdownValue <= 5) {
+                countdownElement.style.color = '#ef4444'; // Red for urgency
+            }
+            
+            if (countdownValue <= 0) {
+                // Redirect to main website
+                window.location.href = '/the-human-thinking-machine/index.html';
+                return;
+            }
+            
+            countdownValue--;
+        }
+    </script>
+</body>
+</html>
