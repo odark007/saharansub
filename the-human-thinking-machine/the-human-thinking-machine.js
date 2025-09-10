@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Sub-Navigation Scrollspy
-    const sections = Array.from(subNavLinks).map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const sections = Array.from(document.querySelectorAll('.sub-nav a[href^="#"]'))
+                      .map(link => document.querySelector(link.getAttribute('href')))
+                      .filter(Boolean);
     function activateSubNavOnScroll() {
         let currentSectionId = '';
         const offset = (subNav.classList.contains('sticky-top') ? 0 : mainHeader.offsetHeight) + subNav.offsetHeight + 20;
