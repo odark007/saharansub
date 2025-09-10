@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Principles Tutor - Deep Understanding Through Real-World Connection</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Supabase and EmailJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Global and Page-specific CSS -->
+    <link href="../the-human-thinking-machine.css" rel="stylesheet">
+    <link href="first-principles-tutor.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <a href="../../index.html" class="logo">Saharansub</a>
+            
+            <!-- DESKTOP MAIN NAVIGATION -->
+            <nav class="main-navmenu-desktop">
+                <ul>
+                    <li><a href="../../index.html">home</a></li>
+                    <li><a href="../emobility/e-mobility.html">emobility</a></li>
+                    <li><a href="#">services</a></li>
+                    <li><a href="#">contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-nav-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-header">
+            <a href="../../index.html" class="logo">Saharansub</a>
+            <button class="mobile-nav-close" aria-label="Close navigation"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="mobile-nav-content">
+            <h3 class="mobile-nav-heading">First Principles Tutor</h3>
+            <ul class="mobile-sub-menu">
+                <!-- Links will be dynamically inserted by JS -->
+            </ul>
+            <h3 class="mobile-nav-heading">Main Menu</h3>
+            <ul class="mobile-main-menu">
+                <!-- Links will be dynamically inserted by JS -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sub Navigation -->
+    <nav class="sub-nav" id="sub-nav">
+        <div class="container">
+            <ul>
+                <li><a href="/the-human-thinking-machine/index.html">Home</a></li>
+                <li><a href="/the-human-thinking-machine/launchpad-lab/launchpad-lab.html">Launchpad Lab</a></li>
+                <li><a href="javascript:void(0);" class="active">First Principles Tutor</a></li>
+                <li><a href="#gallery">Ready 2 Play</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section tutor-hero scroll-padding">
+            <div class="hero-background">
+                <div class="hero-overlay"></div>
+                <div class="hero-particles"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <h1 class="hero-title">First Principles Tutor</h1>
+                    <p class="hero-subtitle">Your Subject Guide & Thought Partner</p>
+                    <p class="hero-description">Deep understanding through real-world connection. We don't just solve problems—we build understanding from the ground up, connecting math, science, and engineering to the world around us.</p>
+                    <div class="hero-cta-group">
+                        <a href="#contact" class="hero-cta primary">
+                            <span>Start Learning</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="#what-is-tutor" class="hero-cta secondary">
+                            <span>Learn More</span>
+                            <i class="bi bi-book"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-in">
+                    <div class="hero-equation">
+                        <div class="equation-line">
+                            <span class="variable">Understanding</span>
+                            <span class="operator">=</span>
+                            <span class="variable">Why</span>
+                            <span class="operator">×</span>
+                            <span class="variable">How</span>
+                        </div>
+                        <div class="equation-line secondary">
+                            <span class="variable">Mastery</span>
+                            <span class="operator">=</span>
+                            <span class="variable">Practice</span>
+                            <span class="operator">+</span>
+                            <span class="variable">Connection</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="what-is-tutor" class="philosophy-section scroll-padding">
+            <div class="container">
+                <div class="section-grid fade-in">
+                    <div class="section-content">
+                        <h2>More Than Just Homework Help</h2>
+                        <p class="lead-text">I'm not here to give you answers. I'm here to help you understand why the answers matter.</p>
+                        <p>First Principles Tutor isn't traditional tutoring—it's deep learning partnership. We start with the fundamental "why" behind every concept, then build understanding layer by layer until complex topics feel intuitive.</p>
+                        
+                        <div class="philosophy-points">
+                            <div class="philosophy-point">
+                                <div class="point-icon">
+                                    <i class="bi bi-lightbulb"></i>
+                                </div>
+                                <div class="point-content">
+                                    <h4>Understanding Over Memorization</h4>
+                                    <p>We break down complex concepts to their core principles, ensuring you truly grasp the "why" behind every formula and theorem.</p>
+                                </div>
+                            </div>
+                            <div class="philosophy-point">
+                                <div class="point-icon">
+                                    <i class="bi bi-globe"></i>
+                                </div>
+                                <div class="point-content">
+                                    <h4>Real-World Connections</h4>
+                                    <p>Every abstract concept is tied to real applications—from engineering marvels to everyday phenomena you can observe.</p>
+                                </div>
+                            </div>
+                            <div class="philosophy-point">
+                                <div class="point-icon">
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </div>
+                                <div class="point-content">
+                                    <h4>Build, Don't Memorize</h4>
+                                    <p>We construct knowledge systematically, so each new concept builds naturally on what you already understand.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-image">
+                        <div class="concept-visualization">
+                            <div class="concept-node central">
+                                <span>Core Concept</span>
+                            </div>
+                            <div class="concept-node">
+                                <span>Real World</span>
+                            </div>
+                            <div class="concept-node">
+                                <span>Math</span>
+                            </div>
+                            <div class="concept-node">
+                                <span>Science</span>
+                            </div>
+                            <div class="concept-node">
+                                <span>Application</span>
+                            </div>
+                            <div class="connection-lines"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subjects & Approach Section -->
+        <section id="subjects" class="subjects-section scroll-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Subjects & Levels</h2>
+                    <p>From foundations to advanced concepts, with real-world context</p>
+                </div>
+                
+                <div class="subjects-grid">
+                    <div class="subject-card fade-in">
+                        <div class="subject-icon">
+                            <i class="bi bi-calculator"></i>
+                        </div>
+                        <h3>Mathematics</h3>
+                        <div class="subject-levels">
+                            <span class="level">Algebra</span>
+                            <span class="level">Geometry</span>
+                            <span class="level">Calculus</span>
+                            <span class="level">Statistics</span>
+                        </div>
+                        <p>From basic arithmetic to advanced calculus, understanding the patterns and logic that govern our mathematical universe.</p>
+                        <div class="subject-examples">
+                            <p><strong>Real-world connections:</strong> How compound interest builds wealth, why calculus powers GPS navigation, how statistics reveal truth in data.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card fade-in">
+                        <div class="subject-icon">
+                            <i class="bi bi-atom"></i>
+                        </div>
+                        <h3>Physics</h3>
+                        <div class="subject-levels">
+                            <span class="level">Mechanics</span>
+                            <span class="level">Thermodynamics</span>
+                            <span class="level">Electricity</span>
+                            <span class="level">Modern Physics</span>
+                        </div>
+                        <p>Understanding the fundamental forces and principles that govern everything from atoms to galaxies.</p>
+                        <div class="subject-examples">
+                            <p><strong>Real-world connections:</strong> Why engines work, how solar panels generate electricity, what makes smartphones possible.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card fade-in">
+                        <div class="subject-icon">
+                            <i class="bi bi-flask"></i>
+                        </div>
+                        <h3>Chemistry</h3>
+                        <div class="subject-levels">
+                            <span class="level">General</span>
+                            <span class="level">Organic</span>
+                            <span class="level">Physical</span>
+                            <span class="level">Biochemistry</span>
+                        </div>
+                        <p>Exploring molecular interactions and chemical processes that drive life and technology.</p>
+                        <div class="subject-examples">
+                            <p><strong>Real-world connections:</strong> How medications work, why batteries store energy, how photosynthesis powers life.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card fade-in">
+                        <div class="subject-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h3>Engineering Math</h3>
+                        <div class="subject-levels">
+                            <span class="level">Applied Calculus</span>
+                            <span class="level">Differential Equations</span>
+                            <span class="level">Linear Algebra</span>
+                            <span class="level">Complex Analysis</span>
+                        </div>
+                        <p>Mathematical tools for solving real engineering problems and designing innovative solutions.</p>
+                        <div class="subject-examples">
+                            <p><strong>Real-world connections:</strong> How bridges are designed to withstand forces, why algorithms optimize traffic flow, how control systems stabilize aircraft.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subjects-note fade-in">
+                    <div class="note-content">
+                        <i class="bi bi-info-circle"></i>
+                        <p><strong>All subjects taught from first principles:</strong> We start with fundamental concepts and build complexity gradually, ensuring deep understanding at every level.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Method Section -->
+        <section id="teaching-method" class="method-section scroll-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>The First Principles Method</h2>
+                    <p>How we transform confusion into clarity</p>
+                </div>
+                
+                <div class="method-steps">
+                    <div class="method-step fade-in">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Break It Down</h3>
+                            <p>We start by deconstructing complex problems into their most basic, fundamental components. No assumptions, no "just memorize this."</p>
+                            <div class="step-example">
+                                <strong>Example:</strong> Instead of memorizing kinematic equations, we derive them from the basic definition of acceleration.
+                            </div>
+                        </div>
+                        <div class="step-visual">
+                            <div class="breakdown-diagram">
+                                <div class="complex-box">Complex Problem</div>
+                                <div class="arrow-down"></div>
+                                <div class="simple-boxes">
+                                    <div class="simple-box">Part A</div>
+                                    <div class="simple-box">Part B</div>
+                                    <div class="simple-box">Part C</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="method-step fade-in">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Build Understanding</h3>
+                            <p>We reconstruct knowledge piece by piece, ensuring you understand each connection and can see the logical flow from basics to complexity.</p>
+                            <div class="step-example">
+                                <strong>Example:</strong> We build calculus concepts from limits, showing how differentiation naturally emerges from the idea of instantaneous change.
+                            </div>
+                        </div>
+                        <div class="step-visual">
+                            <div class="building-diagram">
+                                <div class="foundation">Foundation</div>
+                                <div class="layer layer-1">Layer 1</div>
+                                <div class="layer layer-2">Layer 2</div>
+                                <div class="layer layer-3">Mastery</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="method-step fade-in">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Connect to Reality</h3>
+                            <p>Every concept is tied to real-world applications, historical context, and observable phenomena that you can relate to and remember.</p>
+                            <div class="step-example">
+                                <strong>Example:</strong> We explore how Fourier analysis powers MP3 compression, MRI imaging, and earthquake detection.
+                            </div>
+                        </div>
+                        <div class="step-visual">
+                            <div class="connection-diagram">
+                                <div class="theory-bubble">Theory</div>
+                                <div class="connection-line"></div>
+                                <div class="reality-bubble">Real World</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="method-step fade-in">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Practice & Apply</h3>
+                            <p>We work through problems together, starting simple and building complexity, until you can tackle advanced challenges independently.</p>
+                            <div class="step-example">
+                                <strong>Example:</strong> From basic projectile motion, we progress to analyzing satellite orbits and spacecraft trajectories.
+                            </div>
+                        </div>
+                        <div class="step-visual">
+                            <div class="practice-diagram">
+                                <div class="practice-level basic">Basic</div>
+                                <div class="practice-level intermediate">Intermediate</div>
+                                <div class="practice-level advanced">Advanced</div>
+                                <div class="progress-arrow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Outcomes Section -->
+        <section id="outcomes" class="outcomes-section scroll-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>What Students Achieve</h2>
+                    <p>Measurable results beyond better grades</p>
+                </div>
+                
+                <div class="outcomes-grid">
+                    <div class="outcome-metric fade-in">
+                        <div class="metric-icon">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <div class="metric-value">
+                            <span class="number">2-3</span>
+                            <span class="unit">Grade Levels</span>
+                        </div>
+                        <p>Average improvement in mathematical reasoning within one academic year</p>
+                    </div>
+                    
+                    <div class="outcome-metric fade-in">
+                        <div class="metric-icon">
+                            <i class="bi bi-lightbulb-fill"></i>
+                        </div>
+                        <div class="metric-value">
+                            <span class="number">85%</span>
+                            <span class="unit">Report</span>
+                        </div>
+                        <p>"I finally understand why, not just how" - student feedback after 6 months</p>
+                    </div>
+                    
+                    <div class="outcome-metric fade-in">
+                        <div class="metric-icon">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <div class="metric-value">
+                            <span class="number">90%</span>
+                            <span class="unit">Confidence</span>
+                        </div>
+                        <p>Students report increased confidence in tackling unfamiliar problems independently</p>
+                    </div>
+                </div>
+                
+                <div class="student-stories fade-in">
+                    <h3>Student Success Stories</h3>
+                    <div class="stories-grid">
+                        <div class="story-card">
+                            <div class="story-quote">
+                                <i class="bi bi-quote"></i>
+                                <p>"Before working with Godwin, physics felt like memorizing magic spells. Now I see the elegant logic behind every equation. When I encounter a new problem, I know exactly how to break it down."</p>
+                            </div>
+                            <div class="story-author">
+                                <strong>Kwame, Age 16</strong>
+                                <span>Advanced Physics Student</span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-card">
+                            <div class="story-quote">
+                                <i class="bi bi-quote"></i>
+                                <p>"Calculus used to be this abstract nightmare. Now I understand it's just a way to describe change—and suddenly everything from economics to biology makes more sense."</p>
+                            </div>
+                            <div class="story-author">
+                                <strong>Ama, Age 17</strong>
+                                <span>Engineering Math Student</span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-card">
+                            <div class="story-quote">
+                                <i class="bi bi-quote"></i>
+                                <p>"I went from failing chemistry to actually enjoying it. Understanding why reactions happen instead of just memorizing them changed everything. Now I'm considering chemical engineering."</p>
+                            </div>
+                            <div class="story-author">
+                                <strong>Kofi, Age 15</strong>
+                                <span>Chemistry Student</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Session Options Section -->
+        <section id="session-options" class="sessions-section scroll-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Session Options</h2>
+                    <p>Flexible learning that fits your schedule and learning style</p>
+                </div>
+                
+                <div class="sessions-grid">
+                    <div class="session-option fade-in">
+                        <div class="session-icon">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <h3>One-on-One Sessions</h3>
+                        <div class="session-features">
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Completely personalized curriculum</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Go at your own pace</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Focus on your specific challenges</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Flexible scheduling</span>
+                            </div>
+                        </div>
+                        <div class="session-ideal">
+                            <strong>Ideal for:</strong> Students who need intensive support in specific areas or want to accelerate beyond grade level
+                        </div>
+                    </div>
+                    
+                    <div class="session-option featured fade-in">
+                        <div class="featured-badge">Most Popular</div>
+                        <div class="session-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h3>Small Group Sessions</h3>
+                        <div class="session-features">
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>2-4 students maximum</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Collaborative problem-solving</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Peer learning opportunities</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>More affordable than one-on-one</span>
+                            </div>
+                        </div>
+                        <div class="session-ideal">
+                            <strong>Ideal for:</strong> Students who learn well with peers and enjoy collaborative problem-solving
+                        </div>
+                    </div>
+                    
+                    <div class="session-option fade-in">
+                        <div class="session-icon">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <h3>Intensive Workshops</h3>
+                        <div class="session-features">
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Deep-dive into specific topics</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Weekend or vacation intensives</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Exam preparation focus</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Complete topic mastery</span>
+                            </div>
+                        </div>
+                        <div class="session-ideal">
+                            <strong>Ideal for:</strong> Students preparing for exams or needing rapid improvement in specific areas
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="delivery-options fade-in">
+                    <h3>Delivery Options</h3>
+                    <div class="delivery-grid">
+                        <div class="delivery-option">
+                            <i class="bi bi-house"></i>
+                            <h4>In-Person</h4>
+                            <p>Face-to-face sessions in Accra and surrounding areas</p>
+                        </div>
+                        <div class="delivery-option">
+                            <i class="bi bi-camera-video"></i>
+                            <h4>Online</h4>
+                            <p>Interactive virtual sessions with digital whiteboard and screen sharing</p>
+                        </div>
+                        <div class="delivery-option">
+                            <i class="bi bi-arrow-left-right"></i>
+                            <h4>Hybrid</h4>
+                            <p>Combination of in-person and online sessions for maximum flexibility</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <!-- PDF Download Section -->
+        <section id="pdf-download" class="pdf-section scroll-padding">
+            <div class="container">
+                <div class="pdf-download-card fade-in">
+                    <div class="pdf-content">
+                        <div class="pdf-icon">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                        </div>
+                        <div class="pdf-text">
+                            <h3>Detailed Curriculum Guide</h3>
+                            <p>Complete breakdown of learning objectives, sample problems, teaching methodologies, and what to expect from tutoring sessions.</p>
+                            <div class="pdf-features">
+                                <span><i class="bi bi-check2"></i> First principles approach</span>
+                                <span><i class="bi bi-check2"></i> Sample problem sets</span>
+                                <span><i class="bi bi-check2"></i> Session structure</span>
+                                <span><i class="bi bi-check2"></i> Real-world examples</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pdf-action">
+                        <a href="../../documents/first-principles-tutor-guide.pdf" class="download-btn" download>
+                            <i class="bi bi-download"></i>
+                            <span>Download Free PDF</span>
+                        </a>
+                        <p class="pdf-note">No email required • 1.8MB PDF</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section scroll-padding">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info fade-in">
+                        <h2>Start Your Understanding Journey</h2>
+                        <p>All tutoring is completely bespoke and adapted to your learning style and pace. Sessions are scheduled flexibly—after school hours, weekends, or during vacations. Available online, in-person throughout Accra, and in blended formats.</p>
+                        
+                        <div class="learning-promise">
+                            <div class="promise-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <div class="promise-content">
+                                <h4>Learning Promise</h4>
+                                <p>If after three sessions you don't feel a deeper understanding of the subject, we'll work together to adjust our approach until it clicks—or provide a full refund.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-methods">
+                            <a href="mailto:gofrance01@gmail.com?subject=First Principles Tutor Inquiry&body=Hi! I'm interested in First Principles Tutoring. Here are the details..." class="contact-method">
+                                <i class="bi bi-envelope-fill"></i>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p>gofrance01@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/233268712345?text=Hi%20Saharansub,%20I'm%20interested%20in%20First%20Principles%20Tutoring" class="contact-method" target="_blank">
+                                <i class="bi bi-whatsapp"></i>
+                                <div>
+                                    <strong>WhatsApp</strong>
+                                    <p>+233 26 871 2345</p>
+                                </div>
+                            </a>
+
+                            <a href="tel:+233268712345" class="contact-method">
+                                <i class="bi bi-telephone-fill"></i>
+                                <div>
+                                    <strong>Phone</strong>
+                                    <p>+233 26 871 2345</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/godwin-france/" class="contact-method" target="_blank">
+                                <i class="bi bi-linkedin"></i>
+                                <div>
+                                    <strong>LinkedIn</strong>
+                                    <p>Professional Network</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form fade-in">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="parent-name">Student/Parent Name</label>
+                                <input type="text" id="parent-name" name="parent-name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email_address">Email Address</label>
+                                <input type="email" id="email_address" name="email_address" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone_number">
+                                    Phone Number 
+                                    <small id="phone-counter" class="phone-counter-class"></small>
+                                </label>
+                                <input type="tel" id="phone_number" name="phone_number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="student-age">Student Age/Grade Level</label>
+                                <select id="student-age" name="student-age" required>
+                                    <option value="">Select Level</option>
+                                    <option value="primary-upper">Upper Primary (10-12)</option>
+                                    <option value="jhs">Junior High School (13-15)</option>
+                                    <option value="shs">Senior High School (16-18)</option>
+                                    <option value="university">University Level (18+)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subjects-needed">Subject(s) Needed</label>
+                                <select id="subjects-needed" name="subjects-needed" required>
+                                    <option value="">Select Primary Subject</option>
+                                    <option value="mathematics">Mathematics</option>
+                                    <option value="physics">Physics</option>
+                                    <option value="chemistry">Chemistry</option>
+                                    <option value="engineering-math">Engineering Mathematics</option>
+                                    <option value="multiple">Multiple Subjects</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="session-preference">Session Preference</label>
+                                <select id="session-preference" name="session-preference" required>
+                                    <option value="">Select Preference</option>
+                                    <option value="one-on-one">One-on-One Sessions</option>
+                                    <option value="small-group">Small Group Sessions</option>
+                                    <option value="intensive-workshop">Intensive Workshop</option>
+                                    <option value="not-sure">Not Sure - Need Guidance</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="learning-preference">Delivery Preference</label>
+                                <select id="learning-preference" name="learning-preference" required>
+                                    <option value="">Select Delivery Method</option>
+                                    <option value="online">Online Sessions</option>
+                                    <option value="in-person">In-Person Sessions (Accra)</option>
+                                    <option value="hybrid">Hybrid (Mixed)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="current-challenges">Current Challenges</label>
+                                <textarea id="current-challenges" name="current-challenges" rows="3" placeholder="What specific topics or concepts are you struggling with?"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Goals & Additional Information</label>
+                                <textarea id="message" name="message" rows="4" placeholder="What would you like to achieve? Any specific exams or goals you're working toward?"></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Start My Learning Journey</button>
+                            <div id="form-success-message" style="display: none; margin-top: 1rem; color: var(--accent-green); font-weight: 600;">
+                                Form submitted successfully! 
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>The Human-Thinking Machine</h3>
+                <p>Deep understanding through first principles thinking and real-world connections</p>
+                <div class="footer-social">
+                    <a href="https://x.com/godwin_france" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.linkedin.com/in/godwin-france/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://wa.me/233268712345" target="_blank"><i class="bi bi-whatsapp"></i></a>
+                    <a href="mailto:gofrance01@gmail.com"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Saharansub - The Human-Thinking Machine. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global and Page-specific JavaScript -->
+    <script src="../the-human-thinking-machine.js"></script>
+    <script src="first-principles-tutor.js"></script>
+</body>
+</html>

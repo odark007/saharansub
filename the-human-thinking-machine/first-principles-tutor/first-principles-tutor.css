@@ -1,0 +1,1090 @@
+/**
+ * First Principles Tutor - Page-specific CSS
+ * Educational tutoring platform with scientific/mathematical theme
+ */
+
+/*--------------------------------------------------------------
+# Page-specific Variables & Overrides
+--------------------------------------------------------------*/
+:root {
+    --tutor-primary: #1e40af;
+    --tutor-secondary: #3730a3;
+    --tutor-accent: #059669;
+    --tutor-math: #dc2626;
+    --tutor-science: #0891b2;
+    --tutor-particle: rgba(255, 255, 255, 0.1);
+    
+    --equation-glow: 0 0 20px rgba(59, 130, 246, 0.5);
+    --concept-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/*--------------------------------------------------------------
+# Tutor Hero Section
+--------------------------------------------------------------*/
+.tutor-hero {
+    min-height: calc(100vh - var(--header-height));
+    background: linear-gradient(135deg, var(--tutor-primary), var(--tutor-secondary));
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(30, 64, 175, 0.1), rgba(55, 48, 163, 0.2));
+}
+
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, var(--tutor-particle) 2px, transparent 2px),
+        radial-gradient(circle at 80% 70%, var(--tutor-particle) 1px, transparent 1px),
+        radial-gradient(circle at 60% 20%, var(--tutor-particle) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 30% 80%, var(--tutor-particle) 2px, transparent 2px);
+    background-size: 100px 100px, 150px 150px, 200px 200px, 120px 120px;
+    animation: floatingParticles 20s ease-in-out infinite;
+}
+
+@keyframes floatingParticles {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-10px, -15px); }
+    50% { transform: translate(15px, -10px); }
+    75% { transform: translate(-5px, 10px); }
+}
+
+.tutor-hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    min-height: calc(100vh - var(--header-height));
+    position: relative;
+    z-index: 2;
+}
+
+.tutor-hero .hero-content {
+    color: var(--neutral-white);
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--neutral-white), #fbbf24);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #fbbf24;
+    font-family: var(--font-accent);
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-equation {
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--equation-glow);
+}
+
+.equation-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-header);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.equation-line.secondary {
+    margin-bottom: 0;
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+.variable {
+    color: #fbbf24;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.operator {
+    color: var(--neutral-white);
+    font-size: 2rem;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/*--------------------------------------------------------------
+# Philosophy Section
+--------------------------------------------------------------*/
+.philosophy-section {
+    padding: 6rem 0;
+    background: var(--neutral-light);
+}
+
+.philosophy-points {
+    margin-top: 3rem;
+}
+
+.philosophy-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: var(--neutral-white);
+    border-radius: 15px;
+    box-shadow: var(--concept-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.philosophy-point:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.point-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-white);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.point-content h4 {
+    color: var(--tutor-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.point-content p {
+    color: var(--neutral-dark);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Concept Visualization */
+.concept-visualization {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.concept-node {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-white);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    animation: floatConcept 4s ease-in-out infinite;
+}
+
+.concept-node.central {
+    position: static;
+    width: 150px;
+    height: 150px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: var(--gradient-accent);
+    z-index: 2;
+}
+
+.concept-node:nth-child(2) {
+    top: 50px;
+    left: 50px;
+    animation-delay: -1s;
+}
+
+.concept-node:nth-child(3) {
+    top: 50px;
+    right: 50px;
+    animation-delay: -2s;
+}
+
+.concept-node:nth-child(4) {
+    bottom: 50px;
+    left: 50px;
+    animation-delay: -3s;
+}
+
+.concept-node:nth-child(5) {
+    bottom: 50px;
+    right: 50px;
+    animation-delay: -4s;
+}
+
+@keyframes floatConcept {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.05); }
+}
+
+/*--------------------------------------------------------------
+# Subjects Section
+--------------------------------------------------------------*/
+.subjects-section {
+    padding: 6rem 0;
+    background: var(--neutral-white);
+}
+
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.subject-card {
+    background: var(--neutral-white);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-card);
+    border-top: 5px solid var(--tutor-primary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.subject-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-primary);
+    transition: height 0.3s ease;
+}
+
+.subject-card:hover::before {
+    height: 100%;
+    opacity: 0.05;
+}
+
+.subject-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.subject-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-white);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.subject-card h3 {
+    color: var(--tutor-primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.subject-levels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.level {
+    background: var(--neutral-light);
+    color: var(--neutral-dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.subject-examples {
+    background: var(--neutral-light);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+}
+
+.subject-examples strong {
+    color: var(--tutor-accent);
+}
+
+.subjects-note {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.note-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--gradient-accent);
+    color: var(--neutral-white);
+    padding: 1.5rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+}
+
+.note-content i {
+    font-size: 1.5rem;
+}
+
+/*--------------------------------------------------------------
+# Teaching Method Section
+--------------------------------------------------------------*/
+.method-section {
+    padding: 6rem 0;
+    background: var(--neutral-light);
+}
+
+.method-steps {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.method-step {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.method-step::after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 80px;
+    width: 2px;
+    height: calc(100% + 2rem);
+    background: var(--gradient-primary);
+    z-index: 1;
+}
+
+.method-step:last-child::after {
+    display: none;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    color: var(--neutral-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    z-index: 2;
+    position: relative;
+}
+
+.step-content {
+    background: var(--neutral-white);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
+}
+
+.step-content h3 {
+    color: var(--tutor-primary);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.step-example {
+    background: var(--neutral-light);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+    border-left: 4px solid var(--tutor-accent);
+    font-style: italic;
+}
+
+.step-visual {
+    width: 200px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Visual Diagrams */
+.breakdown-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.complex-box {
+    background: var(--tutor-math);
+    color: var(--neutral-white);
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid var(--neutral-gray);
+}
+
+.simple-boxes {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.simple-box {
+    background: var(--tutor-accent);
+    color: var(--neutral-white);
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.building-diagram {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.foundation, .layer {
+    background: var(--tutor-science);
+    color: var(--neutral-white);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.layer-1 { background: var(--tutor-primary); width: 90%; }
+.layer-2 { background: var(--tutor-secondary); width: 80%; }
+.layer-3 { background: var(--tutor-accent); width: 70%; }
+
+.connection-diagram {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.theory-bubble, .reality-bubble {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.theory-bubble {
+    background: var(--tutor-secondary);
+    color: var(--neutral-white);
+}
+
+.reality-bubble {
+    background: var(--tutor-accent);
+    color: var(--neutral-white);
+}
+
+.connection-line {
+    width: 30px;
+    height: 2px;
+    background: var(--gradient-primary);
+}
+
+.practice-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.practice-level {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: var(--neutral-white);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.basic { background: #10b981; }
+.intermediate { background: #f59e0b; }
+.advanced { background: #dc2626; }
+
+/*--------------------------------------------------------------
+# Outcomes Section
+--------------------------------------------------------------*/
+.outcomes-section {
+    padding: 6rem 0;
+    background: var(--neutral-white);
+}
+
+.outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.outcome-metric {
+    text-align: center;
+    padding: 2.5rem;
+    background: var(--neutral-light);
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.outcome-metric:hover {
+    transform: translateY(-5px);
+}
+
+.metric-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-white);
+    font-size: 2rem;
+    margin: 0 auto 1.5rem;
+}
+
+.metric-value {
+    margin-bottom: 1rem;
+}
+
+.metric-value .number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--tutor-primary);
+    display: block;
+    line-height: 1;
+}
+
+.metric-value .unit {
+    font-size: 1.2rem;
+    color: var(--tutor-accent);
+    font-weight: 600;
+}
+
+.student-stories {
+    margin-top: 4rem;
+}
+
+.student-stories h3 {
+    text-align: center;
+    color: var(--tutor-primary);
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.story-card {
+    background: var(--neutral-white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
+    border-top: 4px solid var(--tutor-accent);
+}
+
+.story-quote {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.story-quote i {
+    font-size: 2rem;
+    color: var(--tutor-accent);
+    opacity: 0.3;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+.story-quote p {
+    font-style: italic;
+    line-height: 1.7;
+    padding-left: 2rem;
+    color: var(--neutral-dark);
+}
+
+.story-author {
+    text-align: right;
+}
+
+.story-author strong {
+    color: var(--tutor-primary);
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.story-author span {
+    color: var(--neutral-gray);
+    font-size: 0.9rem;
+}
+
+/*--------------------------------------------------------------
+# Sessions Section
+--------------------------------------------------------------*/
+.sessions-section {
+    padding: 6rem 0;
+    background: var(--neutral-light);
+}
+
+.sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.session-option {
+    background: var(--neutral-white);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.session-option.featured {
+    border: 2px solid var(--tutor-accent);
+    transform: scale(1.05);
+}
+
+.session-option:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+.session-option.featured:hover {
+    transform: translateY(-8px) scale(1.07);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--tutor-accent);
+    color: var(--neutral-white);
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.session-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-white);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.session-features {
+    margin: 2rem 0;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.feature i {
+    color: var(--tutor-accent);
+    font-size: 1.2rem;
+}
+
+.session-ideal {
+    background: var(--neutral-light);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.session-ideal strong {
+    color: var(--tutor-primary);
+}
+
+.delivery-options {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.delivery-options h3 {
+    color: var(--tutor-primary);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.delivery-option {
+    background: var(--neutral-white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow-card);
+}
+
+.delivery-option i {
+    font-size: 3rem;
+    color: var(--tutor-primary);
+    margin-bottom: 1rem;
+}
+
+.delivery-option h4 {
+    color: var(--tutor-primary);
+    margin-bottom: 1rem;
+}
+
+/*--------------------------------------------------------------
+# Learning Promise
+--------------------------------------------------------------*/
+.learning-promise {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background: var(--gradient-accent);
+    color: var(--neutral-white);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.promise-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.promise-content h4 {
+    color: var(--neutral-white);
+    margin-bottom: 0.5rem;
+}
+
+.promise-content p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/*--------------------------------------------------------------
+# Responsive Design
+--------------------------------------------------------------*/
+@media (max-width: 768px) {
+    .tutor-hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+    
+    .hero-equation {
+        padding: 2rem;
+    }
+    
+    .equation-line {
+        font-size: 1.2rem;
+        flex-wrap: wrap;
+    }
+    
+    .philosophy-point {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .concept-visualization {
+        height: 300px;
+    }
+    
+    .concept-node {
+        width: 80px;
+        height: 80px;
+        font-size: 0.7rem;
+    }
+    
+    .concept-node.central {
+        width: 100px;
+        height: 100px;
+        font-size: 0.9rem;
+    }
+    
+    .method-step {
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+    }
+    
+    .step-visual {
+        grid-column: 1 / -1;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .method-step::after {
+        left: 29px;
+    }
+    
+    .subjects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sessions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .session-option.featured {
+        transform: none;
+    }
+    
+    .session-option.featured:hover {
+        transform: translateY(-5px);
+    }
+    
+    .outcomes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .delivery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .learning-promise {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .method-step {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .method-step::after {
+        display: none;
+    }
+    
+    .step-number {
+        margin: 0 auto 1rem;
+    }
+    
+    .step-visual {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+}
+
+/*--------------------------------------------------------------
+# Animation Classes
+--------------------------------------------------------------*/
+.animate-milestone {
+    animation: slideInFromLeft 0.6s ease-out forwards;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*--------------------------------------------------------------
+# PDF Download Section
+--------------------------------------------------------------*/
+.pdf-section {
+    padding: 4rem 0;
+    background: var(--gradient-primary);
+}
+
+.pdf-download-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    box-shadow: var(--shadow-hover);
+    backdrop-filter: blur(10px);
+}
+
+.pdf-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.pdf-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-secondary);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-white);
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.pdf-text h3 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.pdf-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.pdf-features span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--neutral-light);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.pdf-features i {
+    color: var(--accent-green);
+}
+
+.pdf-action {
+    text-align: center;
+}
+
+.download-btn {
+    background: var(--gradient-secondary);
+    color: var(--neutral-white);
+    padding: 1.5rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    color: var(--neutral-white);
+}
+
+.pdf-note {
+    font-size: 0.9rem;
+    color: var(--neutral-gray);
+    margin: 0;
+}
