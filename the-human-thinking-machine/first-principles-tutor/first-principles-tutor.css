@@ -971,6 +971,11 @@
         order: -1;
         margin-bottom: 1rem;
     }
+
+    .pdf-download-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 }
 
 /*--------------------------------------------------------------
@@ -1003,18 +1008,21 @@
     background: rgba(255, 255, 255, 0.95);
     border-radius: 25px;
     padding: 3rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 3rem;
-    align-items: center;
+    display: flex; /* Use Flexbox */
+    justify-content: space-between; /* Pushes items to ends */
+    align-items: center; /* Vertically aligns items */
+    gap: 2rem;
     box-shadow: var(--shadow-hover);
     backdrop-filter: blur(10px);
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
 .pdf-content {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    flex: 1; /* Allows content to take up available space */
+    min-width: 300px; /* Prevents content from getting too squished */
 }
 
 .pdf-icon {
@@ -1059,6 +1067,7 @@
 
 .pdf-action {
     text-align: center;
+    flex-shrink: 0; /* Prevents the button area from shrinking */
 }
 
 .download-btn {
@@ -1087,4 +1096,19 @@
     font-size: 0.9rem;
     color: var(--neutral-gray);
     margin: 0;
+}
+
+/* --- Responsive Fix for PDF Card --- */
+@media (max-width: 992px) {
+    .pdf-download-card {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .pdf-content {
+        flex-direction: column; /* Stack icon on top of text */
+        align-items: center;
+        text-align: center;
+    }
 }
