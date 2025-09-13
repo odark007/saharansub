@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ready 2 Play - Where Fun Meets Fitness, and Games Build Greatness</title>
+    <meta name="description" content="Ready 2 Play is Ghana's premier outdoor coaching program for youth ages 8-18. Flag football training, multi-sport activities, and character building through outdoor engagement in Accra.">
+    <meta name="keywords" content="flag football Ghana, youth sports Accra, outdoor coaching, kids fitness training, character building sports">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saharansub.com/ready-2-play">
+    <meta property="og:title" content="Ready 2 Play - Premium Youth Sports Coaching">
+    <meta property="og:description" content="Where Fun Meets Fitness, and Games Build Greatness. Flag football and outdoor activities for ages 8-18.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Ready 2 Play - Premium Youth Sports Coaching">
+    <meta property="twitter:description" content="Where Fun Meets Fitness, and Games Build Greatness">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Supabase and EmailJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link href="ready-2-play.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <a href="../../index.html" class="logo">Saharansub</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="main-navmenu-desktop">
+                <ul>
+                    <li><a href="../../index.html">home</a></li>
+                    <li><a href="../../emobility/e-mobility.html">emobility</a></li>
+                    <li><a href="#">services</a></li>
+                    <li><a href="#">contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-nav-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-header">
+            <a href="../../index.html" class="logo">Saharansub</a>
+            <button class="mobile-nav-close" aria-label="Close navigation"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="mobile-nav-content">
+            <h3 class="mobile-nav-heading">Ready 2 Play</h3>
+            <ul class="mobile-sub-menu"></ul>
+            <h3 class="mobile-nav-heading">Main Menu</h3>
+            <ul class="mobile-main-menu"></ul>
+        </div>
+    </nav>
+
+    <!-- Sub Navigation -->
+    <nav class="sub-nav" id="sub-nav">
+        <div class="container">
+            <ul>
+                <li><a href="/the-human-thinking-machine/index.html">Home</a></li>
+                <li><a href="/the-human-thinking-machine/launchpad-lab/launchpad-lab.html">Launchpad Lab</a></li>
+                <li><a href="/the-human-thinking-machine/first-principles-tutor/first-principles-tutor.html">First Principles Tutor</a></li>
+                <li><a href="javascript:void(0);" class="active">Ready 2 Play</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section with Video Background -->
+        <section id="hero" class="hero-section scroll-padding">
+            <div class="hero-video-container">
+                <video class="hero-video" id="hero-video" muted loop playsinline>
+                    <source src="hero-video.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content fade-in">
+                <div class="hero-badge">Ages 8-18 • Premium Outdoor Coaching</div>
+                <h1 class="hero-title">Ready 2 Play</h1>
+                <p class="hero-subtitle">Where Fun Meets Fitness, and Games Build Greatness</p>
+                <div class="hero-cta-group">
+                    <a href="#contact" class="hero-cta primary">
+                        <span>Join Our Next Session</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                    <a href="#flag-football" class="hero-cta secondary">
+                        <span>Learn More</span>
+                        <i class="bi bi-play-circle"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Flag Football Section -->
+        <section id="flag-football" class="flag-football-section scroll-padding">
+            <div class="container">
+                <div class="flag-football-grid fade-in">
+                    <div class="flag-football-content">
+                        <h2>Why Flag Football is Our Foundation</h2>
+                        <p class="lead-text">Flag football isn't just a game—it's the perfect gateway to athletic excellence, strategic thinking, and character development.</p>
+                        <p>Unlike traditional contact sports, flag football emphasizes skill, speed, and strategy while maintaining maximum safety. It's the ideal foundation for young athletes to develop confidence, teamwork, and a lifelong love of physical activity.</p>
+                        
+                        <div class="flag-football-benefits">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="bi bi-shield-check"></i>
+                                </div>
+                                <div>
+                                    <h4>Safe & Non-Contact</h4>
+                                    <p>All the excitement of football with zero risk of collision injuries. Perfect for building confidence in young athletes.</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="bi bi-people-fill"></i>
+                                </div>
+                                <div>
+                                    <h4>Ultimate Team Sport</h4>
+                                    <p>Every player touches the ball, every position matters. Builds leadership, communication, and collaborative problem-solving.</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="bi bi-lightning"></i>
+                                </div>
+                                <div>
+                                    <h4>Speed & Strategy</h4>
+                                    <p>Develops quick decision-making, spatial awareness, and strategic thinking while building cardiovascular fitness.</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="bi bi-door-open"></i>
+                                </div>
+                                <div>
+                                    <h4>Gateway to All Sports</h4>
+                                    <p>Skills learned in flag football translate directly to basketball, soccer, rugby, and countless other activities.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flag-football-image">
+                        <div class="image-placeholder">
+                            <i class="bi bi-flag"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Sports & Activities -->
+        <section id="other-sports" class="other-sports-section scroll-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Beyond Flag Football: A Complete Athletic Experience</h2>
+                    <p>Building well-rounded athletes through diverse activities and age-appropriate programming</p>
+                </div>
+                
+                <div class="sports-grid">
+                    <div class="sport-card fade-in hover-lift">
+                        <div class="sport-image">
+                            <i class="bi bi-activity"></i>
+                        </div>
+                        <div class="sport-content">
+                            <h3>Multi-Sport Drills</h3>
+                            <p>Cross-training activities that develop fundamental movement skills: agility ladders, cone drills, relay races, and coordination exercises that build athletic foundations.</p>
+                            <div class="age-breakdown">
+                                <strong>Age Focus:</strong> 8-10 (Fun movement), 11-13 (Skill building), 14-18 (Performance training)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sport-card fade-in hover-lift">
+                        <div class="sport-image">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <div class="sport-content">
+                            <h3>Fitness Games</h3>
+                            <p>Making fitness fun through games like capture the flag, obstacle courses, team challenges, and adventure races that build endurance without feeling like "exercise."</p>
+                            <div class="age-breakdown">
+                                <strong>Age Focus:</strong> All ages adapt difficulty, emphasizing fun over competition for younger groups
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sport-card fade-in hover-lift">
+                        <div class="sport-image">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <div class="sport-content">
+                            <h3>Team Challenges</h3>
+                            <p>Problem-solving activities that require physical and mental collaboration: team building exercises, communication games, and leadership rotations.</p>
+                            <div class="age-breakdown">
+                                <strong>Age Focus:</strong> 11+ for structured challenges, with 14-18 taking mentorship roles
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sport-card fade-in hover-lift">
+                        <div class="sport-image">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <div class="sport-content">
+                            <h3>Outdoor Adventures</h3>
+                            <p>Nature-based activities like hiking, orienteering, outdoor survival skills, and environmental games that connect youth with the natural world.</p>
+                            <div class="age-breakdown">
+                                <strong>Age Focus:</strong> Seasonal programming, with advanced wilderness skills for older participants
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outdoor Gaming Philosophy -->
+        <section id="philosophy" class="philosophy-section scroll-padding">
+            <div class="container">
+                <div class="philosophy-content fade-in">
+                    <h2>Reclaiming Childhood Through Outdoor Engagement</h2>
+                    <p class="lead-text">In an age where children spend more time looking at screens than playing outside, Ready 2 Play is leading the movement back to active, outdoor childhood experiences.</p>
+                    
+                    <div class="philosophy-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">7+</span>
+                            <div class="stat-label">Hours daily screen time<br>for average youth</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">30min</span>
+                            <div class="stat-label">Daily outdoor time<br>recommended minimum</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">85%</span>
+                            <div class="stat-label">Improvement in mood<br>after outdoor activity</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <div class="stat-label">Fun factor in our<br>outdoor programs</div>
+                        </div>
+                    </div>
+                    
+                    <p>Our programs don't just combat screen time—they offer something better. Real adventure, genuine friendships, authentic challenges, and the irreplaceable satisfaction of physical accomplishment. We're building resilient, confident, socially connected young people who know how to have fun without a device.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery -->
+        <section id="gallery" class="gallery-section scroll-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Action Moments</h2>
+                    <p>Real moments from real sessions—pure joy, authentic effort, genuine connections</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item hover-lift" data-image="1">
+                        <div class="gallery-image">
+                            <i class="bi bi-camera"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <p>Flag Football Training Session</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hover-lift" data-image="2">
+                        <div class="gallery-image">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <p>Team Building Activities</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hover-lift" data-image="3">
+                        <div class="gallery-image">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <p>Victory Celebrations</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hover-lift" data-image="4">
+                        <div class="gallery-image">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <p>Outdoor Adventure Day</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hover-lift" data-image="5">
+                        <div class="gallery-image">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <p>Character Building Moments</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hover-lift" data-image="6">
+                        <div class="gallery-image">
+                            <i class="bi bi-lightning"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <p>Speed & Agility Training</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hover-lift" data-image="7">
+                        <div class="gallery-image">
+                            <i class="bi bi-sun"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <p>Summer Training Camp</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hover-lift" data-image="8">
+                        <div class="gallery-image">
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <div class="gallery-overlay">
+                            <p>Skill Development Focus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Horizontal Scroll Showcase -->
+        <section id="showcase" class="showcase-section scroll-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Program Highlights & Success Stories</h2>
+                    <p>What makes Ready 2 Play special—discover the moments that matter</p>
+                </div>
+                
+                <div class="horizontal-scroll-container">
+                    <div class="scroll-wrapper">
+                        <div class="showcase-card">
+                            <div class="showcase-icon">
+                                <i class="bi bi-award"></i>
+                            </div>
+                            <h3>Championship Mindset</h3>
+                            <p>"In just 3 months, my confidence on and off the field completely transformed. Ready 2 Play taught me that winning isn't just about the scoreboard—it's about giving your best effort every single play."</p>
+                            <strong>— Kwame, Age 15</strong>
+                        </div>
+                        
+                        <div class="showcase-card">
+                            <div class="showcase-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <h3>Friendship & Teamwork</h3>
+                            <p>"I used to be really shy, but flag football helped me find my voice. Now I'm a team captain and some of my best friends are from Ready 2 Play. We support each other in everything."</p>
+                            <strong>— Ama, Age 13</strong>
+                        </div>
+                        
+                        <div class="showcase-card">
+                            <div class="showcase-icon">
+                                <i class="bi bi-lightning"></i>
+                            </div>
+                            <h3>Physical Transformation</h3>
+                            <p>"My son went from spending all day gaming to asking when the next training session is. His fitness, focus, and overall happiness have improved dramatically. As a parent, I couldn't be more grateful."</p>
+                            <strong>— Parent Testimonial</strong>
+                        </div>
+                        
+                        <div class="showcase-card">
+                            <div class="showcase-icon">
+                                <i class="bi bi-brain"></i>
+                            </div>
+                            <h3>Mental Toughness</h3>
+                            <p>"Flag football taught me strategy and quick thinking. Those skills helped me improve in school too. When you learn to read a defense, reading a math problem feels easier!"</p>
+                            <strong>— Kofi, Age 14</strong>
+                        </div>
+                        
+                        <div class="showcase-card">
+                            <div class="showcase-icon">
+                                <i class="bi bi-heart"></i>
+                            </div>
+                            <h3>Character Development</h3>
+                            <p>"Ready 2 Play isn't just about sports—it's about becoming a better person. Learning to encourage teammates, handle disappointment, and celebrate others' success has made me more mature."</p>
+                            <strong>— Akosua, Age 16</strong>
+                        </div>
+                        
+                        <div class="showcase-card">
+                            <div class="showcase-icon">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                            <h3>Life Skills</h3>
+                            <p>"The leadership opportunities in Ready 2 Play prepared me for student government. When you've called plays in a crucial game, presenting to your classmates doesn't seem so scary."</p>
+                            <strong>— Yaw, Age 17</strong>
+                        </div>
+                        
+                        <!-- Duplicates for seamless loop -->
+                        <div class="showcase-card">
+                            <div class="showcase-icon">
+                                <i class="bi bi-award"></i>
+                            </div>
+                            <h3>Championship Mindset</h3>
+                            <p>"In just 3 months, my confidence on and off the field completely transformed. Ready 2 Play taught me that winning isn't just about the scoreboard—it's about giving your best effort every single play."</p>
+                            <strong>— Kwame, Age 15</strong>
+                        </div>
+                        
+                        <div class="showcase-card">
+                            <div class="showcase-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <h3>Friendship & Teamwork</h3>
+                            <p>"I used to be really shy, but flag football helped me find my voice. Now I'm a team captain and some of my best friends are from Ready 2 Play. We support each other in everything."</p>
+                            <strong>— Ama, Age 13</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Integration -->
+        <section id="social" class="social-section scroll-padding">
+            <div class="container">
+                <div class="social-grid fade-in">
+                    <div class="social-content">
+                        <h2>Follow Our Journey</h2>
+                        <p>Join our community and see the daily moments that make Ready 2 Play special. From training highlights to character-building moments, our social media captures the authentic spirit of outdoor youth development.</p>
+                        
+                        <div class="social-buttons">
+                            <a href="https://vm.tiktok.com/ZMABwmrY7/" class="social-btn" target="_blank">
+                                <i class="bi bi-tiktok"></i>
+                                <span>Follow on TikTok</span>
+                            </a>
+                            <a href="https://www.instagram.com/ready2play_gh" class="social-btn" target="_blank">
+                                <i class="bi bi-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="tiktok-embed">
+                        <div class="embed-placeholder">
+                            <i class="bi bi-play-circle"></i>
+                        </div>
+                        <p><strong>Latest TikTok:</strong> Training session highlights and behind-the-scenes moments</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Videos -->
+        <section id="videos" class="videos-section scroll-padding">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>See Our Coaching in Action</h2>
+                    <p>Experience our training philosophy through real session footage and program highlights</p>
+                </div>
+                
+                <div class="video-player-container fade-in">
+                    <div class="main-video">
+                        <div class="video-loader" id="video-loader">
+                            <div class="loader-spinner"></div>
+                            <p>Loading video...</p>
+                        </div>
+                        <iframe 
+                            id="main-video-player"
+                            src="https://www.youtube.com/embed/u5tbR9DKyiU?enablejsapi=1&rel=0&modestbranding=1"
+                            title="Ready 2 Play Training Session"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <div class="video-sidebar">
+                        <h3 class="sidebar-title">Training Highlights</h3>
+                        <div class="video-thumbnails">
+                            <div class="video-thumbnail active" data-video-id="u5tbR9DKyiU">
+                                <img src="https://img.youtube.com/vi/u5tbR9DKyiU/hqdefault.jpg" alt="Flag Football Fundamentals" loading="lazy">
+                                <div class="thumbnail-info">
+                                    <h4>Flag Football Fundamentals</h4>
+                                </div>
+                                <div class="active-indicator"></div>
+                            </div>
+                            
+                            <div class="video-thumbnail" data-video-id="RXXe4OexFvM">
+                                <img src="https://img.youtube.com/vi/RXXe4OexFvM/hqdefault.jpg" alt="Team Building Activities" loading="lazy">
+                                <div class="thumbnail-info">
+                                    <h4>Team Building Activities</h4>
+                                </div>
+                                <div class="active-indicator"></div>
+                            </div>
+                            
+                            <div class="video-thumbnail" data-video-id="SLKDQnqX9WM">
+                                <img src="https://img.youtube.com/vi/SLKDQnqX9WM/hqdefault.jpg" alt="Speed & Agility Training" loading="lazy">
+                                <div class="thumbnail-info">
+                                    <h4>Speed & Agility Training</h4>
+                                </div>
+                                <div class="active-indicator"></div>
+                            </div>
+                            
+                            <div class="video-thumbnail" data-video-id="Tlky1XRg4J4">
+                                <img src="https://img.youtube.com/vi/Tlky1XRg4J4/hqdefault.jpg" alt="Character Development" loading="lazy">
+                                <div class="thumbnail-info">
+                                    <h4>Character Development</h4>
+                                </div>
+                                <div class="active-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PDF Download Section -->
+        <section id="pdf-download" class="pdf-section scroll-padding">
+            <div class="container">
+                <div class="pdf-download-card fade-in">
+                    <div class="pdf-content">
+                        <div class="pdf-icon">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                        </div>
+                        <div class="pdf-text">
+                            <h3>Complete Program Guide</h3>
+                            <p>Detailed breakdown of all Ready 2 Play activities, age-appropriate programming, safety protocols, and what to expect from our coaching sessions.</p>
+                            <div class="pdf-features">
+                                <span><i class="bi bi-check2"></i> Age group breakdowns</span>
+                                <span><i class="bi bi-check2"></i> Safety protocols</span>
+                                <span><i class="bi bi-check2"></i> Seasonal programming</span>
+                                <span><i class="bi bi-check2"></i> Character development focus</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pdf-action">
+                        <a href="../../documents/Ready-2-Play.pdf" class="download-btn" download>
+                            <i class="bi bi-download"></i>
+                            <span>Download Free Guide</span>
+                        </a>
+                        <p class="pdf-note">No email required • 2.1MB PDF</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section scroll-padding">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info fade-in">
+                        <h2>Join the Ready 2 Play Family</h2>
+                        <p>All programs are completely customized to your child's age, skill level, and interests. Sessions are scheduled flexibly—after school, weekends, and during school holidays. Available as individual training, small group sessions, or team programs throughout Accra and surrounding areas.</p>
+                        
+                        <div class="learning-promise">
+                            <div class="promise-icon">
+                                <i class="bi bi-heart-fill"></i>
+                            </div>
+                            <div class="promise-content">
+                                <h4>Our Promise to Parents</h4>
+                                <p>If after your first month your child isn't more excited about outdoor activity, more confident in team settings, and asking when the next session is—we'll work together to adjust our approach or provide a full refund.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-methods">
+                            <a href="mailto:gofrance01@gmail.com?subject=Ready 2 Play Inquiry&body=Hi! I'm interested in Ready 2 Play programs for my child. Here are the details..." class="contact-method">
+                                <i class="bi bi-envelope-fill"></i>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p>gofrance01@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/233268712345?text=Hi%20Saharansub,%20I'm%20interested%20in%20Ready%202%20Play%20programs" class="contact-method" target="_blank">
+                                <i class="bi bi-whatsapp"></i>
+                                <div>
+                                    <strong>WhatsApp</strong>
+                                    <p>+233 26 871 2345</p>
+                                </div>
+                            </a>
+
+                            <a href="tel:+233268712345" class="contact-method">
+                                <i class="bi bi-telephone-fill"></i>
+                                <div>
+                                    <strong>Phone</strong>
+                                    <p>+233 26 871 2345</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/godwin-france/" class="contact-method" target="_blank">
+                                <i class="bi bi-linkedin"></i>
+                                <div>
+                                    <strong>LinkedIn</strong>
+                                    <p>Professional Network</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form fade-in">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="parent-name">Parent/Guardian Name</label>
+                                <input type="text" id="parent-name" name="parent-name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email_address">Email Address</label>
+                                <input type="email" id="email_address" name="email_address" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone_number">
+                                    Phone Number 
+                                    <small id="phone-counter" class="phone-counter-class"></small>
+                                </label>
+                                <input type="tel" id="phone_number" name="phone_number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="student-name">Child's Name</label>
+                                <input type="text" id="student-name" name="student-name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="student-age">Child's Age</label>
+                                <select id="student-age" name="student-age" required>
+                                    <option value="">Select Age Range</option>
+                                    <option value="8-10">8-10 years (Foundation Fun)</option>
+                                    <option value="11-13">11-13 years (Skill Development)</option>
+                                    <option value="14-16">14-16 years (Advanced Training)</option>
+                                    <option value="17-18">17-18 years (Leadership Track)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="program-interest">Program Interest</label>
+                                <select id="program-interest" name="program-interest" required>
+                                    <option value="">Select Program Focus</option>
+                                    <option value="flag-football">Flag Football Primary</option>
+                                    <option value="multi-sport">Multi-Sport Training</option>
+                                    <option value="fitness-games">Fitness Games</option>
+                                    <option value="team-building">Team Building Focus</option>
+                                    <option value="all-activities">All Activities</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="group-preference">Training Preference</label>
+                                <select id="group-preference" name="group-preference" required>
+                                    <option value="">Select Training Style</option>
+                                    <option value="individual">Individual Training</option>
+                                    <option value="small-group">Small Group (2-4 kids)</option>
+                                    <option value="team-setting">Team Setting (5-8 kids)</option>
+                                    <option value="not-sure">Not Sure - Need Guidance</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="activity-level">Child's Current Activity Level</label>
+                                <select id="activity-level" name="activity-level" required>
+                                    <option value="">Select Activity Level</option>
+                                    <option value="beginner">Beginner (New to organized sports)</option>
+                                    <option value="some-experience">Some Experience (Played before)</option>
+                                    <option value="experienced">Experienced Athlete</option>
+                                    <option value="very-active">Very Active (Multiple sports)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="schedule-preference">Preferred Schedule</label>
+                                <select id="schedule-preference" name="schedule-preference" required>
+                                    <option value="">Select Schedule</option>
+                                    <option value="after-school">After School (3-6 PM)</option>
+                                    <option value="weekends">Weekends</option>
+                                    <option value="school-holidays">School Holidays/Vacation</option>
+                                    <option value="flexible">Flexible Schedule</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="physical-considerations">Physical Considerations (Optional)</label>
+                                <textarea id="physical-considerations" name="physical-considerations" rows="2" placeholder="Any injuries, limitations, or special needs we should know about?"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Goals & Additional Information</label>
+                                <textarea id="message" name="message" rows="4" placeholder="What would you like your child to gain from Ready 2 Play? Any specific goals, concerns, or questions?"></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Join Ready 2 Play</button>
+                            <div id="form-success-message" style="display: none; margin-top: 1rem; color: var(--accent-green); font-weight: 600;">
+                                Form submitted successfully! 
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Ready 2 Play</h3>
+                <p>Where Fun Meets Fitness, and Games Build Greatness. Building confident, active, connected youth through outdoor sports and character development.</p>
+                <div class="footer-social">
+                    <a href="https://vm.tiktok.com/ZMABwmrY7/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/in/godwin-france/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://wa.me/233268712345" target="_blank"><i class="bi bi-whatsapp"></i></a>
+                    <a href="mailto:gofrance01@gmail.com"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Saharansub - Ready 2 Play. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+<script src="ready-2-play.js"></script>
+</body>
+</html>
