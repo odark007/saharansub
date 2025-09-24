@@ -249,78 +249,53 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // --- Featured Videos Section ---
-const videoThumbnails = document.querySelectorAll('.video-thumbnail');
-const mainVideoPlayer = document.getElementById('main-video-player');
-const videoLoader = document.getElementById('video-loader');
+    // --- Featured Videos Section ---
+    const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+    const mainVideoPlayer = document.getElementById('main-video-player');
+    const videoLoader = document.getElementById('video-loader');
 
-if (videoThumbnails.length > 0 && mainVideoPlayer) {
-    
-    // Function to switch video
-    function switchVideo(videoId, clickedThumbnail) {
-        // Show loader
-        videoLoader.classList.remove('hidden');
-        
-        // Update active state
-        videoThumbnails.forEach(thumb => thumb.classList.remove('active'));
-        clickedThumbnail.classList.add('active');
-        
-        // Switch video with delay for loading effect
-        setTimeout(() => {
-            mainVideoPlayer.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0&modestbranding=1`;
+    if (videoThumbnails.length > 0 && mainVideoPlayer) {
+        function switchVideo(videoId, clickedThumbnail) {
+            if (videoLoader) videoLoader.classList.remove('hidden');
             
-            // Hide loader after iframe loads
-            mainVideoPlayer.onload = () => {
-                setTimeout(() => {
-                    videoLoader.classList.add('hidden');
-                }, 500);
-            };
-        }, 800);
+            videoThumbnails.forEach(thumb => thumb.classList.remove('active'));
+            clickedThumbnail.classList.add('active');
+            
+            setTimeout(() => {
+                mainVideoPlayer.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0&modestbranding=1`;
+                
+                mainVideoPlayer.onload = () => {
+                    setTimeout(() => {
+                        if (videoLoader) videoLoader.classList.add('hidden');
+                    }, 500);
+                };
+            }, 800);
+            
+            console.log(`Switched to video: ${videoId}`);
+        }
         
-        // Track video switch for analytics
-        console.log(`Switched to video: ${videoId}`);
-    }
-    
-    // Add click listeners to thumbnails
-    videoThumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', function() {
-            const videoId = this.dataset.videoId;
-            if (videoId) {
-                switchVideo(videoId, this);
-            }
+        videoThumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const videoId = this.dataset.videoId;
+                if (videoId) {
+                    switchVideo(videoId, this);
+                }
+            });
+            
+            thumbnail.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+            
+            thumbnail.tabIndex = 0;
         });
         
-        // Keyboard accessibility
-        thumbnail.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
-        
-        // Make focusable
-        thumbnail.tabIndex = 0;
-    });
-    
-    // Initialize - hide loader for first video
-    setTimeout(() => {
-        videoLoader.classList.add('hidden');
-    }, 1000);
-}
-
-// Intersection observer for video section
-const videoSection = document.querySelector('.videos-section');
-if (videoSection) {
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                console.log('Videos section viewed');
-                videoObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    videoObserver.observe(videoSection);
-}    
+        setTimeout(() => {
+            if (videoLoader) videoLoader.classList.add('hidden');
+        }, 1000);
+    }    
     // --- Enhanced Contact Form for Tutoring ---
     const subjectsSelect = document.getElementById('subjects-needed');
     const sessionPreferenceSelect = document.getElementById('session-preference');
