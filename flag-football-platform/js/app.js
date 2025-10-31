@@ -57,7 +57,7 @@ class App {
   async registerServiceWorker() {
     if ('serviceWorker' in navigator) {
       try {
-        const registration = await navigator.serviceWorker.register('/sw.js');
+        const registration = await navigator.serviceWorker.register('./sw.js');
         console.log('Service Worker registered:', registration.scope);
         
         // Check for updates
