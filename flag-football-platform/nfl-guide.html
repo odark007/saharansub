@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NFL Flag Referee Guide - 2025 Ghana National Championships">
+    <title>NFL Flag Referee Guide</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/nfl-guide.css">
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <i class="fas fa-football-ball fa-spin"></i>
+    </div>
+
+    <!-- Main Container -->
+    <div id="guide-container" class="guide-container">
+        
+        <!-- Cover Page -->
+        <div id="cover-page" class="page active" data-page="cover">
+            <div class="page-content cover-content">
+                <div class="logo-container">
+                    <img src="./images/nflflag-flag-logo-white.png" alt="NFL Flag Logo" class="main-logo">
+                </div>
+                <p class="championship-text">2025 Ghana National Championships</p>
+                <h1 class="guide-title">REFEREE GUIDE</h1>
+                <div class="cover-image-container">
+                    <img src="./images/nfl-ref.png" alt="Cover Image" class="cover-image">
+                </div>
+                <button class="btn-start" id="start-btn">
+                    <span>Start</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Pages (will be generated dynamically) -->
+        <div id="content-pages"></div>
+
+        <!-- About Me Page -->
+        <div id="about-page" class="page" data-page="about">
+            <div class="page-content about-content">
+                <div class="profile-image-container">
+                    <img src="./images/godwin-france-bio-photo.jpeg" alt="Coach Goddie" class="profile-image">
+                </div>
+                <h2 class="about-title">Designed by Coach Goddie</h2>
+                <p class="about-description" id="about-description"></p>
+                <div class="social-media-icons">
+                    <a href="#" target="_blank" class="social-icon" data-platform="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" data-platform="linkedin">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" data-platform="tiktok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" data-platform="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <div class="about-navigation">
+                    <button class="btn-nav btn-previous" id="about-previous-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Previous</span>
+                    </button>
+                    <button class="btn-nav btn-cover" id="back-to-cover-btn">
+                        <i class="fas fa-home"></i>
+                        <span>Back to Beginning</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-close-btn" id="video-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="video-container"></div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="./js/nfl-guide.js"></script>
+</body>
+</html>
