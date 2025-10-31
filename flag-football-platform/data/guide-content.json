@@ -10,30 +10,34 @@
     {
       "pageNumber": 1,
       "backgroundColor": "red",
-      "heading": "Introduction to Flag Football",
+      "heading": "Referee equipment list",
       "lists": [
         {
           "icon": "fa-football-ball",
-          "text": "Flag football is a non-contact version of American football"
+          "text": "Whistle"
         },
         {
           "icon": "fa-users",
-          "text": "Games are typically played with 5, 7, or 9 players per team"
+          "text": "Flag"
         },
         {
           "icon": "fa-flag",
-          "text": "Instead of tackling, players remove flags from ball carriers"
+          "text": "Sandbag"
         },
         {
           "icon": "fa-stopwatch",
-          "text": "Games are divided into two halves with running clock"
+          "text": "Scorecard"
+        },
+                {
+          "icon": "fa-stopwatch",
+          "text": "Coin"
         }
       ],
-      "image": {
-        "src": "./images/page1-field.jpg",
-        "legend": "Standard flag football field dimensions and markings"
+      "_image": {
+        "_src": "./images/#",
+        "_legend": "Standard flag football field dimensions and markings"
       },
-      "highlightComment": "Remember: Player safety is always the number one priority for referees!"
+      "_highlightComment": "Remember: Player safety is always the number one priority for referees!"
     },
     {
       "pageNumber": 2,
