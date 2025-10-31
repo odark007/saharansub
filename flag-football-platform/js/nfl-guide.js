@@ -621,4 +621,151 @@
     // Register service worker for offline capability
     window.addEventListener('load', registerServiceWorker);
 
+
+        // ============================================
+    // PWA INSTALL PROMPT
+    // ============================================
+    let deferredPrompt;
+
+    function setupInstallPrompt() {
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent default install prompt
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show custom install prompt
+            showInstallPrompt();
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA installed successfully');
+            deferredPrompt = null;
+        });
+    }
+
+    function showInstallPrompt() {
+        const prompt = document.createElement('div');
+        prompt.className = 'install-prompt';
+        prompt.innerHTML = `
+            <div class="install-prompt-text">
+                <i class="fas fa-download"></i>
+                Install this app for offline access
+            </div>
+            <div class="install-prompt-buttons">
+                <button class="btn-install" id="install-btn">Install</button>
+                <button class="btn-dismiss" id="dismiss-btn">Not Now</button>
+            </div>
+        `;
+        
+        document.body.appendChild(prompt);
+        
+        setTimeout(() => {
+            prompt.classList.add('visible');
+        }, 2000);
+
+        // Install button
+        document.getElementById('install-btn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log('Install outcome:', outcome);
+                deferredPrompt = null;
+            }
+            prompt.remove();
+        });
+
+        // Dismiss button
+        document.getElementById('dismiss-btn').addEventListener('click', () => {
+            prompt.remove();
+        });
+    }
+
+    // ============================================
+    // OFFLINE DETECTION
+    // ============================================
+    function setupOfflineDetection() {
+        const indicator = document.createElement('div');
+        indicator.className = 'offline-indicator';
+        indicator.innerHTML = '<i class="fas fa-wifi"></i> You are currently offline. Some features may be limited.';
+        document.body.appendChild(indicator);
+
+        function updateOnlineStatus() {
+            if (!navigator.onLine) {
+                indicator.classList.add('visible');
+            } else {
+                indicator.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        
+        // Check initial status
+        updateOnlineStatus();
+    }
+
+    // ============================================
+    // IMAGE LAZY LOADING
+    // ============================================
+    function setupLazyLoading() {
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('loading');
+                        
+                        img.onload = () => {
+                            img.classList.remove('loading');
+                            img.classList.add('loaded');
+                        };
+                        
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            // Observe all content images
+            setTimeout(() => {
+                document.querySelectorAll('.content-image').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }, 1000);
+        }
+    }
+
+    // ============================================
+    // UPDATE INIT FUNCTION
+    // ============================================
+    // Add to the existing init() function, right after setupEventListeners():
+    function enhancedInit() {
+        init(); // Call original init
+        setupInstallPrompt();
+        setupOfflineDetection();
+        setupLazyLoading();
+    }
+
+    // ============================================
+    // REPLACE THE BOTTOM OF THE FILE
+    // ============================================
+    // Replace this section at the very bottom:
+    
+    // START APPLICATION
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            setupInstallPrompt();
+            setupOfflineDetection();
+            setupLazyLoading();
+        });
+    } else {
+        init();
+        setupInstallPrompt();
+        setupOfflineDetection();
+        setupLazyLoading();
+    }
+
+    // Register service worker for offline capability
+    window.addEventListener('load', registerServiceWorker);
+
 })();
