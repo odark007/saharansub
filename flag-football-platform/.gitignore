@@ -2,6 +2,14 @@
 .env
 .env.local
 .env.production
+server/.env
+server/.env.local
+server/.env.production
+
+# OR use wildcard to catch all .env files
+**/.env
+**/.env.local
+**/.env.production
 
 # Node modules
 node_modules/
@@ -34,7 +42,7 @@ tmp/
 temp/
 *.tmp
 
-# Uploaded PDFs (if storing locally during processing)
+# Uploaded PDFs
 server/uploads/
 uploads/
 
