@@ -5,7 +5,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
+
+console.log('SUPABASE_URL:', supabaseUrl);
+console.log('SUPABASE_ANON_KEY:', supabaseAnonKey ? 'Loaded ✓' : 'Missing ✗');
+console.log('SUPABASE_SERVICE_KEY:', supabaseServiceKey ? 'Loaded ✓' : 'Missing ✗');
 
 if (!supabaseUrl || !supabaseServiceKey) {
   throw new Error('Missing Supabase environment variables');
@@ -22,11 +27,7 @@ export const supabase = createClient(supabaseUrl, supabaseServiceKey, {
 // Create Supabase client with anon key (for public operations)
 export const supabaseAnon = createClient(
   supabaseUrl, 
-  process.env.SUPABASE_ANON_KEY
+  supabaseAnonKey
 );
 
 console.log('Supabase client initialized');
-
-// remove later both
-console.log('SUPABASE_URL:', process.env.SUPABASE_URL);
-console.log('SUPABASE_KEY:', process.env.SUPABASE_KEY);
