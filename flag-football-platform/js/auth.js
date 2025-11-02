@@ -3,7 +3,7 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // Initialize Supabase client
 const SUPABASE_URL = 'https://xfkguhvailhntmyratbl.supabase.co';
-const SUPABASE_ANON_KEY = 'your-anon-key-here'; // Replace with your actual anon key
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhma2d1aHZhaWxobnRteXJhdGJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4NTgyNjgsImV4cCI6MjA3NzQzNDI2OH0.2JGSlS-xeB9jn7KnXjjlNZ8025vEH0yWOSpXskrwxI4'; // Replace with your actual anon key
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -15,14 +15,31 @@ export class Auth {
   // Get current user
   async getCurrentUser() {
     try {
+      // First check if there's a session
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+      if (sessionError) {
+        console.log('No active session');
+        return null;
+      }
+
+      if (!session) {
+        console.log('No session found');
+        return null;
+      }
+
+      // If session exists, get user
       const { data: { user }, error } = await supabase.auth.getUser();
-      
+
       if (error) throw error;
-      
+
       this.currentUser = user;
       return user;
     } catch (error) {
-      console.error('Get current user error:', error);
+      // Don't log error if it's just "no session"
+      if (!error.message.includes('session')) {
+        console.error('Get current user error:', error);
+      }
       return null;
     }
   }
@@ -63,6 +80,7 @@ export class Auth {
           email: email,
           role: userData.role,
           age_range: userData.ageRange || null,
+          gender: userData.gender || null,  // ADD THIS
           location: userData.location || null,
           experience_level: userData.experienceLevel || null,
           default_rulebook: userData.defaultRulebook || 'nfl_flag'

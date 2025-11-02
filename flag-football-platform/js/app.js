@@ -35,6 +35,9 @@ class App {
       this.router = new Router();
       await this.router.init();
 
+      // Handle email confirmation callback
+      await this.handleAuthCallback();
+
       // Check authentication status
       const user = await this.auth.getCurrentUser();
       if (user) {
@@ -54,12 +57,34 @@ class App {
     }
   }
 
+  async handleAuthCallback() {
+    // Check if URL contains auth tokens (from email confirmation)
+    const hash = window.location.hash;
+
+    if (hash && hash.includes('access_token')) {
+      showLoading('Verifying email...');
+
+      // Supabase will automatically handle the token
+      // Wait a moment for it to process
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Clear the hash from URL
+      window.history.replaceState(null, '', window.location.pathname);
+
+      hideLoading();
+      showToast('Email verified! You can now log in.', 'success');
+
+      // Redirect to login
+      this.router.navigate('/login');
+    }
+  }
+
   async registerServiceWorker() {
     if ('serviceWorker' in navigator) {
       try {
         const registration = await navigator.serviceWorker.register('./sw.js');
         console.log('Service Worker registered:', registration.scope);
-        
+
         // Check for updates
         registration.addEventListener('updatefound', () => {
           const newWorker = registration.installing;
@@ -140,7 +165,7 @@ class App {
         e.preventDefault();
         const route = link.getAttribute('data-route') || link.getAttribute('href');
         this.router.navigate(route);
-        
+
         // Close sidebar if open
         sidebar.classList.remove('active');
         sidebarOverlay.classList.remove('active');
@@ -155,12 +180,15 @@ class App {
 
   async handleAuthenticatedUser(user) {
     console.log('Authenticated user:', user.id);
-    
+
     // Load user data
     const userData = await this.auth.getUserData(user.id);
     this.state.setState('user', userData);
     this.state.setState('isAuthenticated', true);
-    
+
+    // Update UI for logged-in state
+    this.updateAuthUI(true);
+
     // Sync data if online
     if (this.isOnline) {
       await this.syncOfflineData();
@@ -169,17 +197,20 @@ class App {
 
   async handleAnonymousUser() {
     console.log('Anonymous user detected');
-    
+
     // Check if there's a session ID in local storage
     let sessionId = localStorage.getItem('sessionId');
     if (!sessionId) {
       sessionId = this.generateSessionId();
       localStorage.setItem('sessionId', sessionId);
     }
-    
+
     this.state.setState('sessionId', sessionId);
     this.state.setState('isAuthenticated', false);
-    
+
+    // Update UI for logged-out state
+    this.updateAuthUI(false);
+
     // Check if onboarding is complete
     const onboardingComplete = localStorage.getItem('onboardingComplete');
     if (!onboardingComplete) {
@@ -190,27 +221,49 @@ class App {
   async handleLogout() {
     try {
       showLoading('Logging out...');
-      
+
       await this.auth.signOut();
-      
+
       // Clear state
       this.state.clearState();
-      
+
       // Clear local storage (except session ID for anonymous users)
       const sessionId = this.generateSessionId();
       localStorage.clear();
       localStorage.setItem('sessionId', sessionId);
-      
+
+      // Update UI
+      this.updateAuthUI(false);
+
       hideLoading();
       showToast('Logged out successfully', 'success');
-      
+
       // Navigate to home
       this.router.navigate('/');
-      
+
     } catch (error) {
       console.error('Logout error:', error);
       hideLoading();
       showToast('Failed to logout', 'error');
+    }
+  }
+
+
+  updateAuthUI(isAuthenticated) {
+    const loginLink = document.getElementById('login-link');
+    const signupLink = document.getElementById('signup-link');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    if (isAuthenticated) {
+      // Hide login/signup, show logout
+      if (loginLink) loginLink.style.display = 'none';
+      if (signupLink) signupLink.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'flex';
+    } else {
+      // Show login/signup, hide logout
+      if (loginLink) loginLink.style.display = 'flex';
+      if (signupLink) signupLink.style.display = 'flex';
+      if (logoutBtn) logoutBtn.style.display = 'none';
     }
   }
 

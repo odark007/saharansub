@@ -1,7 +1,9 @@
 // API calls to backend server
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://localhost:3000'  // Local development
-  : 'https://saharansub.netlify.app/flag-football-platform/';  // Production backend
+  : 'http://localhost:3000';  // Production backend Backend not deployed yet
+
+  
 
 // Fetch all rulebooks
 export async function fetchRulebooks() {

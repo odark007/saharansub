@@ -50,23 +50,53 @@ self.addEventListener('activate', event => {
 
 // Fetch event - Network first, fallback to cache
 self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+  
+  // Skip caching for:
+  // 1. Non-GET requests
+  // 2. API calls to backend
+  // 3. Supabase API calls
+  if (
+    event.request.method !== 'GET' ||
+    url.hostname === 'localhost' ||
+    url.hostname.includes('supabase') ||
+    url.pathname.includes('/api/')
+  ) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  // Cache-first strategy for GET requests
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // Clone the response
-        const responseToCache = response.clone();
-        
-        // Cache the fetched response
-        caches.open(CACHE_NAME)
-          .then(cache => {
-            cache.put(event.request, responseToCache);
+    caches.match(event.request)
+      .then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        return fetch(event.request)
+          .then(response => {
+            // Don't cache if not a valid response
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+
+            // Clone and cache
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                cache.put(event.request, responseToCache);
+              });
+
+            return response;
           });
-        
-        return response;
       })
       .catch(() => {
-        // If fetch fails, try cache
-        return caches.match(event.request);
+        // Fallback for offline
+        return new Response('Offline - content not available', {
+          status: 503,
+          statusText: 'Service Unavailable'
+        });
       })
   );
 });

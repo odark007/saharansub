@@ -11,15 +11,18 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware
 app.use(cors({
-     origin: [
-       'http://localhost:5500',
-       'http://127.0.0.1:5500',
-       'https://saharansub.netlify.app/flag-football-platform/'  // Your Netlify URL
-     ],
-     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-     allowedHeaders: ['Content-Type', 'Authorization']
-   }));
+  origin: [
+    'http://localhost:5500',
+    'http://127.0.0.1:5500',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'https://saharansub.netlify.app'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,8 +35,8 @@ app.use((req, res, next) => {
 
 // Health check
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'healthy', 
+  res.json({
+    status: 'healthy',
     timestamp: new Date().toISOString(),
     service: 'Flag Football Backend'
   });
