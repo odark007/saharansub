@@ -58,6 +58,7 @@ self.addEventListener('fetch', event => {
   // 3. Supabase API calls
   if (
     event.request.method !== 'GET' ||
+    url.protocol === 'chrome-extension:' ||
     url.hostname === 'localhost' ||
     url.hostname.includes('supabase') ||
     url.pathname.includes('/api/')

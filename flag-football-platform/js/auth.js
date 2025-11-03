@@ -67,26 +67,20 @@ export class Auth {
       // Create auth user
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
-        password
+        password,
+        options: {
+          data: {
+            role: userData.role,
+            age_range: userData.ageRange,
+            gender: userData.gender,
+            location: userData.location,
+            experience_level: userData.experienceLevel,
+            default_rulebook: userData.defaultRulebook
+          }
+        }
       });
 
       if (authError) throw authError;
-
-      // Create user profile
-      const { error: profileError } = await supabase
-        .from('users')
-        .insert({
-          id: authData.user.id,
-          email: email,
-          role: userData.role,
-          age_range: userData.ageRange || null,
-          gender: userData.gender || null,  // ADD THIS
-          location: userData.location || null,
-          experience_level: userData.experienceLevel || null,
-          default_rulebook: userData.defaultRulebook || 'nfl_flag'
-        });
-
-      if (profileError) throw profileError;
 
       return { success: true, user: authData.user };
     } catch (error) {

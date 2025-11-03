@@ -2,9 +2,9 @@
 import { showToast, showLoading, hideLoading } from '../utils.js';
 
 export function renderSignup() {
-    const container = document.getElementById('view-container');
+  const container = document.getElementById('view-container');
 
-    container.innerHTML = `
+  container.innerHTML = `
     <div style="max-width: 500px; margin: 40px auto;">
       <div class="card">
         <div class="card-header">
@@ -120,58 +120,61 @@ export function renderSignup() {
     </div>
   `;
 
-    // Handle form submission
-    const form = document.getElementById('signup-form');
-    form.addEventListener('submit', handleSignup);
+  // Handle form submission
+  const form = document.getElementById('signup-form');
+  form.addEventListener('submit', handleSignup);
 }
 
 async function handleSignup(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
-    const role = document.getElementById('signup-role').value;
-    const experience = document.getElementById('signup-experience').value;
-    const ageRange = document.getElementById('signup-age').value;
-    const gender = document.getElementById('signup-gender').value;
-    const location = document.getElementById('signup-location').value;
-    const defaultRulebook = document.getElementById('signup-rulebook').value;
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+  const role = document.getElementById('signup-role').value;
+  const experience = document.getElementById('signup-experience').value;
+  const ageRange = document.getElementById('signup-age').value;
+  const gender = document.getElementById('signup-gender').value;
+  const location = document.getElementById('signup-location').value;
+  const defaultRulebook = document.getElementById('signup-rulebook').value;
 
-    if (!role) {
-        showToast('Please select your role', 'warning');
-        return;
+  if (!role) {
+    showToast('Please select your role', 'warning');
+    return;
+  }
+
+  showLoading('Creating account...');
+
+  try {
+    const auth = window.app.auth;
+    const result = await auth.signUp(email, password, {
+      role,
+      experienceLevel: experience || null,
+      ageRange: ageRange || null,
+      gender: gender || null,
+      location: location || null,
+      defaultRulebook
+    });
+
+    if (result.success) {
+      hideLoading();
+      showToast('Account created! Please check your email to verify.', 'success');
+
+      // Clear form
+      document.getElementById('signup-form').reset();
+
+      // Navigate to login immediately
+      setTimeout(() => {
+        window.app.router.navigate('/login');
+      }, 2000);
+    } else {
+      hideLoading();
+      showToast(result.error || 'Signup failed', 'error');
     }
+  } catch (error) {
+    hideLoading();
+    showToast('Signup failed: ' + error.message, 'error');
 
-    showLoading('Creating account...');
-
-    try {
-        const auth = window.app.auth;
-        const result = await auth.signUp(email, password, {
-            role,
-            experienceLevel: experience || null,
-            ageRange: ageRange || null,
-            gender: gender || null,
-            location: location || null,
-            defaultRulebook
-        });
-
-        if (result.success) {
-            hideLoading();
-            showToast('Account created! Please check your email to verify.', 'success');
-
-            // Clear form
-            document.getElementById('signup-form').reset();
-
-            // Navigate to login immediately
-            setTimeout(() => {
-                window.app.router.navigate('/login');
-            }, 2000);
-        } else {
-            hideLoading();
-            showToast(result.error || 'Signup failed', 'error');
-        }
-    } catch (error) {
-        hideLoading();
-        showToast('Signup failed: ' + error.message, 'error');
-    }
+    // Clear form even on error
+    document.getElementById('signup-form').reset();
+  }
 }
