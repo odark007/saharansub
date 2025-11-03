@@ -2,6 +2,7 @@
 import { renderLogin } from './views/login.js';
 import { renderSignup } from './views/signup.js';
 import { renderOnboarding } from './views/onboarding.js';
+import { renderHome } from './views/home.js';  // ADD THIS IMPORT
 
 export class Router {
   constructor() {
@@ -36,7 +37,8 @@ export class Router {
     
     switch(path) {
       case '/':
-        this.renderHome();
+        renderHome();  // Now uses imported function
+        this.showVoiceButton();
         break;
       case '/login':
         renderLogin();
@@ -77,39 +79,6 @@ export class Router {
       default:
         container.innerHTML = '<h1>Page Not Found</h1>';
     }
-  }
-
-  renderHome() {
-    const container = document.getElementById('view-container');
-    container.innerHTML = `
-      <div>
-        <h1 class="text-primary" style="font-size: 28px; font-weight: 700; margin-bottom: 16px;">Welcome to Flag Football</h1>
-        <p style="margin-bottom: 24px; color: #333;">Learn the rules and improve your game</p>
-        
-        <div class="home-cards">
-          <a href="#" class="home-card" onclick="alert('Card 1 - Coming in Part 3'); return false;">
-            <div class="home-card-icon">
-              <i class="fas fa-search"></i>
-            </div>
-            <div class="home-card-content">
-              <h2 class="home-card-title">Game Play Quick Reference</h2>
-              <p class="home-card-description">Quick access to rules during gameplay</p>
-            </div>
-          </a>
-          
-          <a href="#" class="home-card" onclick="alert('Card 2 - Coming in Part 3'); return false;">
-            <div class="home-card-icon">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
-            <div class="home-card-content">
-              <h2 class="home-card-title">Learn How to Play</h2>
-              <p class="home-card-description">Step-by-step introduction to flag football</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    `;
-    this.showVoiceButton();
   }
 
   // Voice button helpers
