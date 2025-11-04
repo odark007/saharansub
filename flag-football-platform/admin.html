@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#013369">
+  <title>Admin - Flag Football Platform</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main App Stylesheets (for variables and consistency) -->
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+
+  <style>
+    /*
+     * GUIDE TO CHANGES:
+     * 1. Replaced hardcoded pixels with CSS variables (e.g., `var(--spacing-md)`).
+     * 2. Made the .admin-header a flex container to align title and "Back to App" button.
+     * 3. Converted .admin-nav into a horizontally scrollable tab bar on mobile.
+     * 4. Added styles to visually hide the scrollbar for a cleaner look.
+     */
+    body {
+      padding: var(--spacing-md);
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: var(--light-gray);
+    }
+
+    .admin-header {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      color: white;
+      padding: var(--spacing-lg);
+      border-radius: 12px;
+      margin-bottom: var(--spacing-lg);
+      /* Change 1: Use flexbox for layout */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-header-title h1 {
+      margin: 0;
+      font-size: var(--font-size-xl);
+    }
+
+    .admin-header-title p {
+      margin: var(--spacing-xs) 0 0 0;
+      opacity: 0.9;
+    }
+
+    /* Change 2: Style for the relocated "Back to App" button */
+    .admin-back-link {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color var(--transition-fast);
+      white-space: nowrap;
+      /* Prevent text wrapping */
+    }
+
+    .admin-back-link:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .admin-back-link .fas {
+      margin-right: var(--spacing-sm);
+    }
+
+    .admin-nav {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      /* Allow buttons to wrap to the next line */
+      flex-wrap: wrap;
+    }
+
+    .admin-nav button {
+      padding: 12px 24px;
+      border: 2px solid var(--medium-gray);
+      background: var(--white);
+      color: var(--dark-gray);
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .admin-nav button.active {
+      background: var(--primary-blue);
+      color: white;
+      border-color: var(--primary-blue);
+    }
+
+    .admin-section {
+      display: none;
+    }
+
+    .admin-section.active {
+      display: block;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .stat-card {
+      background: var(--white);
+      padding: var(--spacing-lg);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: var(--font-size-xxl);
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: var(--font-size-sm);
+      margin-top: var(--spacing-sm);
+    }
+
+    .upload-zone {
+      border: 3px dashed var(--primary-blue);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      background: #f8f9fa;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .upload-zone:hover {
+      background: #e9ecef;
+      border-color: var(--secondary-blue);
+    }
+
+    .upload-zone.dragover {
+      background: #d4e3f7;
+      border-color: var(--primary-blue);
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .rulebook-list {
+      display: grid;
+      gap: var(--spacing-md);
+    }
+
+    .rulebook-item {
+      background: var(--white);
+      padding: var(--spacing-lg);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .rulebook-actions {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
+    /* On screens smaller than 600px, create a 2-column grid for nav buttons */
+    @media (max-width: 600px) {
+      .admin-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Create two equal-width columns */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="admin-header">
+    <!-- Title and subtitle grouped together -->
+    <div class="admin-header-title">
+      <h1><i class="fas fa-shield-alt"></i> Admin Dashboard</h1>
+      <p>Manage Flag Football Platform</p>
+    </div>
+    <!-- "Back to App" button moved here -->
+    <a href="./index.html" class="admin-back-link">
+      <i class="fas fa-home"></i> Back to App
+    </a>
+  </div>
+
+  <div class="admin-nav">
+    <button onclick="showSection('dashboard')" class="active" id="btn-dashboard">
+      <i class="fas fa-chart-line"></i> Dashboard
+    </button>
+    <button onclick="showSection('upload')" id="btn-upload">
+      <i class="fas fa-upload"></i> Upload Rulebook
+    </button>
+    <button onclick="showSection('rulebooks')" id="btn-rulebooks">
+      <i class="fas fa-book"></i> Manage Rulebooks
+    </button>
+    <button onclick="showSection('reports')" id="btn-reports">
+      <i class="fas fa-flag"></i> Error Reports
+    </button>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div id="section-dashboard" class="admin-section active">
+    <h2 style="margin-bottom: 16px;">Platform Statistics</h2>
+    <div class="stats-grid" id="stats-container">
+      <div class="stat-card">
+        <div class="stat-value">-</div>
+        <div class="stat-label">Loading...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Section -->
+  <div id="section-upload" class="admin-section">
+    <h2 style="margin-bottom: 16px;">Upload New Rulebook</h2>
+
+    <div class="card">
+      <div class="card-body">
+        <form id="upload-form">
+          <div class="form-group">
+            <label class="form-label">Rulebook Name *</label>
+            <input type="text" id="rulebook-name" class="form-input" placeholder="e.g., NFL Flag" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Version *</label>
+            <input type="text" id="rulebook-version" class="form-input" placeholder="e.g., 2024" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">PDF File *</label>
+            <div class="upload-zone" id="upload-zone">
+              <i class="fas fa-cloud-upload-alt" style="font-size: 48px; color: #013369; margin-bottom: 16px;"></i>
+              <p style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">
+                Drop PDF file here or click to browse
+              </p>
+              <p style="color: #666; font-size: 14px;">
+                Maximum file size: 10MB
+              </p>
+              <input type="file" id="pdf-file" class="file-input" accept=".pdf" required />
+            </div>
+            <div id="file-info" style="margin-top: 12px; display: none;">
+              <i class="fas fa-file-pdf" style="color: #D50A0A;"></i>
+              <span id="file-name"></span>
+              <button type="button" onclick="clearFile()"
+                style="background: none; border: none; color: #D50A0A; cursor: pointer; margin-left: 8px;">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <i class="fas fa-upload"></i> Upload & Process
+          </button>
+        </form>
+
+        <div id="upload-progress" style="display: none; margin-top: 24px;">
+          <div class="progress-label">
+            <span>Processing...</span>
+            <span id="progress-text">0%</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+          </div>
+          <p style="text-align: center; color: #666; margin-top: 12px;" id="progress-message">
+            Uploading PDF...
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rulebooks Section -->
+  <div id="section-rulebooks" class="admin-section">
+    <h2 style="margin-bottom: 16px;">Manage Rulebooks</h2>
+    <div id="rulebooks-container">
+      <p style="text-align: center; color: #666;">Loading...</p>
+    </div>
+  </div>
+
+  <!-- Reports Section -->
+  <div id="section-reports" class="admin-section">
+    <h2 style="margin-bottom: 16px;">Error Reports</h2>
+    <div id="reports-container">
+      <p style="text-align: center; color: #666;">Loading...</p>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div id="loading-spinner" class="loading-spinner hidden">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script type="module" src="./js/admin-app.js"></script>
+</body>
+
+</html>

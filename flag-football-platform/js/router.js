@@ -2,7 +2,9 @@
 import { renderLogin } from './views/login.js';
 import { renderSignup } from './views/signup.js';
 import { renderOnboarding } from './views/onboarding.js';
-import { renderHome } from './views/home.js';  // ADD THIS IMPORT
+import { renderHome } from './views/home.js';
+import { renderCard1 } from './views/card1.js';  // ADD
+import { renderCard2 } from './views/card2.js';
 
 export class Router {
   constructor() {
@@ -26,18 +28,26 @@ export class Router {
 
   navigate(path) {
     this.currentRoute = path;
-    
+
     // Dispatch event for active nav highlighting
-    window.dispatchEvent(new CustomEvent('routechange', { 
-      detail: { route: path } 
+    window.dispatchEvent(new CustomEvent('routechange', {
+      detail: { route: path }
     }));
 
     // Render content
     const container = document.getElementById('view-container');
-    
-    switch(path) {
+
+    switch (path) {
       case '/':
-        renderHome();  // Now uses imported function
+        renderHome();  
+        this.showVoiceButton();
+        break;
+      case '/card1':
+        renderCard1();
+        this.showVoiceButton();
+        break;
+      case '/card2':
+        renderCard2();
         this.showVoiceButton();
         break;
       case '/login':
