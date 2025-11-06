@@ -12,14 +12,18 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({
-  origin: [
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? ['https://saharansub.netlify.app']
+  : [
     'http://localhost:5500',
     'http://127.0.0.1:5500',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
     'https://saharansub.netlify.app'
-  ],
+  ];
+
+app.use(cors({
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

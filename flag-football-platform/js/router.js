@@ -3,9 +3,11 @@ import { renderLogin } from './views/login.js';
 import { renderSignup } from './views/signup.js';
 import { renderOnboarding } from './views/onboarding.js';
 import { renderHome } from './views/home.js';
-import { renderCard1 } from './views/card1.js';  // ADD
+import { renderCard1 } from './views/card1.js';
 import { renderCard2 } from './views/card2.js';
-
+import { renderRuleDetail } from './views/ruleDetail.js';
+import { renderSectionDetail } from './views/sectionDetail.js';
+import { renderCategoryDetail } from './views/categoryDetail.js'
 export class Router {
   constructor() {
     this.currentRoute = '/';
@@ -34,13 +36,41 @@ export class Router {
       detail: { route: path }
     }));
 
+    // Handle dynamic routes (like /rule/:id)
+    if (path.startsWith('/rule/')) {
+      const ruleId = path.split('/rule/')[1];
+      renderRuleDetail(ruleId);
+      this.showVoiceButton();
+      return;
+    }
+
+    if (path.startsWith('/section/')) {
+      const sectionId = path.split('/section/')[1];
+      renderSectionDetail(sectionId);
+      this.showVoiceButton();
+      return;
+    }
+
+    if (path.startsWith('/category/')) {
+      const parts = path.split('/category/')[1].split('/');
+      const categoryId = parts[0];
+      const ruleIndex = parts[1] ? parseInt(parts[1]) : 0;
+      renderCategoryDetail(categoryId, ruleIndex);
+      this.showVoiceButton();
+      return;
+    }
+
     // Render content
     const container = document.getElementById('view-container');
 
     switch (path) {
       case '/':
-        renderHome();  
+        renderHome();
         this.showVoiceButton();
+        break;
+      case '/login':
+        renderLogin();
+        this.hideVoiceButton();
         break;
       case '/card1':
         renderCard1();
@@ -49,10 +79,6 @@ export class Router {
       case '/card2':
         renderCard2();
         this.showVoiceButton();
-        break;
-      case '/login':
-        renderLogin();
-        this.hideVoiceButton();
         break;
       case '/signup':
         renderSignup();
