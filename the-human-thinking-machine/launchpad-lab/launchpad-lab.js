@@ -300,5 +300,29 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('reduce-motion');
     }
     
+
+    // --- Mobile Outcomes Carousel Indicators ---
+    const outcomesGrid = document.querySelector('.outcomes-grid');
+    const indicators = document.querySelectorAll('.scroll-indicators .indicator');
+    
+    if (outcomesGrid && indicators.length > 0) {
+        outcomesGrid.addEventListener('scroll', () => {
+            const scrollLeft = outcomesGrid.scrollLeft;
+            const itemWidth = outcomesGrid.scrollWidth / indicators.length;
+            const activeIndex = Math.min(
+                indicators.length - 1,
+                Math.round(scrollLeft / itemWidth)
+            );
+            
+            indicators.forEach((indicator, index) => {
+                if (index === activeIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        });
+    }
+
     console.log('Launchpad Lab page initialized successfully');
 });

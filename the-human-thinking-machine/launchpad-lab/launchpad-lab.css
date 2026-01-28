@@ -913,3 +913,64 @@
         padding: 4rem 0;
     }
 }
+
+/*--------------------------------------------------------------
+# Mobile Carousel for Outcomes Section
+--------------------------------------------------------------*/
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: flex;
+    }
+
+    .outcomes-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.5rem;
+        padding: 1rem 0.5rem 2rem 0.5rem; /* Bottom padding for scrollbar/shadow */
+        margin-bottom: 1rem;
+        
+        /* Hide scrollbar for cleaner look */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+    }
+
+    .outcomes-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .outcome-item {
+        min-width: 280px;
+        max-width: 280px;
+        scroll-snap-align: center;
+        margin-right: 0; /* Override grid gap if needed, but flex gap handles it */
+        flex-shrink: 0;
+    }
+
+    /* Scroll Indicators */
+    .scroll-indicators {
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
+        background-color: var(--neutral-gray);
+        border-radius: 50%;
+        opacity: 0.3;
+        transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+        width: 24px;
+        background-color: var(--primary-blue);
+        border-radius: 4px;
+        opacity: 1;
+    }
+}
