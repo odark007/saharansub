@@ -13,7 +13,7 @@ const bikePrices = {
   },
   "blackstar": {
     lead: "GHc 23,800",
-    lithium: "GHc 30,400"
+    lithium: "GHc 28,800"
   },
   "carriage-tricycle": {
     lead: "N/A",
