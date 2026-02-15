@@ -980,6 +980,46 @@
     <script src="savings-calculator.js"></script>
     <script src="special-offer-interactions.js"></script>
 
+    <!-- Re-initialize mobile nav after templates load -->
+    <script>
+        document.addEventListener('componentsLoaded', () => {
+            console.log('✅ Templates loaded, re-initializing mobile nav...');
+
+            // Re-run mobile nav initialization
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+            if (mobileNavToggle && mobileNavOverlay) {
+                console.log('✅ Mobile nav elements found');
+
+                // Remove any existing listeners and add new one
+                const newToggle = mobileNavToggle.cloneNode(true);
+                mobileNavToggle.parentNode.replaceChild(newToggle, mobileNavToggle);
+
+                newToggle.addEventListener('click', (event) => {
+                    console.log('🔥 Mobile nav toggle clicked!');
+                    event.stopPropagation();
+                    document.body.classList.toggle('mobile-nav-active');
+                });
+
+                // Handle clicks inside overlay
+                mobileNavOverlay.addEventListener('click', (event) => {
+                    const dropdownLink = event.target.closest('.mobile-main-nav .dropdown > a');
+                    if (dropdownLink) {
+                        event.preventDefault();
+                        dropdownLink.parentElement.classList.toggle('active');
+                    } else if (event.target.closest('a')) {
+                        document.body.classList.remove('mobile-nav-active');
+                    }
+                });
+
+                console.log('✅ Mobile nav event listeners attached');
+            } else {
+                console.error('❌ Mobile nav elements not found');
+            }
+        });
+    </script>
+
 </body>
 
 </html>
