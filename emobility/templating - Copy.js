@@ -22,15 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const pageFileMap = {
             'home': 'e-mobility.html',
-            'shop': 'e-mobility-shop.html',
-            'special-offer': 'special-offer-eagle-king-govt.html',
-            'riding-school': 'riding-school.html'
+            'shop': 'e-mobility-shop.html'
+            
         };
 
         const targetFile = pageFileMap[pageId];
         if (!targetFile) return;
 
-        const navLinks = document.querySelectorAll('#main-site-header a, #ebike-menu-desktop a, #mobile-nav-overlay a');
+        const navLinks = document.querySelectorAll('#main-site-header a, #ebike-menu-desktop a');
         navLinks.forEach(link => {
             link.classList.remove('active');
             const linkHref = link.getAttribute('href');
