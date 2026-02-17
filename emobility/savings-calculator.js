@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('savings-calculator-modal');
     const closeButton = document.getElementById('close-calculator-modal');
     const monthlySpendInput = document.getElementById('monthly-trotro-spend');
-    
+
     // Get all buttons that open the calculator
     const openButtons = document.querySelectorAll(
       '#open-calculator-btn, #open-calculator-btn-2, #open-calculator-btn-3'
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const openModal = () => {
       modal.classList.add('active');
       document.body.classList.add('modal-open');
-      
+
       // Focus on input field when modal opens
       if (monthlySpendInput) {
         setTimeout(() => {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const monthlyPayment = 1100;
       const paymentMonths = 12;
       const totalEagleKingCost = upfrontPayment + (monthlyPayment * paymentMonths); // GH₵ 15,900
-      
+
       // Post-payoff costs (electricity)
       const monthlyElectricity = 120; // Average of GH₵ 80-150 range
       const annualElectricity = monthlyElectricity * 12; // GH₵ 1,440
@@ -91,17 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
       // CALCULATIONS
       // Year 1: Trotro vs Eagle King
       const annualTrotro = monthlyTrotro * 12;
-      
+
       // Year 2+: Annual savings after bike is paid off
       const annualSavingsAfterPayoff = annualTrotro - annualElectricity;
 
       // 5-Year Total Comparison
       // Trotro: 5 years of monthly payments
       const fiveYearTrotro = annualTrotro * 5;
-      
+
       // Eagle King: Year 1 (full cost) + Years 2-5 (electricity only)
       const fiveYearEagleKing = totalEagleKingCost + (annualElectricity * 4);
-      
+
       // Total 5-year savings
       const totalFiveYearSavings = fiveYearTrotro - fiveYearEagleKing;
 
@@ -111,9 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Format numbers with currency and commas
       const formatCurrency = (amount) => {
-        return `GH₵ ${amount.toLocaleString('en-GH', { 
-          minimumFractionDigits: 0, 
-          maximumFractionDigits: 0 
+        return `GH₵ ${amount.toLocaleString('en-GH', {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
         })}`;
       };
 
@@ -173,13 +173,13 @@ document.addEventListener('DOMContentLoaded', () => {
       calculatorApplyBtn.addEventListener('click', (e) => {
         e.preventDefault();
         closeModal();
-        
+
         // Smooth scroll to apply section
         const applySection = document.getElementById('apply-now');
         if (applySection) {
-          applySection.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
+          applySection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
           });
         }
       });
@@ -195,17 +195,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (monthlySpendInput) {
       monthlySpendInput.addEventListener('blur', () => {
         let value = parseFloat(monthlySpendInput.value);
-        
+
         // Set minimum value to 0
         if (isNaN(value) || value < 0) {
           monthlySpendInput.value = 0;
         }
-        
+
         // Set maximum reasonable value (GH₵ 5000/month)
         if (value > 5000) {
           monthlySpendInput.value = 5000;
         }
-        
+
         calculateSavings();
       });
     }
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const initScrollToTop = () => {
     const scrollTopBtn = document.querySelector('.scroll-top');
-    
+
     if (!scrollTopBtn) return;
 
     // Show/hide button based on scroll position
@@ -265,11 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const initSmoothScroll = () => {
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    
+
     anchorLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         const targetId = link.getAttribute('href');
-        
+
         // Skip empty anchors and calculator buttons (handled separately)
         if (targetId === '#' || link.id.includes('calculator')) {
           return;
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         e.preventDefault();
-        
+
         // Smooth scroll to target
         targetElement.scrollIntoView({
           behavior: 'smooth',
@@ -315,8 +315,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Press 'C' or 'c' to open calculator
-      if (e.key === 'c' || e.key === 'C') {
+      // Press 'C' or 'c' to open calculator (without modifier keys)
+      if ((e.key === 'c' || e.key === 'C') &&
+        !e.ctrlKey &&
+        !e.metaKey &&
+        !e.altKey &&
+        !e.shiftKey) {
         const modal = document.getElementById('savings-calculator-modal');
         if (modal && !modal.classList.contains('active')) {
           const openButton = document.getElementById('open-calculator-btn');

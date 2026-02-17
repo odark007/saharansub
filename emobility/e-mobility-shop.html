@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3TCJJ3STZV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-3TCJJ3STZV');
-</script>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TCJJ3STZV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3TCJJ3STZV');
+    </script>
     <!-- Metadata, Google Fonts, and Icons -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Mobility Shop - Saharansub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Raleway:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Raleway:wght@700&family=Roboto:wght@400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <!-- Link to base e-mobility styles (Required for Header/Footer) -->
     <link href="e-mobility.css" rel="stylesheet">
     <!-- Link to shop-specific styles -->
@@ -27,121 +30,10 @@
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
     <!-- favicon end-->
 </head>
-<body>
-    <!-- ====================================================== -->
-    <!-- MERGED AND UPDATED HEADER                            -->
-    <!-- ====================================================== -->
-    <header id="main-site-header" class="header">
-        <div class="container">
-            <a href="../index.html" class="logo">Saharansub</a>
-            
-            <!-- DESKTOP MAIN NAVIGATION -->
-            <nav class="main-navmenu-desktop">
-                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li class="dropdown"><a href="#"><span>STEAM Advocacy</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul><li><a href="#">Our Programs</a></li></ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Market Entry</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul><li><a href="#">Ghana Market</a></li><li><a href="#">African Expansion</a></li></ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Tech Sales & Marketing</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul><li><a href="#">Services</a></li><li><a href="#">Portfolio</a></li></ul>
-                    </li>
-                    <!-- UPDATED: The E-Mobility dropdown is marked as active because we are on a child page -->
-                    <li class="dropdown"><a href="#" class="active"><span>E-Mobility</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="#">Electric Bikes</a></li>
-                            <!-- UPDATED: The "Shop Bikes" link is now marked as active -->
-                            <li><a href="/emobility/emobility-partners.html">Partnerships</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul><li><a href="#">About Me</a></li><li><a href="#">Flag Football</a></li></ul>
-                    </li>
-                    <li><a href="#">Insights</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
 
-            <!-- UNIFIED MOBILE NAVIGATION OVERLAY (FULL VERSION) -->
-            <div id="mobile-nav-overlay">
-                <!-- E-Bike specific menu for easy navigation within this section -->
-                <h3 class="mobile-nav-heading">E-Bike Menu</h3>
-                <nav class="mobile-ebike-nav">
-                    <ul>
-                        <li><a href="e-mobility.html">Home</a></li>
-                        <li><a href="#" class="active">Shop</a></li>
-                        <li><a href="#book-test-ride">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <hr class="mobile-nav-divider">
-
-                <!-- The full main site menu -->
-                <h3 class="mobile-nav-heading">Main Site Menu</h3>
-                <nav class="mobile-main-nav">
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li class="dropdown"><a href="#"><span>STEAM Advocacy</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul><li><a href="#">Our Programs</a></li></ul>
-                        </li>
-                        <li class="dropdown"><a href="#"><span>Market Entry</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul><li><a href="#">Ghana Market</a></li><li><a href="#">African Expansion</a></li></ul>
-                        </li>
-                        <li class="dropdown"><a href="#"><span>Tech Sales</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul><li><a href="#">Services</a></li><li><a href="#">Portfolio</a></li></ul>
-                        </li>
-                        <!-- UPDATED: The E-Mobility dropdown is active -->
-                        <li class="dropdown active"><a href="#" class="active"><span>E-Mobility</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                <li><a href="e-mobility.html">Electric Bikes</a></li>
-                                <li><a href="/emobility/emobility-partners.html">Partnerships</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul><li><a href="#">About Me</a></li><li><a href="#">Flag Football</a></li></ul>
-                        </li>
-                        <li><a href="#">Insights</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Social Links for Mobile -->
-                <div class="mobile-social-links">
-                    <a href="https://x.com/godwin_france" aria-label="Twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
-                    <a href="https://www.linkedin.com/in/godwin-france/" aria-label="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://web.facebook.com/profile.php?id=61578845996008" aria-label="Facebook" target="_blank"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.tiktok.com/@saharansub" aria-label="TikTok" target="_blank"><i class="bi bi-tiktok"></i></a>
-                    <a href="https://www.instagram.com/green_mobility_ghigsh=azg0Z3VrMDI2bmhj&utm_source=qr" aria-label="Instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="https://wa.me/233268712345" aria-label="WhatsApp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-                    <a href="mailto:gofrance01@gmail.com" aria-label="Email" target="_blank">
-                    <i class="bi bi-envelope"></i>
-                    </a>
-                </div>
-            </div>
-
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
-                <i class="bi bi-list"></i>
-                <i class="bi bi-x"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- ====================================================== -->
-    <!-- NEW: E-BIKE PAGE MENU (DESKTOP ONLY)                   -->
-    <!-- This is the navigation bar that becomes sticky on scroll. -->
-    <!-- ====================================================== -->
-    <nav id="ebike-menu-desktop" class="ebike-nav-desktop">
-        <div class="container">
-            <ul>
-                <li><a href="e-mobility.html">Home</a></li>
-                <!-- The "Shop Bikes" link is now correctly marked as active -->
-                <li><a href="#" class="active">Shop</a></li>
-                <li><a href="#book-test-ride">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<body data-page-id="shop">
+    <!-- Header will be populated by templating.js -->
+    <header id="header-placeholder"></header>
 
     <main>
         <!-- ====================================================== -->
@@ -152,7 +44,9 @@
                 <div class="shop-intro-card">
                     <img src="../images/Elecer-logo.png" alt="ELECER Brand Logo" class="shop-intro-logo">
                     <h2>ELECER Electric Bikes - Premium Urban Mobility</h2>
-                    <p>Discover the future of urban travel with ELECER. We are committed to delivering high-quality, sustainable, and high-performance e-bikes specifically tailored for the vibrant energy of the African market. Ride with purpose, ride with ELECER.</p>
+                    <p>Discover the future of urban travel with ELECER. We are committed to delivering high-quality,
+                        sustainable, and high-performance e-bikes specifically tailored for the vibrant energy of the
+                        African market. Ride with purpose, ride with ELECER.</p>
                 </div>
             </div>
         </section>
@@ -170,8 +64,10 @@
                         </div>
                         <div class="bike-content-column">
                             <h2>The Running King</h2>
-                            <p>The perfect companion for your daily city commute, blending classic style with modern efficiency. Navigate traffic with ease and arrive in style.</p>
-                            <a href="elecer-running-king.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <p>The perfect companion for your daily city commute, blending classic style with modern
+                                efficiency. Navigate traffic with ease and arrive in style.</p>
+                            <a href="elecer-running-king.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -186,13 +82,15 @@
                         </div>
                         <div class="bike-content-column">
                             <h2>Blackstar</h2>
-                            <p>A rugged, all-terrain bike built for the adventurous spirit. The Blackstar's robust frame and powerful motor are ready for any challenge you throw at it.</p>
-                            <a href="elecer-blackstar.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <p>A rugged, all-terrain bike built for the adventurous spirit. The Blackstar's robust frame
+                                and powerful motor are ready for any challenge you throw at it.</p>
+                            <a href="elecer-blackstar.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
             </section>
-                <!-- BIKE 3: Carriage Tricycle (Image Left) -->
+            <!-- BIKE 3: Carriage Tricycle (Image Left) -->
             <section id="bike-carriage-tricycle" class="bike-section">
                 <div class="container">
                     <div class="bike-section-grid layout-image-left">
@@ -201,8 +99,11 @@
                         </div>
                         <div class="bike-content-column">
                             <h2>Carriage Tricycle</h2>
-                            <p>The ELECER Electric Carriage Tricycle is an innovative, eco-friendly electric tricycle designed for modern passenger transportation. It offers spacious seating and a blend of sleek design and robust performance for both commercial use.</p>
-                            <a href="elecer-carriage-tricycle.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <p>The ELECER Electric Carriage Tricycle is an innovative, eco-friendly electric tricycle
+                                designed for modern passenger transportation. It offers spacious seating and a blend of
+                                sleek design and robust performance for both commercial use.</p>
+                            <a href="elecer-carriage-tricycle.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -217,8 +118,11 @@
                         </div>
                         <div class="bike-content-column">
                             <h2>The Racer</h2>
-                            <p>The RACER is a stunning electric motorcycle that showcases the iconic USA flag design! With its patriotic color scheme, this model is sure to turn heads wherever you ride. Trained and updated on the latest industry developments.</p>
-                            <a href="elecer-the-racer.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <p>The RACER is a stunning electric motorcycle that showcases the iconic USA flag design!
+                                With its patriotic color scheme, this model is sure to turn heads wherever you ride.
+                                Trained and updated on the latest industry developments.</p>
+                            <a href="elecer-the-racer.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -232,8 +136,10 @@
                         </div>
                         <div class="bike-content-column">
                             <h2>The Rassion</h2>
-                            <p>The RASSION electric motorcycle showcases an elegant and sleek design, with a stunning white color that exudes style and sophistication.</p>
-                            <a href="elecer-the-rassion.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <p>The RASSION electric motorcycle showcases an elegant and sleek design, with a stunning
+                                white color that exudes style and sophistication.</p>
+                            <a href="elecer-the-rassion.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -248,8 +154,10 @@
                         </div>
                         <div class="bike-content-column">
                             <h2>Winner</h2>
-                            <p>The WINNER electric motorcycle boasts a sleek and modern design, with a silver-black color scheme that’s both stylish and timeless.</p>
-                            <a href="elecer-winner.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <p>The WINNER electric motorcycle boasts a sleek and modern design, with a silver-black
+                                color scheme that’s both stylish and timeless.</p>
+                            <a href="elecer-winner.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -263,8 +171,11 @@
                         </div>
                         <div class="bike-content-column">
                             <h2>Eagle King</h2>
-                            <p>A sleek and powerful electric scooter designed for the modern commuter. Experience effortless rides and eco-friendly transportation with its advanced features and stylish black finish.</p>
-                            <a href="elecer-eagle-king.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <p>A sleek and powerful electric scooter designed for the modern commuter. Experience
+                                effortless rides and eco-friendly transportation with its advanced features and stylish
+                                black finish.</p>
+                            <a href="elecer-eagle-king.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -278,8 +189,11 @@
                         </div>
                         <div class="bike-content-column">
                             <h2>Pony</h2>
-                            <p>Your perfect companion for convenient suburban travel, featuring a practical front basket and a comfortable design. Enjoy easy maneuverability and a smooth ride, making every journey a pleasure.</p>
-                            <a href="elecer-pony.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <p>Your perfect companion for convenient suburban travel, featuring a practical front basket
+                                and a comfortable design. Enjoy easy maneuverability and a smooth ride, making every
+                                journey a pleasure.</p>
+                            <a href="elecer-pony.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -294,7 +208,8 @@
                         <div class="bike-content-column">
                             <h2>Load King</h2>
                             <p>Conquer the city streets with ease, knowing the Load King is built to carry it all.</p>
-                            <a href="elecer-load-king.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <a href="elecer-load-king.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -309,106 +224,102 @@
                         <div class="bike-content-column">
                             <h2>Carrier M</h2>
                             <p>Navigate Ghana's diverse terrains with our electirc aboboya.</p>
-                            <a href="elecer-carrier-m-aboboya.html" class="cta-view-spec">Spec & Price<i class="bi bi-arrow-right-circle"></i></a>
+                            <a href="elecer-carrier-m-aboboya.html" class="cta-view-spec">Spec & Price<i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </div>
                     </div>
                 </div>
             </section>
-            
+
             <!-- Other bikes would follow this alternating pattern -->
 
         </div>
-     <!-- ====================================================== -->
-<!-- NEW: Book Test Ride Section                          -->
-<!-- ====================================================== -->
-<section id="book-test-ride" class="book-test-ride-section">
-    <div class="container">
-        <div class="test-ride-card">
-            <h2>Book a Test Ride</h2>
-            <p>Have a feel of what an Elecer bike looks like</p>
-            <button id="open-test-ride-modal" class="cta-button-test-ride">Contact Me</button>
-        </div>
-    </div>
-</section>
+        <!-- ====================================================== -->
+        <!-- NEW: Book Test Ride  Section                          -->
+        <!-- ====================================================== -->
+        <section id="book-test-ride" class="book-test-ride-section">
+            <div class="container">
+                <div class="test-ride-card">
+                    <h2>Book a Test Ride</h2>
+                    <p>Have a feel of what an Elecer bike looks like</p>
+                    <button id="open-test-ride-modal" class="cta-button-test-ride">Contact Me</button>
+                </div>
+            </div>
+        </section>
 
-<!-- ====================================================== -->
-<!-- NEW: Test Ride Contact Modal                         -->
-<!-- This part is hidden by default and shown with JS     -->
-<!-- ====================================================== -->
-<div id="test-ride-modal-overlay" class="modal-overlay">
-    <div class="modal-content">
-        <button id="close-test-ride-modal" class="modal-close-button" aria-label="Close modal">×</button>
-        <h3>Contact me via</h3>
-        <div class="modal-contact-links">
-            <a href="https://x.com/godwin_france" aria-label="Twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
-            <a href="https://www.linkedin.com/in/godwin-france/" aria-label="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
-            <a href="https://wa.me/233268712345" aria-label="WhatsApp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-            <a href="mailto:gofrance01@gmail.com" aria-label="Email" target="_blank">
-            <i class="bi bi-envelope"></i>
-            </a>
-            <a href="tel:+233268712345" aria-label="Phone" target="_blank"><i class="bi bi-telephone-outbound"></i></a>
+        <!-- ====================================================== -->
+        <!-- NEW: Test Ride Contact Modal                         -->
+        <!-- This part is hidden by default and shown with JS     -->
+        <!-- ====================================================== -->
+        <div id="test-ride-modal-overlay" class="modal-overlay">
+            <div class="modal-content">
+                <button id="close-test-ride-modal" class="modal-close-button" aria-label="Close modal">×</button>
+                <h3>Contact me via</h3>
+                <div class="modal-contact-links">
+                    <a href="https://x.com/godwin_france" aria-label="Twitter" target="_blank"><i
+                            class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.linkedin.com/in/godwin-france/" aria-label="LinkedIn" target="_blank"><i
+                            class="bi bi-linkedin"></i></a>
+                    <a href="https://wa.me/233268712345" aria-label="WhatsApp" target="_blank"><i
+                            class="bi bi-whatsapp"></i></a>
+                    <a href="mailto:gofrance01@gmail.com" aria-label="Email" target="_blank">
+                        <i class="bi bi-envelope"></i>
+                    </a>
+                    <a href="tel:+233268712345" aria-label="Phone" target="_blank"><i
+                            class="bi bi-telephone-outbound"></i></a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
     </main>
 
-    <!-- ====================================================== -->
-    <!-- MERGED FOOTER                                        -->
-    <!-- ====================================================== -->
-    <footer id="footer" class="footer">
-        <div class="container">
-            <!-- Enhanced Footer Top Section -->
-            <div class="footer-top-content">
-                <div class="footer-grid">
-                    
-                    <!-- Column 1: Branding and Warning -->
-                    <div class="footer-branding">
-                        <a href="../index.html" class="footer-logo">
-                            <img src="../images/saharansub_Logo.png" alt="Saharansub Logo">
-                            <span>Saharansub</span>
-                        </a>
-                        <div class="footer-warning">
-                            <i class="bi bi-exclamation-triangle-fill"></i>
-                            <p>Riding a motorcycle on the main road requires that you observe all safety precautions. Always wear your helmet.</p>
-                        </div>
-                    </div>
+    <!-- Footer will be populated by templating.js -->
+    <footer id="footer-placeholder" class="footer"></footer>
 
-                    <!-- Column 2: Site Map -->
-                    <div class="footer-sitemap">
-                        <h4>Site Map</h4>
-                        <ul>
-                            <li><a href="#">STEAM Advocacy</a></li>
-                            <li><a href="#">Market Entry</a></li>
-                            <li><a href="#">Tech Sales</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Insights</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Existing Footer Bottom Section -->
-            <div class="social-links-footer">
-                <a href="https://x.com/godwin_france" aria-label="Twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/in/godwin-france/" aria-label="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
-                <a href="https://web.facebook.com/profile.php?id=61578845996008" aria-label="Facebook" target="_blank"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.tiktok.com/@saharansub" aria-label="TikTok" target="_blank"><i class="bi bi-tiktok"></i></a>
-                <a href="https://www.instagram.com/green_mobility_ghigsh=azg0Z3VrMDI2bmhj&utm_source=qr" aria-label="Instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-                <a href="https://wa.me/233268712345" aria-label="WhatsApp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-                <a href="mailto:gofrance01@gmail.com" aria-label="Email" target="_blank">
-                <i class="bi bi-envelope"></i>
-                </a>
-            </div>
-            <p class="copyright">© 2026 Copyright <strong><span>Saharansub</span></strong>. All Rights Reserved</p>
-            
-        </div>
-    </footer>
-
-    <!-- Scripts (These must be linked for the header/footer to be interactive) -->
+    <!-- Scripts -->
+    <script src="templating.js"></script>
     <script src="e-mobility.js"></script>
     <script src="e-mobility-shop.js"></script>
+
+    <!-- Re-initialize mobile nav after templates load -->
+    <script>
+        document.addEventListener('componentsLoaded', () => {
+            console.log('✅ Templates loaded, re-initializing mobile nav...');
+
+            // Re-run mobile nav initialization
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+            if (mobileNavToggle && mobileNavOverlay) {
+                console.log('✅ Mobile nav elements found');
+
+                // Remove any existing listeners and add new one
+                const newToggle = mobileNavToggle.cloneNode(true);
+                mobileNavToggle.parentNode.replaceChild(newToggle, mobileNavToggle);
+
+                newToggle.addEventListener('click', (event) => {
+                    console.log('🔥 Mobile nav toggle clicked!');
+                    event.stopPropagation();
+                    document.body.classList.toggle('mobile-nav-active');
+                });
+
+                // Handle clicks inside overlay
+                mobileNavOverlay.addEventListener('click', (event) => {
+                    const dropdownLink = event.target.closest('.mobile-main-nav .dropdown > a');
+                    if (dropdownLink) {
+                        event.preventDefault();
+                        dropdownLink.parentElement.classList.toggle('active');
+                    } else if (event.target.closest('a')) {
+                        document.body.classList.remove('mobile-nav-active');
+                    }
+                });
+
+                console.log('✅ Mobile nav event listeners attached');
+            } else {
+                console.error('❌ Mobile nav elements not found');
+            }
+        });
+    </script>
 </body>
+
 </html>
