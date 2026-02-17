@@ -198,6 +198,18 @@
   transform: translateY(-2px);
 }
 
+/* Style secondary buttons in light sections for better contrast */
+.payment-breakdown-section .cta-button-secondary {
+  color: var(--color-heading);
+  border-color: var(--color-heading);
+}
+
+.payment-breakdown-section .cta-button-secondary:hover {
+  background: var(--color-heading);
+  color: var(--color-white);
+  border-color: var(--color-heading);
+}
+
 .trust-badge {
   display: inline-flex;
   align-items: center;
