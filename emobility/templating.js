@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!pageId) return;
 
         const pageFileMap = {
-            'home': 'e-mobility.html',
+            'home': 'index.html',
             'shop': 'e-mobility-shop.html',
             'special-offer': 'special-offer-eagle-king-govt.html',
             'riding-school': 'riding-school.html'
