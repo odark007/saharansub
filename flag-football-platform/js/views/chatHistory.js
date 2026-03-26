@@ -7,6 +7,13 @@ export function renderChatHistory() {
     const style = document.createElement('style');
     style.id = styleId;
     style.textContent = `
+      /* Override main-content spacing when chat is active */
+      .main-content:has(.chat-container),
+      .main-content.chat-active {
+        padding: 0 !important;
+        margin-bottom: 0 !important;
+        overflow: hidden;
+      }
       .chat-container {
         display: flex;
         flex-direction: column;
@@ -209,6 +216,10 @@ export function renderChatHistory() {
       </div>
     </div>
   `;
+
+  // Remove main-content padding/margin so chat fills the space
+  const mainContent = document.getElementById('main-content');
+  if (mainContent) mainContent.classList.add('chat-active');
 
   // UI Elements
   const messagesContainer = document.getElementById('chat-messages');
