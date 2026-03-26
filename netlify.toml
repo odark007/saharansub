@@ -1,0 +1,18 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Route /api/chat to the Netlify function
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
+# Also support /flag-football-platform/api/chat
+[[redirects]]
+  from = "/flag-football-platform/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
