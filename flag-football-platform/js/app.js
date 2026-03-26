@@ -156,14 +156,6 @@ class App {
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a[data-route]');
       if (link) {
-        const allowedRoute = '/nfl-guide';
-        const href = link.getAttribute('href');
-
-        if (href !== allowedRoute) {
-          e.preventDefault();
-          showToast('Temporarily limited to NFL Flag Referee Guide', 'info');
-        }
-
         // We are now an MPA, so we don't prevent default.
         // The browser will follow the href natively.
         
