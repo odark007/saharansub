@@ -31,7 +31,7 @@ export const NFL_GUIDE_PAGES = [
     rulebookRef: null,
     pdfDownload: {
       label: 'Download official NFL Flag rulebook (PDF)',
-      src: '/assets/images/NFL_Flag_Rulebook_21423-2025.pdf',
+      src: '/flag-football-platform/assets/images/NFL_Flag_Rulebook_21423-2025.pdf',
     },
     faqs: [
       {

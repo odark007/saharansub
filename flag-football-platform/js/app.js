@@ -76,7 +76,7 @@ class App {
       showToast('Email verified! You can now log in.', 'success');
 
       // Redirect to login (native navigation)
-      window.location.href = '/login';
+      window.location.href = '/flag-football-platform/login';
     }
   }
 
@@ -149,7 +149,7 @@ class App {
         showToast('Voice chat requires internet connection', 'warning');
         return;
       }
-      window.location.href = '/chat-history';
+      window.location.href = '/flag-football-platform/chat-history';
     });
 
     // Navigation links
@@ -221,8 +221,8 @@ class App {
 
     // Never force onboarding during this stabilization pass.
     // Route anonymous users to nfl-guide when they land on onboarding.
-    if (window.location.pathname === '/onboarding') {
-      window.location.href = '/nfl-guide';
+    if (window.location.pathname === '/flag-football-platform/onboarding' || window.location.pathname === '/flag-football-platform/onboarding/') {
+      window.location.href = '/flag-football-platform/nfl-guide';
     }
   }
 
@@ -247,7 +247,7 @@ class App {
       showToast('Logged out successfully', 'success');
 
       // Navigate to home (native navigation)
-      window.location.href = '/';
+      window.location.href = '/flag-football-platform/';
 
     } catch (error) {
       console.error('Logout error:', error);

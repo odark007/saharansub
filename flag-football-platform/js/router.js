@@ -18,6 +18,11 @@ export class Router {
   async init() {
     // Load current page based on URL
     let path = window.location.pathname;
+    // Strip the deploy subdirectory prefix so routes match
+    const base = '/flag-football-platform';
+    if (path.startsWith(base)) {
+      path = path.slice(base.length) || '/';
+    }
     if (path.length > 1 && path.endsWith('/')) {
       path = path.slice(0, -1);
     }

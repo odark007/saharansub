@@ -2,12 +2,12 @@
   "name": "Flag Football Rules Platform",
   "short_name": "Flag Football",
   "description": "Learn flag football rules with AI-powered assistance. NFL Flag and IFAF rulebooks available offline.",
-  "start_url": "/",
+  "start_url": "/flag-football-platform/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#013369",
   "orientation": "portrait",
-  "scope": "/",
+  "scope": "/flag-football-platform/",
   "icons": [
     {
       "src": "./assets/icons/icon-72.png",
