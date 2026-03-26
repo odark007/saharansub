@@ -288,7 +288,7 @@ export function renderChatHistory() {
       if (text) formData.append('text', text);
       if (audioBlob) formData.append('audio', audioBlob, 'query.webm');
       
-      const baseUrl = window.APP_CONFIG?.API_BASE_URL || 'http://localhost:3000';
+      const baseUrl = window.APP_CONFIG?.API_BASE_URL || '';
       
       const response = await fetch(`${baseUrl}/api/chat`, {
         method: 'POST',

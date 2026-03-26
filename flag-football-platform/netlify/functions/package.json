@@ -1,0 +1,8 @@
+{
+  "name": "flag-football-netlify-functions",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "groq-sdk": "^0.12.0"
+  }
+}
