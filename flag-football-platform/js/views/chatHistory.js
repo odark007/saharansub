@@ -10,18 +10,20 @@ export function renderChatHistory() {
       .chat-container {
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 140px); /* Adjust for header and bottom nav */
+        height: calc(100vh - var(--navbar-height, 56px) - var(--bottom-nav-height, 60px));
+        height: calc(100dvh - var(--navbar-height, 56px) - var(--bottom-nav-height, 60px));
         background-color: var(--light-gray, #f0f4f8);
         position: relative;
         overflow: hidden;
       }
       .chat-header {
-        padding: 16px;
+        padding: 12px 16px;
         background: linear-gradient(135deg, var(--primary-blue, #013369) 0%, var(--secondary-blue, #0250a3) 100%);
         color: white;
         text-align: center;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         z-index: 10;
+        flex-shrink: 0;
       }
       .chat-header h2 { margin: 0; font-size: 1.2rem; }
       .chat-header p { margin: 4px 0 0 0; font-size: 0.85rem; opacity: 0.9; }
@@ -101,13 +103,15 @@ export function renderChatHistory() {
       .ref-row.clock { border-left-color: #10b981; }
 
       .chat-input-area {
-        padding: 12px 16px;
+        padding: 10px 12px;
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
         background: white;
         border-top: 1px solid #e2e8f0;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         z-index: 10;
+        flex-shrink: 0;
       }
       
       .chat-input {
@@ -122,8 +126,9 @@ export function renderChatHistory() {
       .chat-input:focus { border-color: var(--primary-blue, #013369); }
       
       .action-btn {
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
         border-radius: 50%;
         border: none;
         display: flex;
@@ -133,6 +138,7 @@ export function renderChatHistory() {
         cursor: pointer;
         transition: transform 0.2s, background-color 0.2s;
         box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        flex-shrink: 0;
       }
       .btn-send { background-color: var(--success-green, #10b981); }
       .btn-send:hover { background-color: #059669; }
