@@ -1,12 +1,10 @@
 // Main Express Server
+import 'dotenv/config'; // Must be first so imports below see process.env
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import pdfRoutes from './routes/pdf.js';
 import adminRoutes from './routes/admin.js';
-
-// Load environment variables
-dotenv.config();
+import chatRoutes from './routes/chat.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -49,6 +47,7 @@ app.get('/health', (req, res) => {
 // API Routes
 app.use('/api/pdf', pdfRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Root route
 app.get('/', (req, res) => {

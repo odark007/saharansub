@@ -9,6 +9,7 @@ import { renderRuleDetail } from './views/ruleDetail.js';
 import { renderSectionDetail } from './views/sectionDetail.js';
 import { renderCategoryDetail } from './views/categoryDetail.js';
 import { renderNflGuide }       from './views/nflGuide.js';
+import { renderChatHistory }    from './views/chatHistory.js';
 export class Router {
   constructor() {
     this.currentRoute = '/';
@@ -104,7 +105,7 @@ export class Router {
         this.hideVoiceButton();
         break;
       case '/chat-history':
-        container.innerHTML = '<h1>Chat History</h1><p>Your conversations</p>';
+        renderChatHistory();
         this.hideVoiceButton();
         break;
       default:
