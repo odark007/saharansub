@@ -4,7 +4,6 @@ import { State } from './state.js';
 import { Auth } from './auth.js';
 import { DB } from './db.js';
 import { showToast, showLoading, hideLoading } from './utils.js';
-import { mergeGuestProgress } from './services/guideProgress.js';
 
 class App {
   constructor() {
@@ -75,21 +74,28 @@ class App {
       hideLoading();
       showToast('Email verified! You can now log in.', 'success');
 
-      // Redirect to login (native navigation)
-      window.location.href = '/login';
+      // Redirect to login
+      this.router.navigate('/login');
     }
   }
 
   async registerServiceWorker() {
-    // Temporarily disable service worker while investigating refresh/flicker loops.
-    // Also unregister existing workers so stale cache/update cycles do not keep re-triggering.
     if ('serviceWorker' in navigator) {
       try {
-        const registrations = await navigator.serviceWorker.getRegistrations();
-        await Promise.all(registrations.map((registration) => registration.unregister()));
-        console.log('Service Worker disabled and existing registrations removed');
+        const registration = await navigator.serviceWorker.register('./sw.js');
+        console.log('Service Worker registered:', registration.scope);
+
+        // Check for updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              showToast('New version available! Refresh to update.', 'info');
+            }
+          });
+        });
       } catch (error) {
-        console.error('Service Worker disable/unregister failed:', error);
+        console.error('Service Worker registration failed:', error);
       }
     }
   }
@@ -149,24 +155,17 @@ class App {
         showToast('Voice chat requires internet connection', 'warning');
         return;
       }
-      window.location.href = '/chat-history';
+      this.router.navigate('/chat');
     });
 
     // Navigation links
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a[data-route]');
       if (link) {
-        const allowedRoute = '/nfl-guide';
-        const href = link.getAttribute('href');
+        e.preventDefault();
+        const route = link.getAttribute('data-route') || link.getAttribute('href');
+        this.router.navigate(route);
 
-        if (href !== allowedRoute) {
-          e.preventDefault();
-          showToast('Temporarily limited to NFL Flag Referee Guide', 'info');
-        }
-
-        // We are now an MPA, so we don't prevent default.
-        // The browser will follow the href natively.
-        
         // Close sidebar if open
         sidebar.classList.remove('active');
         sidebarOverlay.classList.remove('active');
@@ -181,13 +180,6 @@ class App {
 
   async handleAuthenticatedUser(user) {
     console.log('Authenticated user:', user.id);
-
-    // Merge any guest guide progress into Supabase
-    try {
-      await mergeGuestProgress(user.id);
-    } catch (e) {
-      console.warn('Guide progress merge failed:', e);
-    }
 
     // Load user data
     const userData = await this.auth.getUserData(user.id);
@@ -219,10 +211,10 @@ class App {
     // Update UI for logged-out state
     this.updateAuthUI(false);
 
-    // Never force onboarding during this stabilization pass.
-    // Route anonymous users to nfl-guide when they land on onboarding.
-    if (window.location.pathname === '/onboarding') {
-      window.location.href = '/nfl-guide';
+    // Check if onboarding is complete
+    const onboardingComplete = localStorage.getItem('onboardingComplete');
+    if (!onboardingComplete) {
+      this.router.navigate('/onboarding');
     }
   }
 
@@ -246,8 +238,8 @@ class App {
       hideLoading();
       showToast('Logged out successfully', 'success');
 
-      // Navigate to home (native navigation)
-      window.location.href = '/';
+      // Navigate to home
+      this.router.navigate('/');
 
     } catch (error) {
       console.error('Logout error:', error);

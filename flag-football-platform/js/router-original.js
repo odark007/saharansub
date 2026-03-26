@@ -7,20 +7,25 @@ import { renderCard1 } from './views/card1.js';
 import { renderCard2 } from './views/card2.js';
 import { renderRuleDetail } from './views/ruleDetail.js';
 import { renderSectionDetail } from './views/sectionDetail.js';
-import { renderCategoryDetail } from './views/categoryDetail.js';
-import { renderNflGuide }       from './views/nflGuide.js';
+import { renderCategoryDetail } from './views/categoryDetail.js'
 export class Router {
   constructor() {
     this.currentRoute = '/';
   }
 
   async init() {
-    // Load current page based on URL
-    let path = window.location.pathname;
-    if (path.length > 1 && path.endsWith('/')) {
-      path = path.slice(0, -1);
-    }
-    this.navigate(path);
+    // Handle navigation clicks
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[data-route]');
+      if (link) {
+        e.preventDefault();
+        const route = link.getAttribute('data-route');
+        this.navigate(route);
+      }
+    });
+
+    // Load home page
+    this.navigate('/');
   }
 
   navigate(path) {
@@ -84,7 +89,7 @@ export class Router {
         this.hideVoiceButton();
         break;
       case '/nfl-guide':
-        renderNflGuide();
+        container.innerHTML = '<h1>NFL Flag Referee Guide</h1><p>Coming soon</p>';
         this.hideVoiceButton();
         break;
       case '/profile':
@@ -108,11 +113,6 @@ export class Router {
         this.hideVoiceButton();
         break;
       default:
-        // Default might be an unknown route, or it could be /index.html mapping to /
-        if (path.endsWith('index.html')) {
-           this.navigate(path.replace(/index\.html$/, ''));
-           return;
-        }
         container.innerHTML = '<h1>Page Not Found</h1>';
     }
   }

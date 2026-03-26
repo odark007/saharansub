@@ -1,15 +1,37 @@
+import { MOCK_RULEBOOKS, MOCK_STATS } from './mock-data.js';
+
 // API calls to backend server
-const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://localhost:3000'  // Local development
-  : 'http://localhost:3000';  // Production backend Backend not deployed yet
+const API_BASE_URL =
+  (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) ||
+  window.__API_BASE_URL__ ||
+  `${window.location.protocol}//${window.location.host}`;
+
+const ENABLE_LOCAL_MOCKS = Boolean(window.APP_CONFIG && window.APP_CONFIG.ENABLE_LOCAL_MOCKS);
+
+async function requestJson(path, options = {}) {
+  try {
+    const response = await fetch(`${API_BASE_URL}${path}`, options);
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Request failed (${response.status}): ${text || response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error('Network error: backend unavailable or blocked by CORS.');
+    }
+    throw error;
+  }
+}
 
   
 
 // Fetch all rulebooks
 export async function fetchRulebooks() {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/admin/rulebooks`);
-    const result = await response.json();
+    const result = await requestJson('/api/admin/rulebooks');
     
     if (!result.success) {
       throw new Error(result.message);
@@ -17,6 +39,10 @@ export async function fetchRulebooks() {
     
     return result.data;
   } catch (error) {
+    if (ENABLE_LOCAL_MOCKS) {
+      console.warn('Using local mock rulebooks due to API failure:', error.message);
+      return MOCK_RULEBOOKS;
+    }
     console.error('Fetch rulebooks error:', error);
     throw error;
   }
@@ -25,8 +51,7 @@ export async function fetchRulebooks() {
 // Fetch single rulebook with full structure
 export async function fetchRulebook(rulebookId) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/admin/rulebooks/${rulebookId}`);
-    const result = await response.json();
+    const result = await requestJson(`/api/admin/rulebooks/${rulebookId}`);
     
     if (!result.success) {
       throw new Error(result.message);
@@ -42,8 +67,7 @@ export async function fetchRulebook(rulebookId) {
 // Fetch platform statistics
 export async function fetchStats() {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/admin/stats`);
-    const result = await response.json();
+    const result = await requestJson('/api/admin/stats');
     
     if (!result.success) {
       throw new Error(result.message);
@@ -51,6 +75,10 @@ export async function fetchStats() {
     
     return result.data;
   } catch (error) {
+    if (ENABLE_LOCAL_MOCKS) {
+      console.warn('Using local mock stats due to API failure:', error.message);
+      return MOCK_STATS;
+    }
     console.error('Fetch stats error:', error);
     throw error;
   }
@@ -64,12 +92,10 @@ export async function uploadPDF(file, name, version) {
     formData.append('name', name);
     formData.append('version', version);
 
-    const response = await fetch(`${API_BASE_URL}/api/pdf/upload`, {
+    const result = await requestJson('/api/pdf/upload', {
       method: 'POST',
       body: formData
     });
-
-    const result = await response.json();
     
     if (!result.success) {
       throw new Error(result.message);
@@ -85,15 +111,13 @@ export async function uploadPDF(file, name, version) {
 // Add video to rule
 export async function addVideo(ruleId, youtubeUrl) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/admin/videos`, {
+    const result = await requestJson('/api/admin/videos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ ruleId, youtubeUrl })
     });
-
-    const result = await response.json();
     
     if (!result.success) {
       throw new Error(result.message);
@@ -109,8 +133,7 @@ export async function addVideo(ruleId, youtubeUrl) {
 // Fetch error reports
 export async function fetchErrorReports() {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/admin/error-reports`);
-    const result = await response.json();
+    const result = await requestJson('/api/admin/error-reports');
     
     if (!result.success) {
       throw new Error(result.message);
@@ -126,15 +149,13 @@ export async function fetchErrorReports() {
 // Update error report status
 export async function updateErrorReportStatus(reportId, status) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/admin/error-reports/${reportId}`, {
+    const result = await requestJson(`/api/admin/error-reports/${reportId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ status })
     });
-
-    const result = await response.json();
     
     if (!result.success) {
       throw new Error(result.message);

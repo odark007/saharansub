@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/rule/:id",
+      "destination": "/rule/index.html"
+    },
+    {
+      "source": "/section/:id",
+      "destination": "/section/index.html"
+    },
+    {
+      "source": "/category/:id",
+      "destination": "/category/index.html"
+    },
+    {
+      "source": "/category/:id/:index",
+      "destination": "/category/index.html"
+    }
+  ]
+}

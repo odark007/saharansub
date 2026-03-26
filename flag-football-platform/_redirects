@@ -1,0 +1,4 @@
+/rule/*    /rule/index.html    200
+/section/* /section/index.html 200
+/category/* /category/index.html 200
+/*          /index.html         200

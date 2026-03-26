@@ -63,7 +63,7 @@ self.addEventListener('fetch', event => {
     url.hostname.includes('supabase') ||
     url.pathname.includes('/api/')
   ) {
-    event.respondWith(fetch(event.request));
+    // Let the browser handle these requests directly; avoids SW-level noisy failures.
     return;
   }
 

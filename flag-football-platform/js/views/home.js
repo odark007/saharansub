@@ -9,13 +9,20 @@ export async function renderHome() {
   showLoading('Loading rulebooks...');
   
   try {
-    // Fetch rulebooks and stats
-    const [rulebooks, stats] = await Promise.all([
+    // Fetch rulebooks and stats independently so one failure does not blank the page
+    const [rulebooksResult, statsResult] = await Promise.allSettled([
       fetchRulebooks(),
       fetchStats()
     ]);
+
+    const rulebooks = rulebooksResult.status === 'fulfilled' ? rulebooksResult.value : [];
+    const stats = statsResult.status === 'fulfilled' ? statsResult.value : null;
     
     hideLoading();
+
+    if (rulebooksResult.status === 'rejected' || statsResult.status === 'rejected') {
+      showToast('Some live data could not be loaded. Showing available content.', 'warning');
+    }
     
     // Get user's default rulebook preference
     const user = window.app.state.getState('user');
