@@ -9,8 +9,8 @@ const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
 
 console.log('SUPABASE_URL:', supabaseUrl);
-console.log('SUPABASE_ANON_KEY:', supabaseAnonKey ? 'Loaded ✓' : 'Missing ✗');
-console.log('SUPABASE_SERVICE_KEY:', supabaseServiceKey ? 'Loaded ✓' : 'Missing ✗');
+console.log('SUPABASE_ANON_KEY:', supabaseAnonKey ? 'Loaded OK' : 'Missing');
+console.log('SUPABASE_SERVICE_KEY:', supabaseServiceKey ? 'Loaded OK' : 'Missing');
 
 if (!supabaseUrl || !supabaseServiceKey) {
   throw new Error('Missing Supabase environment variables');

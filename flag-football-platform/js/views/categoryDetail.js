@@ -269,7 +269,7 @@ window.navigateToNextInCategory = function(categoryId, currentIndex, totalRules)
   } else {
     // Completed category
     const context = window.currentCategoryContext;
-    showToast('Category completed! 🎉', 'success');
+    showToast('Category completed!', 'success');
     
     setTimeout(() => {
       window.app.router.navigate(`/section/${context.section.id}`);

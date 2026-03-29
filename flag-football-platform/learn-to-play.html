@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#013369">
+  <meta name="description" content="Learn flag football with structured lessons from coaches and experts.">
+  <title>Learn to Play — Flag Football</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/icon-192.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Platform styles -->
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+
+  <!-- Page styles -->
+  <link rel="stylesheet" href="./css/learn-to-play.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ── Navbar ──────────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1 class="navbar-title">Learn to Play</h1>
+      <div class="navbar-actions">
+        <span id="ltp-save-badge" style="
+          font-size:11px;color:#085041;background:#E1F5EE;
+          padding:3px 9px;border-radius:20px;display:none;
+          align-items:center;gap:4px;white-space:nowrap;
+        ">● Saved</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2>Menu</h2>
+      <button id="sidebar-close" class="icon-btn" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="./index.html" class="sidebar-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="./nfl-guide.html" class="sidebar-link">
+        <i class="fas fa-football-ball"></i>
+        <span>NFL Flag Referee Guide</span>
+      </a>
+      <a href="./learn-to-play.html" class="sidebar-link active">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Learn to Play</span>
+      </a>
+      <div style="border-top:1px solid #ddd;margin:16px 0;"></div>
+      <a href="./login.html" class="sidebar-link" id="sidebar-login-link">
+        <i class="fas fa-sign-in-alt"></i>
+        <span>Login</span>
+      </a>
+      <a href="./signup.html" class="sidebar-link" id="sidebar-signup-link">
+        <i class="fas fa-user-plus"></i>
+        <span>Sign Up</span>
+      </a>
+      <a href="#" id="sidebar-logout-btn" class="sidebar-link" style="display:none">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <!-- ── Main content ────────────────────────────────────── -->
+  <main class="main-content">
+    <div class="ltp-page">
+
+      <!-- ════════════════════════════════════════
+           VIEW 1: HUB
+           ════════════════════════════════════════ -->
+      <section id="view-hub" class="ltp-view active">
+
+        <h1 class="ltp-page-heading">Learn to Play</h1>
+        <p class="ltp-page-subheading">Choose a track and start learning at your own pace.</p>
+
+        <!-- Search -->
+        <div class="ltp-search-wrap">
+          <svg class="ltp-search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="5.5" stroke="#aaa" stroke-width="1.5"/>
+            <path d="M11.5 11.5L14 14" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input
+            type="search"
+            id="ltp-search"
+            class="ltp-search-input"
+            placeholder="Search lessons, topics, coaches…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button
+            class="ltp-search-clear"
+            id="ltp-search-clear"
+            aria-label="Clear search"
+            onclick="clearSearch()"
+          >
+            <i class="fas fa-times" style="font-size:13px"></i>
+          </button>
+        </div>
+
+        <!-- Search results (hidden until query) -->
+        <div class="ltp-results-wrap" id="ltp-results-wrap">
+          <div class="ltp-section-label">Search results</div>
+          <div class="ltp-results-box" id="ltp-results-box">
+            <!-- injected by search -->
+          </div>
+        </div>
+
+        <!-- Resume banner (shown if any progress exists) -->
+        <div class="ltp-resume-banner" id="ltp-resume-banner" style="display:none" onclick="resumeLearning()">
+          <div class="ltp-resume-text" id="ltp-resume-text">
+            Continue where you left off
+          </div>
+          <span class="ltp-resume-btn">Resume →</span>
+        </div>
+
+        <!-- Track grid -->
+        <div id="ltp-hub-main">
+          <div class="ltp-section-label">Choose your learning path</div>
+          <div class="ltp-track-grid" id="ltp-track-grid">
+            <!-- injected by renderHub() -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ════════════════════════════════════════
+           VIEW 2: TRACK
+           ════════════════════════════════════════ -->
+      <section id="view-track" class="ltp-view">
+
+        <button class="ltp-back-btn" onclick="showHub()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 3L5 8L10 13" stroke="#013369" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All tracks
+        </button>
+
+        <!-- Track header card -->
+        <div class="ltp-track-header" id="track-header-card">
+          <!-- injected -->
+        </div>
+
+        <!-- CTA -->
+        <button class="ltp-cta-btn" id="track-cta-btn" onclick="handleTrackCTA()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="track-cta-label">Start learning</span>
+        </button>
+
+        <!-- Complete banner (hidden until all lessons done) -->
+        <div class="ltp-complete-banner" id="track-complete-banner" style="display:none">
+          <div class="ltp-complete-check"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
+          <div class="ltp-complete-title">Track complete!</div>
+          <div class="ltp-complete-sub">You've finished all lessons in this track.</div>
+        </div>
+
+        <!-- Lesson list -->
+        <div class="ltp-section-label">Lessons</div>
+        <div class="ltp-lesson-list" id="track-lesson-list">
+          <!-- injected -->
+        </div>
+
+      </section>
+
+      <!-- ════════════════════════════════════════
+           VIEW 3: LESSON
+           ════════════════════════════════════════ -->
+      <section id="view-lesson" class="ltp-view">
+
+        <button class="ltp-back-btn" id="lesson-back-btn" onclick="showTrack(currentTrackId)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 3L5 8L10 13" stroke="#013369" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="lesson-back-label">Back to track</span>
+        </button>
+
+        <!-- Lesson progress bar -->
+        <div class="ltp-lesson-progress-row">
+          <div class="ltp-lesson-prog-track">
+            <div class="ltp-lesson-prog-fill" id="lesson-prog-fill"></div>
+          </div>
+          <span class="ltp-lesson-prog-label" id="lesson-prog-label"></span>
+        </div>
+
+        <!-- Video block -->
+        <div id="lesson-video-wrap">
+          <!-- injected: poster or iframe -->
+        </div>
+
+        <!-- Done chip (shown when lesson is already complete) -->
+        <div id="lesson-done-chip" style="display:none" class="ltp-done-chip">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="7" fill="#1D9E75"/>
+            <path d="M5 8l2.5 2.5L11 5.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Lesson completed
+        </div>
+
+        <!-- Lesson content -->
+        <div id="lesson-content">
+          <!-- injected -->
+        </div>
+
+        <!-- Nav row -->
+        <div class="ltp-lesson-nav" id="lesson-nav-row">
+          <!-- injected -->
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ── Bottom nav ───────────────────────────────────────── -->
+  <nav class="bottom-nav">
+    <a href="./index.html" class="bottom-nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="./learn-to-play.html" class="bottom-nav-item active">
+      <i class="fas fa-graduation-cap"></i>
+      <span>Learn</span>
+    </a>
+    <a href="./nfl-guide.html" class="bottom-nav-item">
+      <i class="fas fa-book-open"></i>
+      <span>Guide</span>
+    </a>
+  </nav>
+
+  <!-- Loading spinner -->
+  <div id="loading-spinner" class="loading-spinner hidden">
+    <div class="spinner"></div>
+    <p>Loading…</p>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scroll to top -->
+  <button class="ltp-scroll-top" id="ltp-scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 10L8 5L13 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+</div>
+
+<!-- ── Scripts ──────────────────────────────────────────────── -->
+<script type="module">
+import { createClient }
+  from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import { LTP_TRACKS, LTP_ALL_LESSONS, getTrack, getLesson, getLessonIndex }
+  from './js/data/learnToPlayData.js';
+import {
+  loadProgress, loadAllProgress, saveProgress,
+  markLessonComplete, getProgressPercent,
+  isLessonComplete, getNextIncompleteLesson,
+  mergeGuestProgress, getSupabaseClient,
+} from './js/services/learnProgress.js';
+
+// ── Supabase client — reuse the one from learnProgress ────────
+const SUPABASE_URL  = 'https://xfkguhvailhntmyratbl.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhma2d1aHZhaWxobnRteXJhdGJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4NTgyNjgsImV4cCI6MjA3NzQzNDI2OH0.2JGSlS-xeB9jn7KnXjjlNZ8025vEH0yWOSpXskrwxI4';
+const supabase = getSupabaseClient();
+
+// ── State ─────────────────────────────────────────────────────
+window.currentTrackId  = null;
+window.currentLessonId = null;
+let   allProgress      = {};   // { trackId: { completedLessons, lastLessonId } }
+let   currentUser      = null; // Supabase user object or null
+
+// ── Sidebar ───────────────────────────────────────────────────
+document.getElementById('menu-toggle').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.add('active');
+  document.getElementById('sidebar-overlay').classList.add('active');
+});
+document.getElementById('sidebar-close').addEventListener('click', closeSidebar);
+document.getElementById('sidebar-overlay').addEventListener('click', closeSidebar);
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('active');
+  document.getElementById('sidebar-overlay').classList.remove('active');
+}
+
+// ── Hash routing ──────────────────────────────────────────────
+async function route() {
+  const hash = window.location.hash;
+
+  if (hash.startsWith('#lesson-')) {
+    const parts    = hash.replace('#lesson-', '').split('-');
+    // trackId may contain hyphens — lessonId is last segment
+    // Format: #lesson-{trackId}-{lessonId}
+    // trackId and lessonId are separated by the last hyphen group
+    // We find trackId by matching against known track ids
+    let trackId  = null;
+    let lessonId = null;
+    for (const t of LTP_TRACKS) {
+      if (hash.includes(t.id)) {
+        trackId  = t.id;
+        lessonId = hash.replace(`#lesson-${t.id}-`, '');
+        break;
+      }
+    }
+    if (trackId && lessonId) {
+      await renderLesson(trackId, lessonId);
+      return;
+    }
+  }
+
+  if (hash.startsWith('#track-')) {
+    const trackId = hash.replace('#track-', '');
+    await renderTrack(trackId);
+    return;
+  }
+
+  // Default: hub
+  await renderHub();
+}
+
+window.addEventListener('hashchange', route);
+window.addEventListener('popstate',   route);
+
+// ── Hub ───────────────────────────────────────────────────────
+async function renderHub() {
+  showView('hub', 'back');
+  document.querySelector('.navbar-title').textContent = 'Learn to Play';
+
+  showHubSkeleton();
+
+  const trackIds = LTP_TRACKS.map(t => t.id);
+  allProgress    = await loadAllProgress(trackIds);
+
+  // Resume banner
+  let resumeTrackId    = null;
+  let resumeLessonId   = null;
+  let resumeTrackTitle = null;
+
+  for (const t of LTP_TRACKS) {
+    const p = allProgress[t.id];
+    if (p && p.lastLessonId) {
+      resumeTrackId    = t.id;
+      resumeLessonId   = p.lastLessonId;
+      resumeTrackTitle = t.title;
+      break;
+    }
+  }
+
+  const banner = document.getElementById('ltp-resume-banner');
+  if (resumeTrackId) {
+    document.getElementById('ltp-resume-text').innerHTML =
+      `Continue: <strong>${resumeTrackTitle}</strong>`;
+    banner.style.display = 'flex';
+    window._resumeTrackId  = resumeTrackId;
+    window._resumeLessonId = resumeLessonId;
+  } else {
+    banner.style.display = 'none';
+  }
+
+  // Track grid
+  const grid = document.getElementById('ltp-track-grid');
+
+  if (!LTP_TRACKS.length) {
+    grid.innerHTML = `
+      <div class="ltp-empty-state" style="grid-column:1/-1">
+        <div class="ltp-empty-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></div>
+        <div class="ltp-empty-title">No tracks yet</div>
+        <div class="ltp-empty-sub">Check back soon — new learning tracks are on the way.</div>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = LTP_TRACKS.map(t => {
+    const p    = allProgress[t.id] || { completedLessons: [] };
+    const done = p.completedLessons.length;
+    const pct  = getProgressPercent(p.completedLessons, t.lessons.length);
+    const isComplete = done >= t.lessons.length && t.lessons.length > 0;
+    return `
+      <div class="ltp-track-card" onclick="goTrack('${t.id}')" role="button" tabindex="0"
+           aria-label="${t.title}, ${t.lessons.length} lessons${isComplete ? ', completed' : ''}">
+        <div class="ltp-track-thumb" style="background:${t.color}">
+          ${isComplete ? '<i class="fa-solid fa-trophy" aria-hidden="true"></i>' : t.emoji}
+        </div>
+        <div class="ltp-track-body">
+          <div class="ltp-track-coach">${t.coach}</div>
+          <div class="ltp-track-title">${t.title}</div>
+          <div class="ltp-track-meta">
+            <span class="ltp-track-count">${t.lessons.length} lesson${t.lessons.length !== 1 ? 's' : ''}</span>
+            ${done > 0
+              ? `<span class="ltp-track-prog-label">${isComplete ? '<i class="fa-solid fa-check" aria-hidden="true"></i> Done' : `${done}/${t.lessons.length}`}</span>`
+              : ''}
+          </div>
+          <div class="ltp-prog-bar">
+            <div class="ltp-prog-fill" style="width:${pct}%"></div>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  grid.querySelectorAll('.ltp-track-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') card.click();
+    });
+  });
+}
+
+// ── Track ─────────────────────────────────────────────────────
+async function renderTrack(trackId) {
+  const track = getTrack(trackId);
+  if (!track) { showHub(); return; }
+
+  window.currentTrackId = trackId;
+  showView('track', 'forward');
+  document.querySelector('.navbar-title').textContent = track.title;
+  document.getElementById('lesson-back-label').textContent = track.title;
+
+  showTrackSkeleton();
+
+  const p       = await loadProgress(trackId);
+  const done    = p.completedLessons.length;
+  const pct     = getProgressPercent(p.completedLessons, track.lessons.length);
+  const allDone = done >= track.lessons.length && track.lessons.length > 0;
+
+  // Header card
+  document.getElementById('track-header-card').innerHTML = `
+    <span class="ltp-track-header-emoji">${track.emoji}</span>
+    <div class="ltp-track-header-title">${track.title}</div>
+    <div class="ltp-track-header-desc">${track.description}</div>
+    <div class="ltp-track-header-pills">
+      <span class="ltp-pill">${track.lessons.length} lesson${track.lessons.length !== 1 ? 's' : ''}</span>
+      <span class="ltp-pill" style="color:${track.accentColor};background:${track.color}">
+        ${pct}% complete
+      </span>
+      <span class="ltp-pill">${track.coach}</span>
+    </div>`;
+
+  // CTA button
+  const nextLessonId = getNextIncompleteLesson(track.lessons, p.completedLessons);
+  document.getElementById('track-cta-label').textContent =
+    done === 0  ? 'Start learning'   :
+    allDone     ? 'Review from start' :
+                  'Continue learning';
+  window._trackCTALessonId = nextLessonId || track.lessons[0].id;
+
+  // Complete banner — replace static HTML with enhanced version
+  const completeBannerWrap = document.getElementById('track-complete-banner');
+  if (allDone) {
+    completeBannerWrap.outerHTML = renderCompleteBanner(track, done);
+  } else {
+    if (completeBannerWrap) completeBannerWrap.style.display = 'none';
+  }
+
+  // Lesson list
+  document.getElementById('track-lesson-list').innerHTML =
+    track.lessons.map((lesson, idx) => {
+      const isDone = isLessonComplete(p.completedLessons, lesson.id);
+      return `
+        <div class="ltp-lesson-row ${isDone ? 'done' : ''}"
+             onclick="goLesson('${trackId}', '${lesson.id}')"
+             role="button" tabindex="0"
+             aria-label="${lesson.title}${isDone ? ', completed' : ''}">
+          <div class="ltp-lesson-num">${isDone ? '<i class="fa-solid fa-check" aria-hidden="true"></i>' : idx + 1}</div>
+          <div class="ltp-lesson-info">
+            <div class="ltp-lesson-title">${lesson.title}</div>
+            <div class="ltp-lesson-meta">
+              <span class="ltp-lesson-dur">${lesson.duration}</span>
+              ${lesson.types.map(tp =>
+                `<span class="ltp-badge ltp-badge-${tp}">${tp}</span>`
+              ).join('')}
+            </div>
+          </div>
+          <span class="ltp-lesson-end" aria-hidden="true">
+            ${isDone
+              ? '<i class="fa-solid fa-check" aria-hidden="true"></i>'
+              : '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#ddd" stroke-width="1"/></svg>'}
+          </span>
+        </div>`;
+    }).join('');
+
+  document.getElementById('track-lesson-list')
+    .querySelectorAll('.ltp-lesson-row')
+    .forEach(row => {
+      row.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') row.click();
+      });
+    });
+}
+
+// ── Lesson ────────────────────────────────────────────────────
+async function renderLesson(trackId, lessonId) {
+  const track  = getTrack(trackId);
+  const lesson = getLesson(trackId, lessonId);
+  if (!track || !lesson) { renderTrack(trackId); return; }
+
+  window.currentTrackId  = trackId;
+  window.currentLessonId = lessonId;
+  showView('lesson', 'forward');
+  document.querySelector('.navbar-title').textContent =
+    `Lesson ${getLessonIndex(trackId, lessonId) + 1} of ${track.lessons.length}`;
+
+  const p         = await loadProgress(trackId);
+  const isDone    = isLessonComplete(p.completedLessons, lessonId);
+  const lessonIdx = getLessonIndex(trackId, lessonId);
+  const total     = track.lessons.length;
+  const pct       = Math.round(((lessonIdx + 1) / total) * 100);
+
+  // Progress bar
+  document.getElementById('lesson-prog-fill').style.width  = pct + '%';
+  document.getElementById('lesson-prog-label').textContent = `${lessonIdx + 1} / ${total}`;
+
+  // Back button label
+  document.getElementById('lesson-back-label').textContent = track.title;
+
+  // Video block
+  const videoWrap = document.getElementById('lesson-video-wrap');
+  if (lesson.videoUrl) {
+    const videoId = extractYouTubeId(lesson.videoUrl);
+    if (videoId) {
+      const thumb   = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+      const embedId = `vid-${lessonId}`;
+      videoWrap.innerHTML = `
+        <div class="ltp-video-block" id="${embedId}" onclick="playVideo('${embedId}', '${videoId}')" role="button" tabindex="0" aria-label="Play video">
+          <div class="ltp-video-poster">
+            <img src="${thumb}" alt="Video thumbnail"
+                 onerror="this.style.display='none'">
+            <div class="ltp-video-play-ring">
+              <div class="ltp-video-play-arrow"></div>
+            </div>
+            <span class="ltp-video-dur">${lesson.duration}</span>
+          </div>
+        </div>
+        ${lesson.videoLabel ? `<p class="ltp-video-label">${lesson.videoLabel}</p>` : ''}`;
+
+      // Keyboard support for video
+      const videoEl = document.getElementById(embedId);
+      videoEl?.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') videoEl.click();
+      });
+    } else {
+      // Placeholder state for PLACEHOLDER_ URLs
+      videoWrap.innerHTML = `
+        <div class="ltp-video-block" style="cursor:default;background:#1a1a2e">
+          <div class="ltp-video-poster" style="flex-direction:column;gap:8px">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="opacity:.4">
+              <rect x="2" y="6" width="28" height="20" rx="4" stroke="white" stroke-width="1.5"/>
+              <path d="M13 11.5L21 16L13 20.5V11.5Z" fill="white" opacity=".6"/>
+            </svg>
+            <span style="font-size:12px;color:rgba(255,255,255,.4);text-align:center;padding:0 20px">
+              Video coming soon — content placeholder
+            </span>
+          </div>
+        </div>
+        ${lesson.videoLabel ? `<p class="ltp-video-label">${lesson.videoLabel}</p>` : ''}`;
+    }
+  } else {
+    videoWrap.innerHTML = '';
+  }
+
+  // Done chip
+  document.getElementById('lesson-done-chip').style.display = isDone ? 'flex' : 'none';
+
+  // Body content
+  const content = document.getElementById('lesson-content');
+  let html = `<h2 class="ltp-lesson-title-big">${lesson.title}</h2>`;
+
+  lesson.body.forEach(para => {
+    html += `<p class="ltp-lesson-body-para">${para}</p>`;
+  });
+
+  // Images
+  if (lesson.images && lesson.images.length > 0) {
+    html += '<div class="ltp-lesson-images">';
+    lesson.images.forEach(img => {
+      const isPlaceholder = !img.src || img.src.includes('PLACEHOLDER');
+      if (isPlaceholder) {
+        html += `<div class="ltp-lesson-img-placeholder"><i class="fa-solid fa-camera" aria-hidden="true"></i> ${img.alt}</div>`;
+      } else {
+        html += `
+          <img src="${img.src}" alt="${img.alt}" class="ltp-lesson-img"
+               onclick="openLightbox('${img.src}', '${img.alt}')"
+               onerror="this.closest('.ltp-lesson-images').style.display='none'">`;
+      }
+    });
+    html += '</div>';
+  }
+
+  content.innerHTML = html;
+  makeImagesLightboxable();
+
+  // Nav buttons
+  renderLessonNav(trackId, lessonId, lessonIdx, total, isDone);
+  applyLessonNavSticky();
+
+  // Scroll top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderLessonNav(trackId, lessonId, lessonIdx, total, isDone) {
+  const isFirst = lessonIdx === 0;
+  const isLast  = lessonIdx === total - 1;
+  const nav     = document.getElementById('lesson-nav-row');
+
+  let cols  = 0;
+  let html  = '';
+
+  if (!isFirst) {
+    const prevId = getTrack(trackId).lessons[lessonIdx - 1].id;
+    html += `
+      <button class="ltp-nav-btn" onclick="goLesson('${trackId}', '${prevId}')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Prev
+      </button>`;
+    cols++;
+  }
+
+  if (!isDone) {
+    html += `
+      <button class="ltp-nav-btn success" id="mark-done-btn"
+              onclick="handleMarkDone('${trackId}', '${lessonId}', ${lessonIdx}, ${total})">
+        Mark complete
+      </button>`;
+    cols++;
+  }
+
+  if (!isLast) {
+    const nextId = getTrack(trackId).lessons[lessonIdx + 1].id;
+    html += `
+      <button class="ltp-nav-btn primary" onclick="goLesson('${trackId}', '${nextId}')">
+        Next
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>`;
+    cols++;
+  } else {
+    html += `
+      <button class="ltp-nav-btn primary" onclick="goTrack('${trackId}')">
+        Finish
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>`;
+    cols++;
+  }
+
+  nav.innerHTML  = html;
+  nav.className  = `ltp-lesson-nav ${cols === 1 ? 'one-col' : cols === 2 ? 'two-col' : ''}`;
+}
+
+// ── Mark lesson complete ──────────────────────────────────────
+window.handleMarkDone = async function(trackId, lessonId, lessonIdx, total) {
+  const btn = document.getElementById('mark-done-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Saving…'; }
+
+  await markLessonComplete(trackId, lessonId);
+  pulseSaveBadge();
+  showToast('Lesson complete!', 'success');
+
+  // If this was the last lesson — go back to track to show celebration
+  const track = getTrack(trackId);
+  const p     = await loadProgress(trackId);
+  if (p.completedLessons.length >= track.lessons.length) {
+    setTimeout(() => showTrack(trackId), 800);
+    return;
+  }
+
+  await renderLesson(trackId, lessonId);
+};
+
+// ── Video player ──────────────────────────────────────────────
+window.playVideo = function(blockId, videoId) {
+  const block = document.getElementById(blockId);
+  if (!block) return;
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+  iframe.allowFullscreen = true;
+  iframe.className = 'ltp-video-iframe';
+  block.replaceWith(iframe);
+};
+
+function extractYouTubeId(url) {
+  if (!url || url.includes('PLACEHOLDER')) return null;
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+  ];
+  for (const re of patterns) {
+    const m = url.match(re);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+// ── Search ────────────────────────────────────────────────────
+const searchInput = document.getElementById('ltp-search');
+const searchClear = document.getElementById('ltp-search-clear');
+const resultsWrap = document.getElementById('ltp-results-wrap');
+const hubMain     = document.getElementById('ltp-hub-main');
+const resumeBanner = document.getElementById('ltp-resume-banner');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim();
+  searchClear.classList.toggle('visible', q.length > 0);
+  if (!q) {
+    resultsWrap.classList.remove('active');
+    hubMain.style.display    = '';
+    resumeBanner.style.display = window._resumeTrackId ? 'flex' : 'none';
+    return;
+  }
+  resultsWrap.classList.add('active');
+  hubMain.style.display    = 'none';
+  resumeBanner.style.display = 'none';
+  doSearch(q);
+});
+
+window.clearSearch = function() {
+  searchInput.value = '';
+  searchClear.classList.remove('visible');
+  resultsWrap.classList.remove('active');
+  hubMain.style.display      = '';
+  resumeBanner.style.display = window._resumeTrackId ? 'flex' : 'none';
+  searchInput.focus();
+};
+
+function doSearch(q) {
+  const lower = q.toLowerCase();
+  const hits  = LTP_ALL_LESSONS.filter(l =>
+    l.title.toLowerCase().includes(lower)          ||
+    l.body.join(' ').toLowerCase().includes(lower) ||
+    l.trackTitle.toLowerCase().includes(lower)     ||
+    l.types.some(t => t.toLowerCase().includes(lower))
+  );
+
+  const box = document.getElementById('ltp-results-box');
+  if (!hits.length) {
+    box.innerHTML = `
+      <div class="ltp-no-results">
+        <div style="font-size:32px;margin-bottom:10px;opacity:.3"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></div>
+        No lessons found for "<strong>${q}</strong>"<br>
+        <span style="font-size:12px;color:#bbb;margin-top:6px;display:block">
+          Try searching by topic, coach name, or content type
+        </span>
+      </div>`;
+    return;
+  }
+
+  box.innerHTML = hits.map(h => {
+    const previewText = h.body[0].substring(0, 90) + '…';
+    return `
+      <div class="ltp-result-item" onclick="goLesson('${h.trackId}', '${h.id}')"
+           role="button" tabindex="0">
+        <div>
+          <span class="ltp-result-track-badge"
+                style="background:${h.trackColor};color:${h.trackAccentColor}">
+            ${h.trackTitle}
+          </span>
+        </div>
+        <div class="ltp-result-title">${highlight(h.title, q)}</div>
+        <div class="ltp-result-preview">${previewText}</div>
+        <div class="ltp-result-badges">
+          ${h.types.map(tp =>
+            `<span class="ltp-badge ltp-badge-${tp}">${tp}</span>`
+          ).join('')}
+          <span class="ltp-result-dur">${h.duration}</span>
+        </div>
+      </div>`;
+  }).join('');
+
+  box.querySelectorAll('.ltp-result-item').forEach(item => {
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') item.click();
+    });
+  });
+}
+
+// ── Navigation helpers ────────────────────────────────────────
+window.goTrack = function(trackId) {
+  window.location.hash = `#track-${trackId}`;
+};
+
+window.goLesson = function(trackId, lessonId) {
+  window.location.hash = `#lesson-${trackId}-${lessonId}`;
+};
+
+window.showHub = function() {
+  window.location.hash = '';
+  renderHub();
+};
+
+window.showTrack = function(trackId) {
+  if (trackId) window.location.hash = `#track-${trackId}`;
+  else renderHub();
+};
+
+window.handleTrackCTA = function() {
+  if (window.currentTrackId && window._trackCTALessonId) {
+    goLesson(window.currentTrackId, window._trackCTALessonId);
+  }
+};
+
+window.resumeLearning = function() {
+  if (window._resumeTrackId && window._resumeLessonId) {
+    goLesson(window._resumeTrackId, window._resumeLessonId);
+  }
+};
+
+// ── View switcher with directional transitions ────────────────
+let _navDepth = 0; // 0=hub, 1=track, 2=lesson
+function showView(name, direction) {
+  const depth = { hub: 0, track: 1, lesson: 2 };
+  const next  = depth[name] ?? 0;
+  const dir   = direction || (next >= _navDepth ? 'forward' : 'back');
+  _navDepth   = next;
+
+  document.querySelectorAll('.ltp-view').forEach(v => {
+    v.classList.remove('active', 'slide-in', 'slide-back');
+  });
+
+  const el = document.getElementById(`view-${name}`);
+  el.classList.add('active');
+  el.classList.add(dir === 'back' ? 'slide-back' : 'slide-in');
+
+  // Clean animation class after it plays
+  el.addEventListener('animationend', () => {
+    el.classList.remove('slide-in', 'slide-back');
+  }, { once: true });
+}
+
+// ── Skeleton loaders ──────────────────────────────────────────
+function showHubSkeleton() {
+  const grid = document.getElementById('ltp-track-grid');
+  grid.innerHTML = Array(4).fill(0).map(() =>
+    `<div class="ltp-skeleton ltp-skeleton-card"></div>`
+  ).join('');
+}
+
+function showTrackSkeleton() {
+  document.getElementById('track-lesson-list').innerHTML =
+    Array(4).fill(0).map(() =>
+      `<div class="ltp-skeleton ltp-skeleton-row"></div>`
+    ).join('');
+}
+
+// ── Image lightbox ────────────────────────────────────────────
+window.openLightbox = function(src, alt) {
+  const box = document.createElement('div');
+  box.className = 'ltp-lightbox';
+  box.innerHTML = `
+    <button class="ltp-lightbox-close" onclick="this.closest('.ltp-lightbox').remove()" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+    <img src="${src}" alt="${alt || ''}">`;
+  box.addEventListener('click', e => {
+    if (e.target === box) box.remove();
+  });
+  document.body.appendChild(box);
+};
+
+// Make lesson images tappable
+function makeImagesLightboxable() {
+  document.querySelectorAll('.ltp-lesson-img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+}
+
+// ── Search result highlight ───────────────────────────────────
+function highlight(text, query) {
+  if (!query) return text;
+  const safe  = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${safe})`, 'gi');
+  return text.replace(regex, '<span class="ltp-result-highlight">$1</span>');
+}
+
+// ── Enhanced track complete banner ────────────────────────────
+function renderCompleteBanner(track, completedCount) {
+  return `
+    <div class="ltp-complete-banner" id="track-complete-banner">
+      <span class="ltp-complete-trophy"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
+      <div class="ltp-complete-title">Track complete!</div>
+      <div class="ltp-complete-sub">You've finished all lessons in <strong>${track.title}</strong>.</div>
+      <div class="ltp-complete-stats">
+        <div class="ltp-complete-stat">
+          <div class="ltp-complete-stat-num">${completedCount}</div>
+          <div class="ltp-complete-stat-label">Lessons</div>
+        </div>
+        <div class="ltp-complete-stat">
+          <div class="ltp-complete-stat-num">100%</div>
+          <div class="ltp-complete-stat-label">Complete</div>
+        </div>
+      </div>
+      <div class="ltp-complete-actions">
+        <button class="ltp-complete-action-btn primary" onclick="goLesson('${track.id}', '${track.lessons[0].id}')">
+          Review from start
+        </button>
+        <button class="ltp-complete-action-btn secondary" onclick="showHub()">
+          Explore more tracks
+        </button>
+      </div>
+    </div>`;
+}
+
+// ── Scroll-to-top visibility ──────────────────────────────────
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('ltp-scroll-top');
+  if (!btn) return;
+  btn.classList.toggle('visible', window.scrollY > 300);
+});
+
+// ── Make lesson nav sticky on mobile ─────────────────────────
+function applyLessonNavSticky() {
+  const nav = document.getElementById('lesson-nav-row');
+  if (nav && window.innerWidth <= 600) {
+    nav.classList.add('ltp-lesson-nav-sticky');
+  }
+}
+
+// ── Toast ─────────────────────────────────────────────────────
+function showToast(message, type = 'info') {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = {
+    success: 'fa-check-circle',
+    error:   'fa-exclamation-circle',
+    warning: 'fa-exclamation-triangle',
+    info:    'fa-info-circle',
+  };
+  toast.innerHTML = `
+    <i class="fas ${icons[type] || icons.info}"></i>
+    <div class="toast-content"><div class="toast-message">${message}</div></div>
+    <button class="toast-close" onclick="this.parentElement.remove()">
+      <i class="fas fa-times"></i>
+    </button>`;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+// ── Save badge pulse ──────────────────────────────────────────
+function pulseSaveBadge() {
+  const badge = document.getElementById('ltp-save-badge');
+  if (!badge) return;
+  badge.classList.remove('pulse');
+  void badge.offsetWidth; // reflow to restart animation
+  badge.classList.add('pulse');
+  setTimeout(() => badge.classList.remove('pulse'), 700);
+}
+
+// ── Auth UI ───────────────────────────────────────────────────
+function updateAuthUI(user) {
+  const loginLink  = document.getElementById('sidebar-login-link');
+  const signupLink = document.getElementById('sidebar-signup-link');
+  const logoutBtn  = document.getElementById('sidebar-logout-btn');
+  const saveBadge  = document.getElementById('ltp-save-badge');
+
+  if (user) {
+    if (loginLink)  loginLink.style.display  = 'none';
+    if (signupLink) signupLink.style.display = 'none';
+    if (logoutBtn)  logoutBtn.style.display  = 'flex';
+    if (saveBadge) {
+      saveBadge.textContent    = '● Synced';
+      saveBadge.style.display  = 'inline-flex';
+      saveBadge.style.color    = '#085041';
+      saveBadge.style.background = '#E1F5EE';
+    }
+  } else {
+    if (loginLink)  loginLink.style.display  = 'flex';
+    if (signupLink) signupLink.style.display = 'flex';
+    if (logoutBtn)  logoutBtn.style.display  = 'none';
+    if (saveBadge) {
+      saveBadge.textContent    = '● Saved locally';
+      saveBadge.style.display  = 'inline-flex';
+      saveBadge.style.color    = '#633806';
+      saveBadge.style.background = '#FAEEDA';
+    }
+  }
+}
+
+// Logout handler
+const logoutBtn = document.getElementById('sidebar-logout-btn');
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await supabase.auth.signOut();
+    currentUser = null;
+    updateAuthUI(null);
+    showToast('Logged out', 'info');
+    await renderHub();
+  });
+}
+
+// ── Auth state listener ───────────────────────────────────────
+supabase.auth.onAuthStateChange(async (event, session) => {
+  const prevUser = currentUser;
+  currentUser    = session?.user || null;
+
+  updateAuthUI(currentUser);
+
+  if (event === 'SIGNED_IN' && !prevUser && currentUser) {
+    try {
+      await mergeGuestProgress(currentUser.id);
+      showToast('Progress synced to your account.', 'success');
+    } catch (err) {
+      console.warn('[learn-to-play] Guest merge failed:', err);
+    }
+    await route();
+  }
+
+  if (event === 'SIGNED_OUT') {
+    await renderHub();
+  }
+});
+
+// ── Init ──────────────────────────────────────────────────────
+(async () => {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    currentUser = session?.user || null;
+    updateAuthUI(currentUser);
+  } catch {
+    currentUser = null;
+  }
+  route();
+})();
+</script>
+
+</body>
+</html>

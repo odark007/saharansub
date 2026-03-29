@@ -295,7 +295,7 @@ export function renderChatHistory() {
       addMessage(text, 'user');
       chatInput.value = '';
     } else if (audioBlob) {
-      addMessage('🎙️ Audio message sent...', 'user');
+      addMessage('<i class="fa-solid fa-microphone" aria-hidden="true"></i> Audio message sent...', 'user');
     }
 
     const typingId = showTyping();
@@ -316,7 +316,7 @@ export function renderChatHistory() {
       removeTyping(typingId);
 
       if (data.error || (!data.success && data.message)) {
-        addMessage(`⚠️ Error: ${data.error || data.message}`, 'bot');
+        addMessage(`<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Error: ${data.error || data.message}`, 'bot');
       } else {
         if (data.transcription && audioBlob) {
           // Update the audio message placeholder with actual transcription
@@ -327,7 +327,7 @@ export function renderChatHistory() {
     } catch (err) {
       console.error(err);
       removeTyping(typingId);
-      addMessage('⚠️ Network error. Could not reach Ref-Bot.', 'bot');
+      addMessage('<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Network error. Could not reach Ref-Bot.', 'bot');
     }
   };
 
