@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TCJJ3STZV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-3TCJJ3STZV');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Human Thinking Machine — Level Up Your Tech Skills</title>
+  <meta name="title" content="The Human Thinking Machine — Level Up Your Tech Skills">
+  <meta name="description"
+    content="Applied Computer Science for the Next Generation. Built for teens who want to build real things, not just watch tutorials.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thehumanthinkingmachine.com/applied-computer-science/">
+  <meta property="og:title" content="The Human Thinking Machine — Level Up Your Tech Skills">
+  <meta property="og:description"
+    content="Master coding, logic, and app building through a gamified quest-based curriculum.">
+  <meta property="og:image" content="../../images/the-human-thinking-machine-og.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="The Human Thinking Machine — Level Up Your Tech Skills">
+  <meta property="twitter:description" content="Applied Computer Science for the Next Generation. Join the quest.">
+  <meta property="twitter:image" content="../../images/the-human-thinking-machine-og.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <span class="nav-logo">the-human-thinking-machine<span class="nav-logo-dot">.</span></span>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <canvas id="bg-canvas"></canvas>
+    <div class="scanlines"></div>
+
+    <!-- HUD Decorations -->
+    <div class="hud-corner hud-tl"></div>
+    <div class="hud-corner hud-tr"></div>
+    <div class="hud-corner hud-bl"></div>
+    <div class="hud-corner hud-br"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        MAY-JUNE · NOW ENROLLING
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-line line-1">LEVEL UP</span>
+        <span class="title-line line-2">YOUR <em>TECH</em></span>
+        <span class="title-line line-3">SKILLS</span>
+      </h1>
+
+      <p class="hero-sub">
+        Applied Computer Science for the Next Generation, built for teens who want to
+        <strong>build real things</strong> — not just watch tutorials.
+      </p>
+
+      <div class="xp-bar-wrap">
+        <div class="xp-label">
+          <span>COURSE XP</span>
+          <span class="xp-val">0 / 1000</span>
+        </div>
+        <div class="xp-track">
+          <div class="xp-fill" id="xp-fill"></div>
+          <div class="xp-glow"></div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <button class="btn btn-primary" id="enroll-btn">
+          <i class="fa-solid fa-play btn-icon"></i>
+          START YOUR QUEST
+        </button>
+        <button class="btn btn-ghost">
+          SEE THE SYLLABUS
+        </button>
+      </div>
+
+      <div class="skill-chips">
+        <span class="chip chip-cyan"><i class="fa-solid fa-bolt"></i> Coding</span>
+        <span class="chip chip-pink"><i class="fa-solid fa-gamepad"></i> Problem Solving</span>
+        <span class="chip chip-amber"><i class="fa-solid fa-screwdriver-wrench"></i> Building Apps</span>
+        <span class="chip chip-cyan"><i class="fa-solid fa-globe"></i> Web Design</span>
+      </div>
+    </div>
+
+    <!-- CHARACTERS -->
+    <div class="characters">
+
+      <!-- Malik (Boy) -->
+      <div class="char char-boy" id="char-boy">
+        <div class="char-hud">
+          <div class="char-name">MALIK</div>
+          <div class="char-class">Code Warrior</div>
+          <div class="char-hp">
+            <div class="hp-bar">
+              <div class="hp-fill" style="width:72%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="char-body">
+          <svg viewBox="0 0 220 360" fill="none" xmlns="http://www.w3.org/2000/svg" class="char-svg">
+            <ellipse cx="110" cy="340" rx="70" ry="12" fill="#FF2D78" fill-opacity="0.18" />
+            <rect x="58" y="195" width="104" height="115" rx="18" fill="#1e1e3f" />
+            <rect x="82" y="260" width="56" height="35" rx="8" fill="#16163a" />
+            <line x1="100" y1="200" x2="95" y2="240" stroke="#ccc" stroke-width="2" />
+            <line x1="120" y1="200" x2="125" y2="240" stroke="#ccc" stroke-width="2" />
+            <rect x="99" y="170" width="22" height="32" rx="8" fill="#6B3F20" />
+            <ellipse cx="110" cy="148" rx="44" ry="46" fill="#6B3F20" />
+            <ellipse cx="110" cy="110" rx="44" ry="32" fill="#1C0E05" />
+            <ellipse cx="78" cy="130" rx="18" ry="20" fill="#1C0E05" />
+            <ellipse cx="142" cy="130" rx="18" ry="20" fill="#1C0E05" />
+            <path d="M75 120 Q110 108 145 120" stroke="#2C1810" stroke-width="3" fill="none" />
+            <ellipse cx="96" cy="150" rx="6.5" ry="7.5" fill="#0d0400" />
+            <ellipse cx="124" cy="150" rx="6.5" ry="7.5" fill="#0d0400" />
+            <ellipse cx="98" cy="147" rx="2.5" ry="3" fill="white" />
+            <ellipse cx="126" cy="147" rx="2.5" ry="3" fill="white" />
+            <path d="M100 172 Q114 185 124 172" stroke="#4a2010" stroke-width="2.5" stroke-linecap="round"
+              fill="none" />
+            <rect x="24" y="230" width="50" height="26" rx="13" fill="#6B3F20" />
+            <rect x="10" y="265" width="95" height="52" rx="10" fill="#1a1a2e" />
+            <rect x="14" y="268" width="87" height="46" rx="8" fill="#0d0d1a" />
+            <rect x="18" y="272" width="12" height="10" rx="2" fill="#00F5FF" fill-opacity="0.7" />
+            <rect x="34" y="272" width="12" height="10" rx="2" fill="#FF2D78" fill-opacity="0.7" />
+            <rect x="50" y="272" width="12" height="10" rx="2" fill="#FFB800" fill-opacity="0.7" />
+            <rect x="66" y="272" width="12" height="10" rx="2" fill="#39FF14" fill-opacity="0.7" />
+            <rect x="148" y="215" width="28" height="85" rx="12" fill="#6B3F20" transform="rotate(-10 148 215)" />
+          </svg>
+          <div class="float-bubble bubble-boy">
+            <span class="bubble-score">+150 XP <i class="fa-solid fa-bolt"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zara (Girl) -->
+      <div class="char char-girl" id="char-girl">
+        <div class="char-hud">
+          <div class="char-name">ZARA</div>
+          <div class="char-class">Web Wizard</div>
+          <div class="char-hp">
+            <div class="hp-bar">
+              <div class="hp-fill" style="width:88%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="char-body">
+          <svg viewBox="0 0 220 360" fill="none" xmlns="http://www.w3.org/2000/svg" class="char-svg">
+            <ellipse cx="110" cy="340" rx="70" ry="12" fill="#00F5FF" fill-opacity="0.18" />
+            <rect x="62" y="195" width="96" height="110" rx="18" fill="#1a6fc4" />
+            <rect x="99" y="170" width="22" height="32" rx="8" fill="#8B5E3C" />
+            <ellipse cx="110" cy="148" rx="42" ry="44" fill="#8B5E3C" />
+            <ellipse cx="110" cy="112" rx="48" ry="42" fill="#2C1810" />
+            <rect x="68" y="126" width="84" height="13" rx="6" fill="#E05C2A" />
+            <ellipse cx="97" cy="150" rx="6" ry="7" fill="#1a0a00" />
+            <ellipse cx="123" cy="150" rx="6" ry="7" fill="#1a0a00" />
+            <path d="M99 170 Q110 180 121 170" stroke="#5C3020" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <rect x="42" y="220" width="28" height="80" rx="12" fill="#8B5E3C" />
+            <rect x="150" y="220" width="28" height="70" rx="12" fill="#8B5E3C" />
+            <rect x="75" y="298" width="110" height="65" rx="6" fill="#1a1a2e" />
+            <rect x="80" y="303" width="100" height="50" rx="4" fill="#0d0d1a" />
+            <rect x="85" y="308" width="55" height="3" rx="1" fill="#00F5FF" fill-opacity="0.8" />
+            <rect x="85" y="315" width="40" height="3" rx="1" fill="#FF2D78" fill-opacity="0.8" />
+          </svg>
+          <div class="float-bubble bubble-girl">
+            <span class="bubble-code">print("Hello!")</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.characters -->
+
+    <div class="float-labels" id="float-labels">
+      <div class="float-label" id="label-laptop"><i class="fa-solid fa-laptop-code"></i> HTML</div>
+      <div class="float-label" id="label-gear"><i class="fa-solid fa-gears"></i> Logic</div>
+      <div class="float-label" id="label-code"><i class="fa-solid fa-code"></i> Code</div>
+      <div class="float-label" id="label-star"><i class="fa-solid fa-star"></i> CSS</div>
+    </div>
+  </section>
+
+  <!-- INFO SECTIONS -->
+  <section class="placeholder-section" id="courses">
+    <div class="ph-inner">
+      <div class="ph-tag"><i class="fa-solid fa-book"></i> COURSES</div>
+      <h2 class="ph-title">Quests &amp; Modules</h2>
+      <p class="ph-body">Full course syllabus coming soon. Each module is a new quest to complete.</p>
+      <div class="ph-grid">
+        <div class="ph-card"><i class="fa-solid fa-globe"></i> Web Fundamentals</div>
+        <div class="ph-card"><i class="fa-brands fa-python"></i> Python Basics</div>
+        <div class="ph-card"><i class="fa-solid fa-mobile-screen-button"></i> App Building</div>
+        <div class="ph-card"><i class="fa-solid fa-palette"></i> UI/UX Design</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="placeholder-section ph-alt" id="about">
+    <div class="ph-inner">
+      <div class="ph-tag"><i class="fa-solid fa-chalkboard-user"></i> ABOUT</div>
+      <h2 class="ph-title">Meet Your Instructor</h2>
+      <div class="ph-instructor-card">
+        <div class="ph-avatar">
+          <img src="../../images/godwin-france-bio-photo.jpeg" alt="Godwin France">
+        </div>
+        <div>
+          <div class="ph-instructor-name">Your Instructor</div>
+          <div class="ph-instructor-role">Tech Educator</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="placeholder-section" id="testimonials">
+    <div class="ph-inner">
+      <div class="ph-tag"><i class="fa-solid fa-star"></i> REVIEWS</div>
+      <h2 class="ph-title">What Students Say</h2>
+      <div class="ph-grid">
+        <div class="ph-card ph-quote">"This course changed how I see technology..." <span class="ph-quote-name">—
+            Student A</span></div>
+        <div class="ph-card ph-quote">"I built my first app in just 3 weeks!" <span class="ph-quote-name">— Student
+            B</span></div>
+        <div class="ph-card ph-quote">"Best investment I ever made." <span class="ph-quote-name">— Student C</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="placeholder-section ph-alt" id="pricing">
+    <div class="ph-inner">
+      <div class="ph-tag"><i class="fa-solid fa-credit-card"></i> PRICING</div>
+      <h2 class="ph-title">Choose Your Plan</h2>
+      <div class="ph-grid">
+        <div class="ph-card ph-plan">
+          <div class="ph-plan-name">Starter</div>
+          <div class="ph-plan-price">Free</div>
+        </div>
+        <div class="ph-card ph-plan ph-plan-featured">
+          <div class="ph-plan-name">Pro</div>
+          <div class="ph-plan-price">Coming Soon</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="nav-logo">The Human Thinking Machine<span class="nav-logo-dot">.</span></span>
+      <p class="footer-copy">© 2026 the-human-thinking-machine · All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
