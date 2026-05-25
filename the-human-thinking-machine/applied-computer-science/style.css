@@ -936,3 +936,24 @@ body {
 .chip i {
   opacity: 0.8;
 }
+
+.ph-instructor-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+
+.ph-instructor-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.ph-instructor-link i {
+  font-size: 1rem;
+}
