@@ -17,20 +17,21 @@
   <title>The Human Thinking Machine — Level Up Your Tech Skills</title>
   <meta name="title" content="The Human Thinking Machine — Level Up Your Tech Skills">
   <meta name="description"
-    content="Applied Computer Science for the Next Generation. Built for teens who want to build real things, not just watch tutorials.">
+    content="An integrated apporoach to Systems Thinking, Design Thinking, and First-Principles Computer Science. Build technical agency through elite 1-on-1 remote mentoring">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thehumanthinkingmachine.com/applied-computer-science/">
   <meta property="og:title" content="The Human Thinking Machine — Level Up Your Tech Skills">
   <meta property="og:description"
-    content="Master coding, logic, and app building through a gamified quest-based curriculum.">
+    content="The Human-Thinking Machine: A synthesis of systems mapping and computational logic. We teach students to analyze complex real-world challenges, not just write lines of code.">
   <meta property="og:image" content="../../images/the-human-thinking-machine-og.jpg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="The Human Thinking Machine — Level Up Your Tech Skills">
-  <meta property="twitter:description" content="Applied Computer Science for the Next Generation. Join the quest.">
+  <meta property="twitter:description"
+    content="Master the Cognitive Triad: Systems Thinking + Design Thinking + Computational Logic. Remote 1-on-1 mentoring for JHS/SHS tech pioneers.">
   <meta property="twitter:image" content="../../images/the-human-thinking-machine-og.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -275,6 +276,100 @@
       </div>
     </div>
   </section>
+  <section class="placeholder-section" id="contact">
+    <div class="ph-inner">
+      <div class="ph-tag"><i class="fa-solid fa-headset"></i> ENROLLMENT COMMAND CENTER</div>
+      <h2 class="ph-title">Begin Your Teen's Quest</h2>
+      <p class="ph-body">Interested in enrolling or want to discuss the curriculum? Use the direct uplink below or brief
+        us via the form.</p>
+
+      <div class="contact-grid">
+        <!-- Left: Direct Comms -->
+        <div class="contact-sidebar">
+          <div class="uplink-card">
+            <div class="uplink-title">DIRECT UPLINK</div>
+            <a href="https://wa.me/233XXXXXXXXX?text=I'm%20interested%20in%20The%20Human%20Thinking%20Machine"
+              target="_blank" class="uplink-item">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp Me
+            </a>
+            <a href="tel:+233XXXXXXXXX" class="uplink-item">
+              <i class="fa-solid fa-phone"></i> Voice Call
+            </a>
+            <a href="mailto:godwin@example.com" class="uplink-item">
+              <i class="fa-solid fa-envelope"></i> Send Email
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Form Area -->
+        <div class="contact-form-area" id="contact-container">
+          <form id="enrollment-form" class="briefing-form">
+            <div class="form-row">
+              <div class="input-wrap">
+                <label>Student Name</label>
+                <input type="text" name="student_name" required>
+              </div>
+              <div class="input-wrap">
+                <label>Student Age</label>
+                <input type="number" name="student_age" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-wrap">
+                <label>Parent/Guardian Name</label>
+                <input type="text" name="parent_name" required>
+              </div>
+              <div class="input-wrap">
+                <label>Parent Email</label>
+                <input type="email" name="parent_email" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-wrap">
+                <label>Phone Number</label>
+                <input type="tel" name="parent_phone" required>
+              </div>
+              <div class="input-wrap">
+                <label>Country</label>
+                <select name="country" id="country-select" required>
+                  <option value="Ghana">Ghana</option>
+                  <option value="Nigeria">Nigeria</option>
+                  <option value="USA">USA</option>
+                  <option value="UK">UK</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-check-group">
+              <label>Best way to reach you:</label>
+              <div class="check-options">
+                <label><input type="checkbox" name="comms" value="WhatsApp"> WhatsApp</label>
+                <label><input type="checkbox" name="comms" value="Phone Call"> Phone Call</label>
+                <label><input type="checkbox" name="comms" value="Email"> Email</label>
+              </div>
+            </div>
+
+            <div class="form-check-single" id="mode-wrap">
+              <label><input type="checkbox" name="is_remote" id="remote-check"> This will be a remote/online
+                quest</label>
+            </div>
+
+            <div class="input-wrap">
+              <label>Interests & Goals</label>
+              <textarea name="goals" placeholder="Tell us about your child's interests..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submit-enrollment">
+              <i class="fa-solid fa-paper-plane"></i> TRANSMIT BRIEFING
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="footer-inner">
@@ -284,6 +379,8 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="main.js"></script>
 </body>
 

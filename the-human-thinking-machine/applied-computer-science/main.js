@@ -6,6 +6,17 @@
 (function () {
   'use strict';
 
+  // 1. PLACEHOLDERS (Injected by Build)
+  const SB_URL = 'https://hpkudboszdvavczvjrkr.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhwa3VkYm9zemR2YXZjenZqcmtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5NzU3MzMsImV4cCI6MjA4MzU1MTczM30.IOnuaR1sZCqyeN1p6rxf4mvWM_H0Of-B7z2ACbzSWGg';
+  const EJS_SVC = 'service_d8jbfmc';
+  const EJS_TMP = 'htm_enrollment_briefing';
+  const EJS_PUB = 'B07gMSHiApMJRrJGj';
+
+  // 2. INITIALIZE SERVICES
+  const supabase = window.supabase.createClient(SB_URL, SB_KEY);
+  if (EJS_PUB) emailjs.init(EJS_PUB);
+
   /* ─────────────────────────────────────────
      HELPERS
   ───────────────────────────────────────── */
@@ -417,5 +428,85 @@
       clock.start();
     }
   });
+
+  /* ─────────────────────────────────────────
+     ENROLLMENT COMMAND CENTER LOGIC
+  ───────────────────────────────────────── */
+  const enrollForm = document.getElementById('enrollment-form');
+  const contactContainer = document.getElementById('contact-container');
+  const countrySelect = document.getElementById('country-select');
+  const remoteCheck = document.getElementById('remote-check');
+
+  if (enrollForm) {
+    // UI: Auto-check remote if not Ghana
+    countrySelect?.addEventListener('change', (e) => {
+      if (e.target.value !== 'Ghana') {
+        remoteCheck.checked = true;
+        remoteCheck.parentElement.style.opacity = "0.5";
+        remoteCheck.disabled = true;
+      } else {
+        remoteCheck.disabled = false;
+        remoteCheck.parentElement.style.opacity = "1";
+      }
+    });
+
+    // Form Submission
+    enrollForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-enrollment');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> TRANSMITTING...';
+
+      const formData = new FormData(enrollForm);
+      const comms = Array.from(formData.getAll('comms')).join(', ');
+
+      const data = {
+        student_name: formData.get('student_name'),
+        student_age: formData.get('student_age'),
+        parent_name: formData.get('parent_name'),
+        parent_email: formData.get('parent_email'),
+        parent_phone: formData.get('parent_phone'),
+        country: formData.get('country'),
+        comms_method: comms,
+        mode: formData.get('is_remote') ? 'Remote' : 'In-Person',
+        message: formData.get('goals')
+      };
+
+      try {
+        // 1. Supabase Log
+        const { error: sbError } = await supabase.from('enrollments').insert([data]);
+        if (sbError) throw sbError;
+
+        // 2. EmailJS Briefing
+        await emailjs.send(EJS_SVC, EJS_TMP, {
+          parent_name: data.parent_name,
+          student_name: data.student_name,
+          parent_email: data.parent_email,
+          admin_email: "info@entrevahub.org",
+          program_name: "The Human Thinking Machine"
+        });
+
+        // 3. Success UI
+        contactContainer.innerHTML = `
+          <div class="success-screen">
+            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h3 class="ph-title">Signal Received</h3>
+            <p class="ph-body">Briefing logged. Godwin will contact you within 24 hours.</p>
+            <div class="quest-links">
+              <a href="/" class="ph-card">Main Hub</a>
+              <a href="https://saharansub.com/the-human-thinking-machine/launchpad-lab" class="ph-card">Launchpad</a>
+              <a href="https://saharansub.com/the-human-thinking-machine/first-principles-tutor" class="ph-card">1st Principles</a>
+            </div>
+          </div>`;
+      } catch (err) {
+        console.error("MISSION FAILED. Reason:", err); // This tells you exactly why
+        alert("Transmission failed: " + (err.message || "Unknown Error"));
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> RETRY TRANSMISSION';
+
+      }
+    });
+  }
+
 
 })();

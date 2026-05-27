@@ -957,3 +957,84 @@ body {
 .ph-instructor-link i {
   font-size: 1rem;
 }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.contact-sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+.uplink-card {
+  background: var(--bg-mid);
+  border: 1px solid var(--card-border);
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.uplink-title {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--amber);
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.uplink-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--white);
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.2s;
+}
+
+.uplink-item:hover { color: var(--cyan); }
+
+.briefing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(255,255,255,0.02);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.input-wrap { display: flex; flex-direction: column; gap: 8px; }
+.input-wrap label { font-size: 0.8rem; color: var(--cyan); font-weight: 700; }
+
+.input-wrap input, .input-wrap select, .input-wrap textarea {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.form-check-group { margin: 10px 0; }
+.check-options { display: flex; gap: 15px; margin-top: 8px; font-size: 0.85rem; }
+
+/* Success Interface Styling */
+.success-screen {
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.success-icon { font-size: 3rem; color: var(--green); margin-bottom: 20px; }
+.quest-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
