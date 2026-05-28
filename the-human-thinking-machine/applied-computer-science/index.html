@@ -262,17 +262,38 @@
 
   <section class="placeholder-section ph-alt" id="pricing">
     <div class="ph-inner">
-      <div class="ph-tag"><i class="fa-solid fa-credit-card"></i> PRICING</div>
-      <h2 class="ph-title">Choose Your Plan</h2>
-      <div class="ph-grid">
-        <div class="ph-card ph-plan">
-          <div class="ph-plan-name">Starter</div>
-          <div class="ph-plan-price">Free</div>
+      <div class="ph-header-flex">
+        <div>
+          <div class="ph-tag"><i class="fa-solid fa-credit-card"></i> PRICING</div>
+          <h2 class="ph-title">Choose Your Plan</h2>
         </div>
-        <div class="ph-card ph-plan ph-plan-featured">
-          <div class="ph-plan-name">Pro</div>
-          <div class="ph-plan-price">Coming Soon</div>
+      </div>
+
+      <div class="ph-grid pricing-grid" id="pricing-grid">
+        <!-- In-Person Card -->
+        <div class="ph-card ph-plan card-in-person">
+          <div class="ph-plan-name">Physical Lab</div>
+          <div class="ph-plan-price" id="price-inperson">Contact for Quote</div>
+          <p class="plan-sub">In-person mentoring (Accra Only)</p>
         </div>
+
+        <!-- Remote Card -->
+        <div class="ph-card ph-plan ph-plan-featured card-remote">
+          <div class="ph-plan-name">Digital Uplink</div>
+          <div class="ph-plan-price">
+            <span id="curr-symbol">GH₵</span>
+            <span id="price-remote">2,500</span>
+          </div>
+          <p class="plan-sub">Real-time 1-on-1 Remote Mentoring</p>
+        </div>
+      </div>
+
+      <!-- Dynamic Footnote Area -->
+      <div class="pricing-note-wrap">
+        <p id="dynamic-pricing-note">
+          For the 3-month package, installment plan is available. 40% for the first month, then the remaining paid twice over the
+          remaining two months. For the in-person, home visits, I am available over the weekends and evenings for weekdays. 
+        </p>
       </div>
     </div>
   </section>
@@ -288,14 +309,14 @@
         <div class="contact-sidebar">
           <div class="uplink-card">
             <div class="uplink-title">DIRECT UPLINK</div>
-            <a href="https://wa.me/233XXXXXXXXX?text=I'm%20interested%20in%20The%20Human%20Thinking%20Machine"
+            <a href="https://wa.me/233268712345?text=I'm%20interested%20in%20The%20Human%20Thinking%20Machine"
               target="_blank" class="uplink-item">
               <i class="fa-brands fa-whatsapp"></i> WhatsApp Me
             </a>
-            <a href="tel:+233XXXXXXXXX" class="uplink-item">
+            <a href="tel:+233268712345" class="uplink-item">
               <i class="fa-solid fa-phone"></i> Voice Call
             </a>
-            <a href="mailto:godwin@example.com" class="uplink-item">
+            <a href="mailto:gofrance01@gmail.com" class="uplink-item">
               <i class="fa-solid fa-envelope"></i> Send Email
             </a>
           </div>
@@ -329,7 +350,7 @@
             <div class="form-row">
               <div class="input-wrap">
                 <label>Phone Number</label>
-                <input type="tel" name="parent_phone" required>
+                <input type="tel" name="parent_phone">
               </div>
               <div class="input-wrap">
                 <label>Country</label>
@@ -352,9 +373,30 @@
               </div>
             </div>
 
-            <div class="form-check-single" id="mode-wrap">
-              <label><input type="checkbox" name="is_remote" id="remote-check"> This will be a remote/online
-                quest</label>
+            <div class="logistics-module">
+              <label class="module-title">QUEST LOGISTICS</label>
+              <div class="chips-container">
+                <!-- Option: Remote -->
+                <label class="logistics-chip" id="chip-remote">
+                  <input type="radio" name="training_mode" value="Remote" checked>
+                  <div class="chip-content">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    <span>DIGITAL UPLINK</span>
+                    <small>Remote/Online</small>
+                  </div>
+                </label>
+
+                <!-- Option: In-Person -->
+                <label class="logistics-chip" id="chip-inperson">
+                  <input type="radio" name="training_mode" value="In-Person">
+                  <div class="chip-content">
+                    <i class="fa-solid fa-building-user"></i>
+                    <span>PHYSICAL LAB</span>
+                    <small>In-Person (Accra, Ghana)</small>
+                  </div>
+                </label>
+              </div>
+              <p id="logistics-note" class="hidden">International quests are restricted to Digital Uplink.</p>
             </div>
 
             <div class="input-wrap">

@@ -335,6 +335,14 @@
   const enrollBtn = document.getElementById('enroll-btn');
 
   enrollBtn.addEventListener('click', () => {
+    // Scroll to the contact section (account for fixed nav)
+    const contactSec = document.getElementById('contact');
+    if (contactSec) {
+      const navOffset = 72; // matches nav height + small cushion
+      const top = contactSec.getBoundingClientRect().top + window.scrollY - navOffset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+
     // XP burst effect
     const burst = document.createElement('div');
     // Updated from emoji to a stylized 'bolt' character or text
@@ -430,80 +438,167 @@
   });
 
   /* ─────────────────────────────────────────
+       STRICT PRICE SEGREGATION (SILENT)
+    ───────────────────────────────────────── */
+  const pricingGrid = document.getElementById('pricing-grid');
+  const priceRemote = document.getElementById('price-remote');
+  const currSymbol = document.getElementById('curr-symbol');
+  const pricingNote = document.getElementById('dynamic-pricing-note');
+
+  const forceInternationalUI = () => {
+    pricingGrid.classList.add('is-intl');
+    currSymbol.textContent = '$';
+    priceRemote.textContent = '120 / mo';
+    pricingNote.textContent = 'Clients are expected to pay $120 per month for the duration of the program.';
+  };
+
+  const initPricingIntelligence = async () => {
+    // 1. Check for cached location status
+    const cachedLocation = localStorage.getItem('htm_location_status');
+
+    if (cachedLocation === 'international') {
+      forceInternationalUI();
+      return;
+    }
+
+    if (cachedLocation === 'ghana') return; // Stay on default
+
+    // 2. No cache? Perform Silent Detection
+    try {
+      const response = await fetch('https://ipapi.co/json/');
+      const data = await response.json();
+
+      if (data.country_code !== 'GH') {
+        localStorage.setItem('htm_location_status', 'international');
+        forceInternationalUI();
+      } else {
+        localStorage.setItem('htm_location_status', 'ghana');
+      }
+    } catch (err) {
+      // Fail silently: Default GHS view remains active
+      console.log("Uplink detection restricted. Operating in standard mode.");
+    }
+  };
+
+  initPricingIntelligence();
+  /* ─────────────────────────────────────────
      ENROLLMENT COMMAND CENTER LOGIC
   ───────────────────────────────────────── */
   const enrollForm = document.getElementById('enrollment-form');
   const contactContainer = document.getElementById('contact-container');
   const countrySelect = document.getElementById('country-select');
-  const remoteCheck = document.getElementById('remote-check');
+
+  const chipInPerson = document.getElementById('chip-inperson');
+  const chipRemoteInput = document.querySelector('#chip-remote input');
+  const chipInPersonInput = document.querySelector('#chip-inperson input');
+  const logisticsNote = document.getElementById('logistics-note');
 
   if (enrollForm) {
-    // UI: Auto-check remote if not Ghana
+    // UI: Handle Digital Uplink vs Physical Lab logic
     countrySelect?.addEventListener('change', (e) => {
       if (e.target.value !== 'Ghana') {
-        remoteCheck.checked = true;
-        remoteCheck.parentElement.style.opacity = "0.5";
-        remoteCheck.disabled = true;
+        // 1. Force selection to Remote
+        chipRemoteInput.checked = true;
+
+        // 2. Lock the In-Person chip visually
+        chipInPerson.classList.add('locked');
+
+        // 3. Disable the input so it can't be clicked
+        chipInPersonInput.disabled = true;
+
+        // 4. Show the explanation note
+        logisticsNote.classList.remove('hidden');
       } else {
-        remoteCheck.disabled = false;
-        remoteCheck.parentElement.style.opacity = "1";
+        // 1. Unlock the In-Person chip
+        chipInPerson.classList.remove('locked');
+
+        // 2. Re-enable the input
+        chipInPersonInput.disabled = false;
+
+        // 3. Hide the note
+        logisticsNote.classList.add('hidden');
       }
     });
 
     // Form Submission
     enrollForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      const formData = new FormData(enrollForm);
+      const phoneVal = formData.get('parent_phone').trim();
+      const comms = formData.getAll('comms'); // Array of checked values
+
+      // 1. Validation: If they want a Call or WhatsApp, they MUST provide a phone number
+      const requestsPhoneComms = comms.includes('WhatsApp') || comms.includes('Phone Call');
+
+      if (requestsPhoneComms && !phoneVal) {
+        const phoneInput = enrollForm.querySelector('input[name="parent_phone"]');
+        phoneInput.style.borderColor = 'var(--pink)';
+        phoneInput.style.boxShadow = '0 0 10px rgba(255, 45, 120, 0.3)';
+        phoneInput.focus();
+        alert("Please provide a Phone Number so Godwin can reach you via " + (comms.includes('WhatsApp') ? "WhatsApp" : "Phone Call") + ".");
+        return;
+      }
+
+      // Reset border if validation passes
+      const phoneInput = enrollForm.querySelector('input[name="parent_phone"]');
+      phoneInput.style.borderColor = '';
+      phoneInput.style.boxShadow = '';
+
+      // 2. Transmit State UI
       const btn = document.getElementById('submit-enrollment');
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> TRANSMITTING...';
-
-      const formData = new FormData(enrollForm);
-      const comms = Array.from(formData.getAll('comms')).join(', ');
 
       const data = {
         student_name: formData.get('student_name'),
         student_age: formData.get('student_age'),
         parent_name: formData.get('parent_name'),
         parent_email: formData.get('parent_email'),
-        parent_phone: formData.get('parent_phone'),
+        parent_phone: phoneVal || 'Not Provided',
         country: formData.get('country'),
-        comms_method: comms,
-        mode: formData.get('is_remote') ? 'Remote' : 'In-Person',
+        comms_method: comms.join(', ') || 'Email Only',
+        mode: formData.get('training_mode'),
         message: formData.get('goals')
       };
 
       try {
-        // 1. Supabase Log
+        // A. Primary Action: Supabase Log (Blocking)
         const { error: sbError } = await supabase.from('enrollments').insert([data]);
         if (sbError) throw sbError;
 
-        // 2. EmailJS Briefing
-        await emailjs.send(EJS_SVC, EJS_TMP, {
-          parent_name: data.parent_name,
-          student_name: data.student_name,
-          parent_email: data.parent_email,
-          admin_email: "info@entrevahub.org",
-          program_name: "The Human Thinking Machine"
-        });
+        // B. Secondary Action: EmailJS (Non-Blocking)
+        // Wrapped in its own try-catch so an EmailJS error doesn't break the success UI
+        try {
+          await emailjs.send(EJS_SVC, EJS_TMP, {
+            parent_name: data.parent_name,
+            student_name: data.student_name,
+            parent_email: data.parent_email,
+            admin_email: "info@entrevahub.org",
+            program_name: "The Human Thinking Machine"
+          });
+        } catch (ejsError) {
+          console.warn("Email uplink failed, but data saved to Supabase:", ejsError);
+        }
 
-        // 3. Success UI
+        // C. Success UI
         contactContainer.innerHTML = `
           <div class="success-screen">
             <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
             <h3 class="ph-title">Signal Received</h3>
-            <p class="ph-body">Briefing logged. Godwin will contact you within 24 hours.</p>
+            <p class="ph-body">Briefing logged. Godwin will contact you within 24 hours to coordinate the quest.</p>
             <div class="quest-links">
-              <a href="/" class="ph-card">Main Hub</a>
-              <a href="https://saharansub.com/the-human-thinking-machine/launchpad-lab" class="ph-card">Launchpad</a>
-              <a href="https://saharansub.com/the-human-thinking-machine/first-principles-tutor" class="ph-card">1st Principles</a>
+              <a href="https://saharansub.com/the-human-thinking-machine/" class="ph-card">Main Hub</a>
+              <a href="https://saharansub.com/the-human-thinking-machine/launchpad-lab/launchpad-lab" class="ph-card">Launchpad</a>
+              <a href="https://saharansub.com/the-human-thinking-machine/first-principles-tutor/first-principles-tutor" class="ph-card">1st Principles</a>
+              <a href="https://saharansub.com/the-human-thinking-machine/ready-2-play/ready-2-play" class="ph-card">Ready 2 Play</a>
             </div>
           </div>`;
       } catch (err) {
-        console.error("MISSION FAILED. Reason:", err); // This tells you exactly why
-        alert("Transmission failed: " + (err.message || "Unknown Error"));
+        console.error("Critical Failure:", err);
+        alert("Transmission failed: " + (err.message || "Connection Error"));
         btn.disabled = false;
         btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> RETRY TRANSMISSION';
-
       }
     });
   }
