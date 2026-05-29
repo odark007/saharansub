@@ -25,7 +25,8 @@ try {
     content = content.replace('%%EMAILJS_TEMPLATE_ID%%', process.env.EMAILJS_TEMPLATE_ID || '');
 
     fs.writeFileSync(jsPath, content);
-    console.log('Successfully injected Supabase keys into main.js');
+    console.log('Successfully injected keys into main.js');
 } catch (err) {
     console.error('Build Error:', err.message);
+    process.exit(1); // <--- CRITICAL: Tells Netlify to stop if something goes wrong
 }
