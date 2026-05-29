@@ -25,6 +25,7 @@
   /* ─────────────────────────────────────────
      THREE.JS SCENE SETUP
   ───────────────────────────────────────── */
+  let stormActive = false; // Add this line near your other 'let' variables
   const canvas = document.getElementById('bg-canvas');
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -255,13 +256,12 @@
   }
 
   /* ─────────────────────────────────────────
-     ANIMATION LOOP
-  ───────────────────────────────────────── */
+       ANIMATION LOOP
+    ───────────────────────────────────────── */
   let clock = new THREE.Clock();
 
   function animate() {
     requestAnimationFrame(animate);
-
     const elapsed = clock.getElapsedTime();
 
     // Smooth mouse follow
@@ -276,29 +276,48 @@
     // Float + rotate each 3D object
     floatObjs.forEach(({ mesh, speed, axis, bob, phase }) => {
       mesh.rotation[axis] += speed;
-      // secondary rotation for more life
       mesh.rotation.z += speed * 0.3;
-      // bob up and down
       const baseY = mesh.userData.baseY ?? mesh.position.y;
       if (mesh.userData.baseY === undefined) mesh.userData.baseY = mesh.position.y;
       mesh.position.y = baseY + Math.sin(elapsed * 0.8 + phase) * bob;
     });
 
-    // Spin grid forward (TRON effect) — very slow
+    // Spin grid forward (TRON effect)
     gridHelper.position.z = (gridHelper.position.z + 0.015) % 2;
 
-    // Slow particle drift
-    particles.rotation.y += 0.0008;
-    particles.rotation.x += 0.0003;
+    // --- STORM LOGIC START ---
+    if (stormActive) {
+      // Violent rotation
+      particles.rotation.y += 0.12;
+      particles.rotation.x += 0.05;
+      
+      // Change particle color to Amber and increase size
+      particles.material.color.setHex(0xFFB800);
+      particles.material.size = 0.4; // Make dots bigger during storm
 
-    // Pulse lights
-    cyanLight.intensity = 2.2 + Math.sin(elapsed * 1.5) * 0.4;
-    pinkLight.intensity = 2.2 + Math.cos(elapsed * 1.3) * 0.4;
-    amberLight.intensity = 1.0 + Math.sin(elapsed * 0.9) * 0.3;
+      // Spike light intensities and shift color
+      cyanLight.intensity = 50.0;
+      cyanLight.color.setHex(0xFFB800);
+      amberLight.intensity = 50.0;
+      pinkLight.intensity = 0.0; // Dim pink light to unify chromatic palette
+    } else {
+      // Normal slow drift
+      particles.rotation.y += 0.0008;
+      particles.rotation.x += 0.0003;
+      
+      // Restore normal particle color and size
+      particles.material.color.setHex(0x00F5FF);
+      particles.material.size = 0.12;
 
-    // Update 2D label positions
+      // Standard Pulse lights (only when NOT in a storm)
+      cyanLight.intensity = 2.2 + Math.sin(elapsed * 1.5) * 0.4;
+      pinkLight.intensity = 2.2 + Math.cos(elapsed * 1.3) * 0.4;
+      amberLight.intensity = 1.0 + Math.sin(elapsed * 0.9) * 0.3;
+      cyanLight.color.setHex(0x00F5FF);
+    }
+    // --- STORM LOGIC END ---
+
     updateLabels();
-
     renderer.render(scene, camera);
   }
 
@@ -333,6 +352,7 @@
      ENROLL BUTTON — ripple + XP burst
   ───────────────────────────────────────── */
   const enrollBtn = document.getElementById('enroll-btn');
+  const syllabusBtn = document.getElementById('syllabus-btn');
 
   enrollBtn.addEventListener('click', () => {
     // Scroll to the contact section (account for fixed nav)
@@ -375,6 +395,36 @@
     }
   `;
   document.head.appendChild(style);
+
+  /* ─────────────────────────────────────────
+       SYLLABUS DATA STORM INTERACTION
+    ───────────────────────────────────────── */
+  function triggerDataStorm() {
+    stormActive = true; // Start the storm
+
+    // Apply immediate overrides (visual "Shock")
+    amberLight.intensity = 50.0;
+    cyanLight.intensity = 50.0;
+    cyanLight.color.setHex(0xFFB800);
+    pinkLight.intensity = 0.0;
+    particles.material.color.setHex(0xFFB800);
+    particles.material.size = 0.4;
+
+    // Smoothly scroll to the section
+    const syllabusSec = document.getElementById('syllabus');
+    if (syllabusSec) {
+      const navOffset = 72;
+      const top = syllabusSec.getBoundingClientRect().top + window.scrollY - navOffset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    // Reset visual effects after 1.2 seconds
+    setTimeout(() => {
+      stormActive = false; // Stop the storm
+    }, 1200);
+  }
+
+  syllabusBtn?.addEventListener('click', triggerDataStorm);
 
   /* ─────────────────────────────────────────
      CHARACTER HOVER INTERACTIONS
