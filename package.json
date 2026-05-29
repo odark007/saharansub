@@ -1,0 +1,10 @@
+{
+  "name": "htm-build",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}
