@@ -149,13 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Configuration - Add your EmailJS credentials here
         const CONFIG = {
             supabase: {
-                url: 'https://dgyditllryrphjijvzfu.supabase.co',
-                anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRneWRpdGxscnlycGhqaWp2emZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTczNjM2MzIsImV4cCI6MjA3MjkzOTYzMn0.a8IIljpmIj6mUhE46Qws1x0zHKvLPmT7bBKP2TL-l6k'
+                url: 'https://hpkudboszdvavczvjrkr.supabase.co',
+                anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhwa3VkYm9zemR2YXZjenZqcmtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5NzU3MzMsImV4cCI6MjA4MzU1MTczM30.IOnuaR1sZCqyeN1p6rxf4mvWM_H0Of-B7z2ACbzSWGg'
             },
             emailjs: {
                 publicKey: 'B07gMSHiApMJRrJGj', // Add your EmailJS public key here
                 serviceId: 'service_d8jbfmc', // Add your EmailJS service ID here
-                templateId: 'template_fhqt87w' // Add your EmailJS template ID here
+                templateId: 'service_qd07er9' // Add your EmailJS template ID here
             },
             retryConfig: {
                 maxAttempts: 3,
@@ -190,6 +190,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to extract and prepare form data
         function prepareFormData(formData) {
+            let programType = 'General Inquiry';
+            const path = window.location.pathname;
+            if (path.includes('first-principles-tutor')) {
+                programType = 'First Principles Tutor';
+            } else if (path.includes('launchpad-lab')) {
+                programType = 'Launchpad Lab';
+            }
+
             return {
                 // FIXED: Match HTML form field names exactly
                 parent_name: formData.get('parent-name') || '',
@@ -199,7 +207,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 student_age: formData.get('student-age') || '',
                 program_interest: formData.get('program-interest') || '',
                 learning_preference: formData.get('learning-preference') || '',
-                message: formData.get('message') || null
+                subjects_needed: formData.get('subjects-needed') || null,
+                session_preference: formData.get('session-preference') || null,
+                current_challenges: formData.get('current-challenges') || null,
+                message: formData.get('message') || null,
+                program_type: programType
             };
         }
 
@@ -242,21 +254,41 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             try {
+                let emailBody = `We have successfully received your inquiry for ${inquiryData.program_type || 'The Human-Thinking Machine'}.
+
+Here is a summary of the details you submitted:
+------------------------------------------
+Program Type: ${inquiryData.program_type || 'General Inquiry'}
+Interest/Track: ${inquiryData.program_interest || 'Not specified'}
+Student Name: ${inquiryData.student_name || 'Not provided'}
+Student Age: ${inquiryData.student_age || 'Not provided'}
+Phone Number: ${inquiryData.phone_number || 'Not provided'}`;
+
+                if (inquiryData.learning_preference) {
+                    emailBody += `\nLearning Preference: ${inquiryData.learning_preference}`;
+                }
+                if (inquiryData.subjects_needed) {
+                    emailBody += `\nSubject(s) Needed: ${inquiryData.subjects_needed}`;
+                }
+                if (inquiryData.session_preference) {
+                    emailBody += `\nSession Preference: ${inquiryData.session_preference}`;
+                }
+                if (inquiryData.current_challenges) {
+                    emailBody += `\nCurrent Challenges: ${inquiryData.current_challenges}`;
+                }
+                if (inquiryData.message) {
+                    emailBody += `\n\nGoals / Additional Info:\n${inquiryData.message}`;
+                }
+
+                emailBody += `\n------------------------------------------
+
+Godwin will review the details and contact you shortly.`;
+
                 // Prepare email template parameters
                 const emailParams = {
-                    to_email: 'gofrance01@gmail.com',
-                    from_name: inquiryData.parent_name,
-                    from_email: inquiryData.email_address,
-                    subject: `New Inquiry: ${inquiryData.program_interest}`,
                     parent_name: inquiryData.parent_name,
                     email_address: inquiryData.email_address,
-                    phone_number: inquiryData.phone_number || 'Not provided',
-                    student_name: inquiryData.student_name || 'Not provided',
-                    student_age: inquiryData.student_age,
-                    program_interest: inquiryData.program_interest,
-                    learning_preference: inquiryData.learning_preference,
-                    message: inquiryData.message || 'No message provided',
-                    submission_time: new Date().toLocaleString()
+                    email_body: emailBody
                 };
 
                 const result = await emailjs.send(

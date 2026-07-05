@@ -11,22 +11,33 @@ if (fs.existsSync('.env')) {
     }
 }
 
-// 2. Define path to main.js
-const jsPath = path.join(__dirname, 'the-human-thinking-machine/applied-computer-science/main.js');
+// 2. Define files to process
+const filesToProcess = [
+    path.join(__dirname, 'the-human-thinking-machine/applied-computer-science/main.js'),
+    path.join(__dirname, 'the-human-thinking-machine/the-human-thinking-machine.js'),
+    path.join(__dirname, 'the-human-thinking-machine/ready-2-play/ready-2-play.js')
+];
 
-try {
-    let content = fs.readFileSync(jsPath, 'utf8');
+filesToProcess.forEach(jsPath => {
+    try {
+        if (!fs.existsSync(jsPath)) {
+            console.warn(`File not found: ${jsPath}`);
+            return;
+        }
 
-    // 3. Swap placeholders
-    content = content.replace('%%SUPABASE_URL%%', process.env.SUPABASE_URL || '');
-    content = content.replace('%%SUPABASE_ANON_KEY%%', process.env.SUPABASE_ANON_KEY || '');
-    content = content.replace('%%EMAILJS_SERVICE_ID%%', process.env.EMAILJS_SERVICE_ID || '');
-    content = content.replace('%%EMAILJS_PUBLIC_KEY%%', process.env.EMAILJS_PUBLIC_KEY || '');
-    content = content.replace('%%EMAILJS_TEMPLATE_ID%%', process.env.EMAILJS_TEMPLATE_ID || '');
+        let content = fs.readFileSync(jsPath, 'utf8');
 
-    fs.writeFileSync(jsPath, content);
-    console.log('Successfully injected keys into main.js');
-} catch (err) {
-    console.error('Build Error:', err.message);
-    process.exit(1); // <--- CRITICAL: Tells Netlify to stop if something goes wrong
-}
+        // 3. Swap placeholders
+        content = content.replace(/%%SUPABASE_URL%%/g, process.env.SUPABASE_URL || '');
+        content = content.replace(/%%SUPABASE_ANON_KEY%%/g, process.env.SUPABASE_ANON_KEY || '');
+        content = content.replace(/%%EMAILJS_SERVICE_ID%%/g, process.env.EMAILJS_SERVICE_ID || '');
+        content = content.replace(/%%EMAILJS_PUBLIC_KEY%%/g, process.env.EMAILJS_PUBLIC_KEY || '');
+        content = content.replace(/%%EMAILJS_TEMPLATE_HUMAN_THINKING_ID%%/g, process.env.EMAILJS_TEMPLATE_HUMAN_THINKING_ID || '');
+
+        fs.writeFileSync(jsPath, content);
+        console.log(`Successfully injected keys into ${path.basename(jsPath)}`);
+    } catch (err) {
+        console.error(`Build Error for ${jsPath}:`, err.message);
+        process.exit(1); // <--- CRITICAL: Tells Netlify to stop if something goes wrong
+    }
+});

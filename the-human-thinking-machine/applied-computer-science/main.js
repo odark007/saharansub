@@ -10,7 +10,7 @@
   const SB_URL = 'https://hpkudboszdvavczvjrkr.supabase.co';
   const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhwa3VkYm9zemR2YXZjenZqcmtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5NzU3MzMsImV4cCI6MjA4MzU1MTczM30.IOnuaR1sZCqyeN1p6rxf4mvWM_H0Of-B7z2ACbzSWGg';
   const EJS_SVC = 'service_d8jbfmc';
-  const EJS_TMP = 'htm_enrollment_briefing';
+  const EJS_TMP = 'service_qd07er9';
   const EJS_PUB = 'B07gMSHiApMJRrJGj';
 
   // 2. INITIALIZE SERVICES
@@ -620,12 +620,12 @@
         // B. Secondary Action: EmailJS (Non-Blocking)
         // Wrapped in its own try-catch so an EmailJS error doesn't break the success UI
         try {
+          const emailBody = `We have received the briefing for ${data.student_name}. Godwin will review the interests and goals provided and contact you at ${data.parent_phone} within 24 hours to schedule the 1-on-1 session.`;
+
           await emailjs.send(EJS_SVC, EJS_TMP, {
             parent_name: data.parent_name,
-            student_name: data.student_name,
-            parent_email: data.parent_email,
-            admin_email: "info@entrevahub.org",
-            program_name: "The Human Thinking Machine"
+            email_address: data.parent_email,
+            email_body: emailBody
           });
         } catch (ejsError) {
           console.warn("Email uplink failed, but data saved to Supabase:", ejsError);

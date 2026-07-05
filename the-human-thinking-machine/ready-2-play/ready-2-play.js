@@ -264,13 +264,13 @@
                 
                 const CONFIG = {
                     supabase: {
-                        url: 'https://dgyditllryrphjijvzfu.supabase.co',
-                        anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRneWRpdGxscnlycGhqaWp2emZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTczNjM2MzIsImV4cCI6MjA3MjkzOTYzMn0.a8IIljpmIj6mUhE46Qws1x0zHKvLPmT7bBKP2TL-l6k'
+                        url: 'https://hpkudboszdvavczvjrkr.supabase.co',
+                        anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhwa3VkYm9zemR2YXZjenZqcmtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5NzU3MzMsImV4cCI6MjA4MzU1MTczM30.IOnuaR1sZCqyeN1p6rxf4mvWM_H0Of-B7z2ACbzSWGg'
                     },
                     emailjs: {
                         publicKey: 'B07gMSHiApMJRrJGj',
                         serviceId: 'service_d8jbfmc',
-                        templateId: 'template_fhqt87w'
+                        templateId: 'service_qd07er9'
                     },
                     retryConfig: {
                         maxAttempts: 3,
@@ -351,23 +351,27 @@
                     }
 
                     try {
+                        const emailBody = `We have successfully received your inquiry for Ready 2 Play.
+
+Here is a summary of the details you submitted:
+------------------------------------------
+Program Focus: ${inquiryData.program_interest || 'Ready 2 Play'}
+Student Name: ${inquiryData.student_name || 'Not provided'}
+Student Age: ${inquiryData.student_age || 'Not provided'}
+Phone Number: ${inquiryData.phone_number || 'Not provided'}
+Training Style: ${inquiryData.group_preference || 'Not provided'}
+Activity Level: ${inquiryData.activity_level || 'Not provided'}
+Preferred Schedule: ${inquiryData.schedule_preference || 'Not provided'}
+Physical Considerations: ${inquiryData.physical_considerations || 'None mentioned'}
+Goals / Additional Info: ${inquiryData.message || 'None provided'}
+------------------------------------------
+
+Godwin will review the details and contact you shortly.`;
+
                         const emailParams = {
-                            to_email: 'gofrance01@gmail.com',
-                            from_name: inquiryData.parent_name,
-                            from_email: inquiryData.email_address,
-                            subject: `New Ready 2 Play Inquiry: ${inquiryData.program_interest}`,
                             parent_name: inquiryData.parent_name,
                             email_address: inquiryData.email_address,
-                            phone_number: inquiryData.phone_number || 'Not provided',
-                            student_name: inquiryData.student_name || 'Not provided',
-                            student_age: inquiryData.student_age,
-                            program_interest: inquiryData.program_interest,
-                            group_preference: inquiryData.group_preference,
-                            activity_level: inquiryData.activity_level,
-                            schedule_preference: inquiryData.schedule_preference,
-                            physical_considerations: inquiryData.physical_considerations || 'None mentioned',
-                            message: inquiryData.message || 'No additional message',
-                            submission_time: new Date().toLocaleString()
+                            email_body: emailBody
                         };
 
                         const result = await emailjs.send(
